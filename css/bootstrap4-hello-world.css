@@ -26,7 +26,7 @@
   --warning: #f4a554;
   --danger: #f65683;
   --light: #c6c4e7;
-  --dark: #39348d;
+  --dark: #313131;
   --breakpoint-xs: 0;
   --breakpoint-sm: 576px;
   --breakpoint-md: 768px;
@@ -337,7 +337,7 @@ h6, .h6 {
 
 .display-2 {
   font-size: 5.5rem;
-  font-weight: 300;
+  font-weight: 600;
   line-height: 1.2; }
 
 .display-3 {
@@ -5731,12 +5731,12 @@ button.bg-light:focus {
   background-color: #a3a0d8 !important; }
 
 .bg-dark {
-  background-color: #39348d !important; }
+  background-color: #242424 !important; }
 
 a.bg-dark:hover, a.bg-dark:focus,
 button.bg-dark:hover,
 button.bg-dark:focus {
-  background-color: #2a2668 !important; }
+  background-color: #313131 !important; }
 
 .bg-white {
   background-color: #fff !important; }
@@ -5796,7 +5796,7 @@ button.bg-dark:focus {
   border-color: #c6c4e7 !important; }
 
 .border-dark {
-  border-color: #39348d !important; }
+  border-color: #383838 !important; }
 
 .border-white {
   border-color: #fff !important; }
@@ -8697,7 +8697,7 @@ a.text-dark:hover, a.text-dark:focus {
 .display-2,
 .display-3,
 .display-4 {
-  font-family: "Fredoka One", cursive;
+  font-family: "Lucida Console";
   letter-spacing: .06em; }
 
 .lead,
