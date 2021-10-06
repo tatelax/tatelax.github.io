@@ -14,18 +14,18 @@ Volygon is a side project of mine that I have been working on and off for many y
 
 ---
 
-![Volygon1](/assets/img/portfolio/Volygon/1.png)
+[![Volygon1](/assets/img/portfolio/Volygon/1.png)](/assets/img/portfolio/Volygon/1.png)
 
-![Volygon2](/assets/img/portfolio/Volygon/2.png)
+[![Volygon2](/assets/img/portfolio/Volygon/2.png)](/assets/img/portfolio/Volygon/2.png)
 
-![Volygon3](/assets/img/portfolio/Volygon/3.png)
+[![Volygon3](/assets/img/portfolio/Volygon/3.png)](/assets/img/portfolio/Volygon/3.png)
 
-![Volygon4](/assets/img/portfolio/Volygon/4.png)
+[![Volygon4](/assets/img/portfolio/Volygon/4.png)](/assets/img/portfolio/Volygon/4.png)
 
-![Volygon5](/assets/img/portfolio/Volygon/5.png)
+[![Volygon5](/assets/img/portfolio/Volygon/5.png)](/assets/img/portfolio/Volygon/5.png)
 
-![Volygon6](/assets/img/portfolio/Volygon/6.png)
+[![Volygon6](/assets/img/portfolio/Volygon/6.png)](/assets/img/portfolio/Volygon/6.png)
 
-![Volygon7](/assets/img/portfolio/Volygon/7.png)
+[![Volygon7](/assets/img/portfolio/Volygon/7.png)](/assets/img/portfolio/Volygon/7.png)
 
-![Volygon8](/assets/img/portfolio/Volygon/8.png)
+[![Volygon8](/assets/img/portfolio/Volygon/8.png)](/assets/img/portfolio/Volygon/8.png)

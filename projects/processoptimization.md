@@ -23,14 +23,14 @@ I created a tool in Unity which allowed our consultants to model a business proc
 
 ---
 
-![PRO2](/assets/img/portfolio/PRO/2.png)
+[![PRO2](/assets/img/portfolio/PRO/2.png)](/assets/img/portfolio/PRO/2.png)
 
-![PRO3](/assets/img/portfolio/PRO/3.png)
+[![PRO3](/assets/img/portfolio/PRO/3.png)](/assets/img/portfolio/PRO/3.png)
 
-![PRO4](/assets/img/portfolio/PRO/4.png)
+[![PRO4](/assets/img/portfolio/PRO/4.png)](/assets/img/portfolio/PRO/4.png)
 
-![PRO5](/assets/img/portfolio/PRO/5.png)
+[![PRO5](/assets/img/portfolio/PRO/5.png)](/assets/img/portfolio/PRO/5.png)
 
-![PRO6](/assets/img/portfolio/PRO/6.png)
+[![PRO6](/assets/img/portfolio/PRO/6.png)](/assets/img/portfolio/PRO/6.png)
 
 [![PRO1](/assets/img/portfolio/PRO/1.png)](https://processreopt.com/)

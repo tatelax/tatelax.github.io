@@ -20,4 +20,4 @@ Hero Rescuers is a side project I'm working on under my company, Kinematic Games
 
 ---
 
-![HeroRescuers1](/assets/img/portfolio/herorescuers/1.png)
+[![HeroRescuers1](/assets/img/portfolio/herorescuers/1.png)](/assets/img/portfolio/herorescuers/1.png)
