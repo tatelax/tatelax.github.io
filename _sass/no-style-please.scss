@@ -94,4 +94,7 @@ img {
   max-width: 100%;
   display: block;
   margin: 0 auto;
+  border-radius: 1%;
+  object-fit: cover;
+  filter: drop-shadow(0.1rem 0.1rem 0.4rem rgba(0, 0, 0, 0.3));
 }

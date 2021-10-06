@@ -3,11 +3,13 @@ layout: page
 title: Volygon
 ---
 
-## About
+## 💡 About
 Something
 
 ## Technology
 Something
+
+---
 
 ![Volygon1](/assets/img/portfolio/Volygon/1.png)
 

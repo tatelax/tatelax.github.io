@@ -17,7 +17,11 @@ We used a variety of tools, such as [Signavio](https://www.signavio.com/) to mod
 
 I created a tool in Unity which allowed our consultants to model a business process and run 10x the number of transactions that the existing tools were able to handle. The tool also had additional features, such as being able to control the speed of the simulation which was useful for marketing purposes and allowed company stakeholders to better communicate ideas to clients. Another benefit to this tool was it's deterministic nature. Each simulation was able to output the same results each and every time whereas existing tools could vary as much as **50%** between simulations with the exact same data.
 
-[See Video](https://vimeo.com/624633604)
+---
+
+<center><a href = "https://vimeo.com/624633604">>See Video</a></center>
+
+---
 
 ![PRO2](/assets/img/portfolio/PRO/2.png)
 
