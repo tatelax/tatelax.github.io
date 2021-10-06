@@ -4,10 +4,13 @@ title: Volygon
 ---
 
 ## 💡 About
-Something
+Volygon is a side project of mine that I have been working on and off for many years. It's a multiplayer game that allows players to work together to build their own castle as well as conquer other players castle and territory.
 
 ## 👨‍💻 Tech
-Something
+* MLAPI
+* Unity
+* HDRP
+* NodeJS
 
 ---
 
