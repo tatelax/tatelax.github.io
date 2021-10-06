@@ -4,7 +4,8 @@ title: Cave Crusade
 ---
 
 ## 💡 About
-Something
+
+Cave Crusade was one of my earliest freelance mobile game projects. It was a fun and simple 2D game made in Unity. I worked with my client and artist to produce Cave Crusade in just two weeks. It is no longer available on the App Store or Google Play store.
 
 ---
 

@@ -6,7 +6,7 @@ title: Volygon
 ## 💡 About
 Something
 
-## Technology
+## 👨‍💻 Tech
 Something
 
 ---
