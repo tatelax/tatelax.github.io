@@ -4,6 +4,15 @@
 entries:
   - title: projects
     entries:
+      - title: LazyECS
+        url: https://github.com/tatelax/LazyECS
+        entries:
+          - title: LazyECS.Networking
+            url: https://github.com/tatelax/LazyECS.Networking
+      - title: telegram_image_bot
+        url: https://github.com/tatelax/telegram_image_bot
+      - title: unity_build_maker
+        url: https://github.com/tatelax/unity_build_maker
       - title: Hero Rescuers
         url: shit
       - title: Volygon
@@ -16,6 +25,11 @@ entries:
         url: shit
       - title: sandboxr
         url: shit
+
+  - title: contributions
+    entries:
+      - title: NodeListServer
+        url: https://github.com/SoftwareGuy/NodeListServer
 
   - title: posts
     post_list:
