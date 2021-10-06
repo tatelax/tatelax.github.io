@@ -2,7 +2,14 @@
 # https://github.com/riggraz/no-style-please#customize-the-menu
 
 entries:
-  - title: projects
+  - title: 📨 posts
+    post_list:
+      limit: 5
+      show_more: true
+      show_more_text: See archive...
+      show_more_url: archive.html
+
+  - title: 👨‍💻 open-source
     entries:
       - title: LazyECS
         url: https://github.com/tatelax/LazyECS
@@ -13,36 +20,34 @@ entries:
         url: https://github.com/tatelax/telegram_image_bot
       - title: unity_build_maker
         url: https://github.com/tatelax/unity_build_maker
-      - title: Hero Rescuers
-        url: shit
-      - title: Volygon
-        url: shit
-      - title: EmergeNYC
-        url: shit
-      - title: Process Optimization
-        url: shit
-      - title: Cave Crusade
-        url: shit
-      - title: sandboxr
-        url: shit
 
-  - title: contributions
+  - title: 👔 projects
+    entries:
+      - title: Hero Rescuers
+        url: projects/herorescuers
+      - title: Volygon
+        url: projects/volygon
+      - title: EmergeNYC
+        url: projects/emergenyc
+      - title: Process Optimization
+        url: projects/processoptimization
+      - title: Cave Crusade
+        url: projects/cavecrusade
+      - title: Sandboxr
+        url: projects/sandboxr
+
+  - title: 📚 contributions
     entries:
       - title: NodeListServer
         url: https://github.com/SoftwareGuy/NodeListServer
 
-  - title: posts
-    post_list:
-      limit: 5
-      show_more: true
-      show_more_text: See archive...
-      show_more_url: archive.html
-
-  - title: about
+  - title: 📖 about
     url: pages/about
 
-  - title: social
+  - title: 🐦 Links
     entries:
+      - title: Résumé/CV
+        url: resume.pdf
       - title: Github
         url: https://github.com/tatelax
       - title: LinkedIn
@@ -50,5 +55,5 @@ entries:
       - title: Instagram
         url: https://instagram.com/tatelax
 
-  - title: rss
+  - title: 🚩 rss
     url: feed.xml
