@@ -9,6 +9,10 @@ ECS is an architectural pattern commonly used in video games. It stands for enti
 
 I wrote a very simple open source ECS library for Unity that you can use [here](https://github.com/tatelax/LazyECS) to learn more about ECS. It also has a networking addon that automatically synchronized entity data to other players via [Mirror](https://github.com/vis2k/Mirror).
 
+---
+
+*Note - ECS can be implemented in a variety of ways. My goal isn't to show the most optimal way but rather the simplest way so that you can get a better understanding of how the paradigm works.*
+
 ## ❓ Why
 ECS provides many advantages over other programming architectures. I'm not going to focus on all of them, but I will compare it to the traditional (game)object + component architecture commonly seen in game engines today.
 
@@ -19,19 +23,23 @@ Let's compare ECS to the GameObject architecture we see in Unity today. A GameOb
 
 ## 📚 What
 
-An *entity* isn't a GameObject we see moving around in the application. In its most simple form, it's just an array of components.
+**Entity**
+: Entities aren't GameObjects we see moving around in the application. In its most simple form, it's just an array of components in a class. You can't see entities, but they might have a component which points to a GameObject that you can see.
 
-A *component* is a piece of data. In most cases, just 1 point of data such as the player's health.
+**Component**
+: Components are just data, like a field in a class. In most cases, just 1 point of data such as the player's health.
 
-A *system* is the logic that manipulates entities and their component values.
+**System**
+: Systems are the logic that manipulates entities and their component values.
 
 ## 👨‍💻 Code
 
 Let's take a look at a simple **C#** example. This is a very minimalistic view of ECS. A production ready ECS library will have more code related to optimizations and various checks in place but the principle is the same.
 
 ### Entity
+
 ```csharp
-public class Entity
+public class Entity : IEntity
 {
     public IComponent[] components;
 }
@@ -39,23 +47,25 @@ public class Entity
 
 ### Component
 Notice, there's no logic or external referenced here. Just data.[^1]
+
 ```csharp
-public struct HealthComponent : IComponent
+public class HealthComponent : IComponent
 {
     public float value;
 }
 ```
 
 ### System
+
 ```csharp
-public class HealthSystem
+public class HealthSystem : ISystem
 {
-    // Every ECS approach handles accessing "all" entities differently
+    // Every ECS approach handles accessing entities differently
     // For this example, I'm just creating a public field to
     // represent how we access entities
     // In the "real-world" entities are not
     // stored in a system. They are managed by the library
-    public Entities allEntities;
+    public Entity[] entities;
 
     // Can be called whenever you want, such as every
     // frame in Unity's Update() loop
