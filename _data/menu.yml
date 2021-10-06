@@ -1,0 +1,40 @@
+# For documentation on this file, see:
+# https://github.com/riggraz/no-style-please#customize-the-menu
+
+entries:
+  - title: projects
+    entries:
+      - title: Hero Rescuers
+        url: shit
+      - title: Volygon
+        url: shit
+      - title: EmergeNYC
+        url: shit
+      - title: Process Optimization
+        url: shit
+      - title: Cave Crusade
+        url: shit
+      - title: sandboxr
+        url: shit
+
+  - title: posts
+    post_list:
+      limit: 5
+      show_more: true
+      show_more_text: See archive...
+      show_more_url: archive.html
+
+  - title: about
+    url: about
+
+  - title: links
+    entries:
+      - title: Github
+        url: shit
+      - title: LinkedIn
+        url: shit
+      - title: Instagram
+        url: shit
+
+  - title: rss
+    url: feed.xml
