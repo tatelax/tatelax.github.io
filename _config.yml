@@ -21,7 +21,7 @@
 title: Tate McCormick
 email: tatelax@gmail.com
 description: >- # this means to ignore newlines until "baseurl:"
-  Tate McCormick Portfolio + Blog
+  "The best way to get a project done faster is to start sooner" -Jim Highsmith
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://tate.sh" # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: 
@@ -33,7 +33,7 @@ theme_config:
   appearance: "light" # can be "light", "dark" or "auto"
   back_home_text: ".." # customize text for homepage link in post layout
   date_format: "%m-%d-%Y" # customize how date is formatted
-  show_description: false # show blog description in home page
+  show_description: true # show blog description in home page
 
 # Google Analytics
 google_analytics: UA-37209981-1
