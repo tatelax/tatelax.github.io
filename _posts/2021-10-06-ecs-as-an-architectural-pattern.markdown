@@ -30,3 +30,6 @@ public class HelloWorld {
 }
 ```
 
+
+
+[Some Link](/pages/somefile.html){:target="_blank"}

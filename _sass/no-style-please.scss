@@ -21,7 +21,7 @@ body[a="dark"] { @include dark-appearance; }
 // bg color is also needed in html in order to
 // block body's background propagation
 // see: https://stackoverflow.com/a/61265706
-html, body { background: white; }
+html, body { background: rgb(255, 251, 231); }
 
 html { height: 100%; }
 
@@ -71,7 +71,7 @@ table, th, td {
 
 code {
   color: rgb(44, 44, 44);
-  background: rgb(251, 251, 251);
+  background: rgb(255, 250, 221);
   border-radius: 5px;
 }
 

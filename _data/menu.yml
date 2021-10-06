@@ -25,16 +25,16 @@ entries:
       show_more_url: archive.html
 
   - title: about
-    url: about
+    url: pages/about
 
   - title: social
     entries:
       - title: Github
-        url: shit
+        url: https://github.com/tatelax
       - title: LinkedIn
-        url: shit
+        url: https://linkedin.com/in/tatemccormick
       - title: Instagram
-        url: shit
+        url: https://instagram.com/tatelax
 
   - title: rss
     url: feed.xml
