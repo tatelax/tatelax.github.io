@@ -43,9 +43,6 @@ entries:
       - title: NodeListServer
         url: https://github.com/SoftwareGuy/NodeListServer
 
-  - title: 📖 about
-    url: pages/about
-
   - title: 🐦 Links
     entries:
       - title: Email
@@ -58,6 +55,9 @@ entries:
         url: https://linkedin.com/in/tatemccormick
       - title: Instagram
         url: https://instagram.com/tatelax
+
+  - title: 📖 about
+    url: pages/about
 
   - title: 🚩 rss
     url: feed.xml
