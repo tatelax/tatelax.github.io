@@ -21,7 +21,9 @@
 title: Tate McCormick
 email: tatelax@gmail.com
 description: >- # this means to ignore newlines until "baseurl:"
-  "The best way to get a project done faster is to start sooner" -Jim Highsmith
+  "Simplicity is the soul of efficiency."
+description_link: "https://vanderburg.org/etc/quotes/freeman-simplicity/"
+description_link_text: "--Austin Freeman"
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://tate.sh" # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: 

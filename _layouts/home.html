@@ -12,7 +12,7 @@ layout: default
   </div>
   
   {%-if site.theme_config.show_description-%}
-    <p style="font-size:89%; text-align: right;"><i>{{ site.description }}</i></p>
+    <p style="font-size:89%; text-align: right;"><i>{{ site.description }} <a href={{ site.description_link }} target="_blank">{{ site.description_link_text }}</a></i></p>
   {%-endif-%}
 
 </header>
