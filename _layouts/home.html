@@ -8,7 +8,12 @@ layout: default
   </div>
   
   <div style="display:inline-block; vertical-align: middle;">
-    <h1>{{ site.title }}</h1>
+    <h1 style="background-color:#57ffe6; 
+              padding-left: 20px; 
+              padding-right: 20px;
+              text-transform: uppercase;
+              font-weight:bold;">
+              <a href={{site.url}}>{{ site.title }}</a></h1>
   </div>
   
   {%-if site.theme_config.show_description-%}
