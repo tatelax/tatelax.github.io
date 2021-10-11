@@ -2,12 +2,23 @@
 layout: default
 ---
 <header>
-  <h1>{{ site.title }}</h1>
+  
+  <div style="display:inline-block; min-width:2.9cm; vertical-align: middle;">
+    <img src="../tatelogo.png">
+  </div>
+  
+  <div style="display:inline-block; vertical-align: middle;">
+    <h1>{{ site.title }}</h1>
+  </div>
+  
   {%-if site.theme_config.show_description-%}
     <p style="font-size:89%; text-align: right;"><i>{{ site.description }}</i></p>
   {%-endif-%}
+
 </header>
 
 {%-include menu_item.html collection=site.data.menu.entries-%}
 
 {{ content }}
+
+{%-include footer.html-%}
