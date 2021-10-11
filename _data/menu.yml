@@ -48,6 +48,8 @@ entries:
 
   - title: 🐦 Links
     entries:
+      - title: Email
+        url: mailto:&#116;&#097;&#116;&#101;&#108;&#097;&#120;&#064;&#103;&#109;&#097;&#105;&#108;&#046;&#099;&#111;&#109;
       - title: Résumé/CV
         url: https://docs.google.com/document/d/1-f4HBcZU9PxsGZ0Kv0G0WFi0yxOCe7PN8UMQFUyONQE/edit?usp=sharing
       - title: Github
