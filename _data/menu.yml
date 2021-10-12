@@ -64,6 +64,8 @@ entries:
         url: https://linkedin.com/in/tatemccormick
       - title: Instagram
         url: https://instagram.com/tatelax
+      - title: Twitter
+        url: https://twitter.com/tatemccormick
 
   - title: 📖 about
     url: pages/about
