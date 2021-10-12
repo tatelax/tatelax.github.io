@@ -20,9 +20,9 @@
 
 title: Tate McCormick
 description: >- # this means to ignore newlines
-  "Simplicity is the soul of efficiency."
+  "Simplicity is prerequisite for reliability."
 description_link: "https://vanderburg.org/etc/quotes/freeman-simplicity/"
-description_link_text: "--Austin Freeman"
+description_link_text: "--Edsger W. Dijkstra"
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://tate.sh" # the base hostname & protocol for your site, e.g. http://example.com
 
