@@ -4,7 +4,7 @@ title: Magellan
 ---
 
 ## 💡 About
-Magellan is a GIS tool used for the engineering of coaxial and fiber optic communication networks.
+Magellan is a GIS tool used for the engineering of coaxial and fiber optic communication networks developed by [Rainbow Design Services, Inc.](https://www.rainbowdesign.net/)
 
 It is currently being used by Comcast and Spectrum (Charter Communications).
 
