@@ -21,7 +21,7 @@
 title: Tate McCormick
 description: >- # this means to ignore newlines
   "Simplicity is prerequisite for reliability."
-description_link: "https://vanderburg.org/etc/quotes/freeman-simplicity/"
+description_link: "https://en.wikiquote.org/wiki/Edsger_W._Dijkstra"
 description_link_text: "--Edsger W. Dijkstra"
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://tate.sh" # the base hostname & protocol for your site, e.g. http://example.com
