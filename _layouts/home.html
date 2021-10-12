@@ -8,17 +8,29 @@ layout: default
   </div>
 
   <div style="display:inline-block; vertical-align: middle;">
-    <h1 style="
+    <h1 style="vertical-align: middle;
               font-weight:bolder;
               font-size: 55px;
               font-family: Arial Black, sans-serif;
-              letter-spacing: -5px;">
+              letter-spacing: -5px;
+              margin-top: 0px;
+              margin-bottom: 0px;">
               {{ site.title }}
     </h1>
   </div>
 
   {%-if site.theme_config.show_description-%}
-    <p style="font-size:89%; text-align: right;"><i>{{ site.description }} <a href={{ site.description_link }} target="_blank">{{ site.description_link_text }}</a></i></p>
+    <p style="font-size:89%; 
+              text-align: right;
+              margin-top: 0px;
+              margin-bottom: 50px;">
+      <i>{{ site.description }} 
+        <a href={{ site.description_link }} target="_blank">
+          {{ site.description_link_text }}
+
+        </a>
+      </i>
+    </p>
   {%-endif-%}
 
 </header>
