@@ -43,6 +43,15 @@ entries:
       - title: NodeListServer
         url: https://github.com/SoftwareGuy/NodeListServer
 
+  - title: 👨‍🏫 educational
+    entries:
+      - title: graph theory
+        url: https://github.com/tatelax/graph-theory
+      - title: data structures & algorithms
+        url: https://github.com/tatelax/data-structures-and-algorithms
+      - title: discrete mathematics
+        url: https://github.com/tatelax/discrete-mathematics
+
   - title: 🐦 contact
     entries:
       - title: Email
