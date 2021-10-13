@@ -54,6 +54,8 @@ Over the years, I've been building a repository of interesting or useful links. 
 
 ### [Programming Sucks](https://www.stilldrinking.org/programming-sucks)
 
+### [SEO is Not Hard — Get ranked every single time](https://medium.com/startup-grind/seo-is-not-hard-a-step-by-step-seo-tutorial-for-beginners-that-will-get-you-ranked-every-single-1b903b3ab6bb)
+
 ---
 
 # 🙈 Unity
@@ -61,6 +63,8 @@ Over the years, I've been building a repository of interesting or useful links. 
 ### [Fluid Behavior Trees](https://github.com/ashblue/fluid-behavior-tree)
 
 ### [Zero Allocation Code in C# and Unity](https://web.archive.org/web/20211013171631/https://www.sebaslab.com/zero-allocation-code-in-unity/)
+
+### [Unity UI Extensions - Additional UI Controls for Free](https://bitbucket.org/UnityUIExtensions/unity-ui-extensions/wiki/Home)
 
 ---
 
