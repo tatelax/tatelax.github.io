@@ -34,7 +34,9 @@ layout: default
 
 </header>
 
-{% for item in site.data %}
+{% assign sortedData = site.data | sort_by:"path" %}
+
+{% for item in sortedData %}
   <p style="margin-bottom: 25px;">
       {%-include menu_item.html collection=item-%}
   </p>
