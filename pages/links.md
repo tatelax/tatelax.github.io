@@ -118,7 +118,7 @@ Over the years, I've been building a repository of interesting or useful links. 
 
 ### [Lightform - AR + Projectors](https://lightform.com/)
 
-### [Find Cool New Products](https://www.producthunt.com/)
+### [Product Hunt - Find Cool New Products](https://www.producthunt.com/)
 
 ---
 
