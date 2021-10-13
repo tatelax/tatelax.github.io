@@ -46,6 +46,8 @@ Over the years, I've been building a repository of interesting or useful links. 
 
 ### [Things You Should Never Do Pt. 1](https://www.joelonsoftware.com/2000/04/06/things-you-should-never-do-part-i/)
 
+### [Programming Sucks](https://www.stilldrinking.org/programming-sucks)
+
 ---
 
 # Unity
