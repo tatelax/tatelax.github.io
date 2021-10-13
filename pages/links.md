@@ -10,13 +10,13 @@ Over the years, I've been building a repository of interesting or useful links. 
 
 ---
 
-# Productivity
+# ⌛ Productivity
 
 ### [GTD in 15 minutes – A Pragmatic Guide to Getting Things Done](https://web.archive.org/web/20211013165523/https://hamberg.no/gtd/)
 
 ---
 
-# Building Video Games
+# 🎮 Building Video Games
 
 ### [Gaffer On Games - A resource for learning more about how to build multiplayer games](https://web.archive.org/web/20211013165807/https://gafferongames.com/)
 
@@ -26,7 +26,7 @@ Over the years, I've been building a repository of interesting or useful links. 
 
 ---
 
-# Software Engineering
+# 👨‍💻 Software Engineering
 
 ### [Why Google Stores Billions of Lines of Code in a Single Repository](https://www.youtube.com/watch?v=W71BTkUbdqE)
 
@@ -50,7 +50,7 @@ Over the years, I've been building a repository of interesting or useful links. 
 
 ---
 
-# Unity
+# 🙈 Unity
 
 ### [Fluid Behavior Trees](https://github.com/ashblue/fluid-behavior-tree)
 
@@ -58,7 +58,7 @@ Over the years, I've been building a repository of interesting or useful links. 
 
 ---
 
-# Online Courses
+# 🏫 Online Courses
 
 ### [Graph Theory](https://www.udemy.com/course/graph-theory/)
 
