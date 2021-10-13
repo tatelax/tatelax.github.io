@@ -2,7 +2,7 @@
 # https://github.com/riggraz/no-style-please#customize-the-menu
 
 entries:
-  - title: <font size="+2"><b>posts</b></font>
+  - title: <font size="+2"><b>Posts</b></font>
     emoji: 📨
     post_list:
       limit: 5

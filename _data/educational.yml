@@ -2,7 +2,7 @@
 # https://github.com/riggraz/no-style-please#customize-the-menu
 
 entries:
-  - title: <font size="+2"><b>educational</b></font>
+  - title: <font size="+2"><b>Educational</b></font>
     emoji: 👨‍🏫
     entries:
       - title: graph theory

@@ -2,6 +2,6 @@
 # https://github.com/riggraz/no-style-please#customize-the-menu
 
 entries:
-  - title: <font size="+2"><b>rss</b></font>
+  - title: <font size="+2"><b>RSS</b></font>
     emoji: 🚩
     url: feed.xml
