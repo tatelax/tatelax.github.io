@@ -14,6 +14,10 @@ Over the years, I've been building a repository of interesting or useful links. 
 
 ### [GTD in 15 minutes – A Pragmatic Guide to Getting Things Done](https://web.archive.org/web/20211013165523/https://hamberg.no/gtd/)
 
+### [Notion - A project management tool for personal use and teams](https://www.notion.so/)
+
+### [TickTick - The best todo app I've used yet](https://ticktick.com/?language=en_US)
+
 ---
 
 # 🎮 Game Development
