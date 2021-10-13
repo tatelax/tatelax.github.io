@@ -6,7 +6,8 @@ layout: default
 
 <p class="post-meta">
     {% if page.date-updated %}
-    <br><time datetime="{{ page.date-updated }}">Updated {{ page.date-updated | date: site.theme_config.date_format }}</time>
+    <br/><time datetime="{{ page.date-updated }}">Updated {{ page.date-updated | date: site.theme_config.date_format }}</time>
+    <br/><a href={{page.source}}>✏️ View Source</a>
     {% endif %}
 </p>
 
