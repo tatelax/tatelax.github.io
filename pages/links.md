@@ -8,6 +8,8 @@ Over the years, I've been building a repository of interesting or useful links. 
 
 *Note: I've added some of these pages to archive.org to hopefully keep them alive even if the original page goes offline. **You may want to visit the pages directly to decrease loading time.***
 
+[Here's the Markdown file for this page!](https://github.com/tatelax/tatelax.github.io/blob/master/pages/links.md)
+
 ---
 
 # ⌛ Productivity
