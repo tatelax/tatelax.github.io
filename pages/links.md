@@ -22,6 +22,8 @@ Over the years, I've been building a repository of interesting or useful links. 
 
 ### [Miro - Online whiteboarding for brainstorming, design, and more](https://miro.com/)
 
+### [Clickup - A really nice Jira replacement](https://clickup.com/)
+
 ---
 
 # 🎮 Game Development
@@ -32,9 +34,13 @@ Over the years, I've been building a repository of interesting or useful links. 
 
 ### [Game UI Database - A resource for inspiration when designing video game UI/X](https://web.archive.org/web/20211013170417/https://www.gameuidatabase.com/index.php)
 
+### [Huge List of Game Networking Resources](https://github.com/MFatihMAR/Game-Networking-Resources)
+
 ---
 
 # 👨‍💻 Software Engineering
+
+### [How Google Manages Technical Debt](https://static.googleusercontent.com/media/research.google.com/en//pubs/archive/37755.pdf)
 
 ### [Why Google Stores Billions of Lines of Code in a Single Repository](https://www.youtube.com/watch?v=W71BTkUbdqE)
 
@@ -60,6 +66,10 @@ Over the years, I've been building a repository of interesting or useful links. 
 
 ### [Neural Networks Introduction (Sebastian Lague)](https://www.youtube.com/watch?v=bVQUSndDllU)
 
+### [ZString - Zero Allocation StringBuilder](https://github.com/Cysharp/ZString)
+
+### [In-Depth ECS Explanation](https://skypjack.github.io/2019-02-14-ecs-baf-part-1/)
+
 ---
 
 # 📈 Business & Marketing
@@ -84,6 +94,8 @@ Over the years, I've been building a repository of interesting or useful links. 
 
 ### [Thousands of Free Icons](https://www.shareicon.net/)
 
+### [Typedream - Showcase Nice Website Designs](https://typedream.com/showcase)
+
 ---
 
 # 🙈 Unity
@@ -95,6 +107,18 @@ Over the years, I've been building a repository of interesting or useful links. 
 ### [Unity UI Extensions - Additional UI Controls for Free](https://bitbucket.org/UnityUIExtensions/unity-ui-extensions/wiki/Home)
 
 ### [Real-Time Collaboration in Unity Editor Scenes](https://www.kinematicsoup.com/scene-fusion/pricing)
+
+### [Addressable Importer - Manage Addressable Assets Easily](https://openupm.com/packages/com.littlebigfun.addressable-importer/#how-to-use)
+
+### [Project Auditor - Find Issues with your Unity Project](https://github.com/Unity-Technologies/ProjectAuditor)
+
+---
+
+# 🏂 Cool
+
+### [Lightform - AR + Projectors](https://lightform.com/)
+
+### [Find Cool New Products](https://www.producthunt.com/)
 
 ---
 

@@ -13,6 +13,8 @@ I wrote a very simple open source ECS library for Unity that you can use [here](
 
 *Note - ECS can be implemented in a variety of ways. My goal isn't to show the most optimal way but rather the simplest way so that you can get a better understanding of how the paradigm works.*
 
+For a very in-depth overview of ECS, see [here.](https://skypjack.github.io/2019-02-14-ecs-baf-part-1/)
+
 ## ❓ Why
 ECS provides many advantages over other programming architectures. I'm not going to focus on all of them, but I will compare it to the traditional (game)object + component architecture commonly seen in game engines today.
 
