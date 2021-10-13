@@ -54,6 +54,16 @@ Over the years, I've been building a repository of interesting or useful links. 
 
 ### [Programming Sucks](https://www.stilldrinking.org/programming-sucks)
 
+### [MessagePack C# Serializer (JSON Alternative)](https://github.com/neuecc/MessagePack-CSharp)
+
+### [Neural Networks Introduction (Sebastian Lague)](https://www.youtube.com/watch?v=bVQUSndDllU)
+
+---
+
+# 📈 Marketing
+
+### [Keymailer - Send Keys to Creators](https://keymailer.co/)
+
 ### [SEO is Not Hard — Get ranked every single time](https://medium.com/startup-grind/seo-is-not-hard-a-step-by-step-seo-tutorial-for-beginners-that-will-get-you-ranked-every-single-1b903b3ab6bb)
 
 ---
