@@ -9,6 +9,9 @@ entries:
       show_more_text: All Posts...
       show_more_url: archive.html
 
+  - title: 🔗 interesting links
+    url: pages/links
+
   - title: 👨‍💻 open-source
     entries:
       - title: LazyECS
