@@ -1,6 +1,11 @@
 <ul style="list-style-type: none;">
   {%-for item in include.collection-%}
+    {%- if item.emoji -%}
     <li style="margin: 0px 0px;">
+    {%- else -%}
+    <li style="margin: 0px 10px;">
+    {%- endif -%}
+
     {%- if item.url -%}
       <font size="+3">{{ item.emoji }}</font> <a href="{{ item.url }}">{{ item.title }}</a>
     {%- else -%}
