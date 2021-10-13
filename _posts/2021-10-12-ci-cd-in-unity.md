@@ -2,6 +2,7 @@
 layout: post
 category: code
 title: How to setup CI/CD for a Unity project
+source: https://github.com/tatelax/tatelax.github.io/blob/master/_posts/2021-10-12-ci-cd-in-unity.md
 ---
 
 ## What?

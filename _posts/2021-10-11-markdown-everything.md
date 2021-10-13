@@ -2,6 +2,7 @@
 layout: post
 category: code
 title: Why You Should Use Markdown Everywhere
+source: https://github.com/tatelax/tatelax.github.io/blob/master/_posts/2021-10-11-markdown-everything.md
 ---
 
 Markdown is a markup language that allows you to quickly and easily create beautiful documents that are *portable*. In fact, this entire website was made using Markdown and [Jekyll](https://jekyllrb.com/).
@@ -73,4 +74,3 @@ namespace helloworld
     }
 }
 ```
-

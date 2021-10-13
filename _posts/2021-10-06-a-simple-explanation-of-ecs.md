@@ -3,6 +3,7 @@ layout: post
 category: code
 title: A Simple Explanation of ECS
 date-updated: 10-13-2021
+source: https://github.com/tatelax/tatelax.github.io/blob/master/_posts/2021-10-06-a-simple-explanation-of-ecs.md
 ---
 
 ## 💡 About

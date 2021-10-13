@@ -7,8 +7,17 @@ layout: default
 <article>
   <p class="post-meta">
     <time datetime="{{ page.date }}">{{ page.date | date: site.theme_config.date_format }}</time>
+
+    {% if page.category %}
+    <br/>Category - {{page.category}}
+    {% endif %}
+
     {% if page.date-updated %}
     <br><time datetime="{{ page.date-updated }}">Updated {{ page.date-updated | date: site.theme_config.date_format }}</time>
+    {% endif %}
+
+    {% if page.source %}
+    <br/>✏️ <a href="{{ page.source }}">Edit</a>
     {% endif %}
   </p>
   
