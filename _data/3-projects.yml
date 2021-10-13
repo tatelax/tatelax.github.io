@@ -1,0 +1,21 @@
+# For documentation on this file, see:
+# https://github.com/riggraz/no-style-please#customize-the-menu
+
+entries:
+  - title: projects
+    emoji: 👔
+    entries:
+      - title: (2021) Hero Rescuers
+        url: projects/herorescuers
+      - title: (2020) Magellan
+        url: projects/magellan
+      - title: (2020) Volygon
+        url: projects/volygon
+      - title: (2019) EmergeNYC
+        url: projects/emergenyc
+      - title: (2016) Process Optimization
+        url: projects/processoptimization
+      - title: (2013) Cave Crusade
+        url: projects/cavecrusade
+      - title: (2011) Sandboxr
+        url: projects/sandboxr

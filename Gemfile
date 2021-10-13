@@ -14,6 +14,7 @@ gem "minima", "~> 2.5"
 # Stuff I added
 gem "no-style-please"
 gem 'jekyll-sitemap'
+gem 'jekyll-email-protect'
 
 # If you want to use GitHub Pages, remove the "gem "jekyll"" above and
 # uncomment the line below. To upgrade, run `bundle update github-pages`.

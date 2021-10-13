@@ -34,6 +34,10 @@ layout: default
 
 </header>
 
-{%-include menu_item.html collection=site.data.menu.entries-%}
+{% for item in site.data %}
+  <p style="margin-bottom: 25px;">
+      {%-include menu_item.html collection=item-%}
+  </p>
+{% endfor %}
 
 {{ content }}
