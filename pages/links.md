@@ -60,11 +60,27 @@ Over the years, I've been building a repository of interesting or useful links. 
 
 ---
 
-# 📈 Marketing
+# 📈 Business & Marketing
 
 ### [Keymailer - Send Keys to Creators](https://keymailer.co/)
 
 ### [SEO is Not Hard — Get ranked every single time](https://medium.com/startup-grind/seo-is-not-hard-a-step-by-step-seo-tutorial-for-beginners-that-will-get-you-ranked-every-single-1b903b3ab6bb)
+
+### [Research Keywords for Affiliate Marketing](https://www.youtube.com/watch?v=3ZJEBDpCbmI)
+
+### [Successful Startup Pitch Decks](https://www.cirrusinsight.com/blog/startup-pitch-decks)
+
+---
+
+# 🖌️ Art & Design
+
+### [Logo Design Inspiration - Trade Marks & Symbols](http://nfgraphics.com/downloads/vol1.pdf)
+
+### [Nice Looking UI Kits](https://ui8.net/category/ui-kits)
+
+### [Fully Coded UI Kits for Mobile & Web Apps](https://www.creative-tim.com/)
+
+### [Thousands of Free Icons](https://www.shareicon.net/)
 
 ---
 
@@ -75,6 +91,8 @@ Over the years, I've been building a repository of interesting or useful links. 
 ### [Zero Allocation Code in C# and Unity](https://web.archive.org/web/20211013171631/https://www.sebaslab.com/zero-allocation-code-in-unity/)
 
 ### [Unity UI Extensions - Additional UI Controls for Free](https://bitbucket.org/UnityUIExtensions/unity-ui-extensions/wiki/Home)
+
+### [Real-Time Collaboration in Unity Editor Scenes](https://www.kinematicsoup.com/scene-fusion/pricing)
 
 ---
 
