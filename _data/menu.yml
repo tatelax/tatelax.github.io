@@ -2,17 +2,20 @@
 # https://github.com/riggraz/no-style-please#customize-the-menu
 
 entries:
-  - title: 🔗 interesting & useful links
+  - title: interesting & useful links
+    emoji: 🔗
     url: pages/links
 
-  - title: 📨 posts
+  - title: posts
+    emoji: 📨
     post_list:
       limit: 5
       show_more: true
       show_more_text: All Posts...
       show_more_url: archive.html
 
-  - title: 👨‍💻 open-source
+  - title: open-source
+    emoji: 👨‍💻
     entries:
       - title: LazyECS
         url: https://github.com/tatelax/LazyECS
@@ -24,7 +27,8 @@ entries:
       - title: unity_build_maker
         url: https://github.com/tatelax/unity_build_maker
 
-  - title: 👔 projects
+  - title: projects
+    emoji: 👔
     entries:
       - title: (2021) Hero Rescuers
         url: projects/herorescuers
@@ -41,12 +45,14 @@ entries:
       - title: (2011) Sandboxr
         url: projects/sandboxr
 
-  - title: 📚 contributions
+  - title: contributions
+    emoji: 📚
     entries:
       - title: NodeListServer
         url: https://github.com/SoftwareGuy/NodeListServer
 
-  - title: 👨‍🏫 educational
+  - title: educational
+    emoji: 👨‍🏫
     entries:
       - title: graph theory
         url: https://github.com/tatelax/graph-theory
@@ -55,7 +61,8 @@ entries:
       - title: discrete mathematics
         url: https://github.com/tatelax/discrete-mathematics
 
-  - title: 🐦 contact
+  - title: contact
+    emoji: 🐦
     entries:
       - title: Email
         url: mailto:&#116;&#097;&#116;&#101;&#108;&#097;&#120;&#064;&#103;&#109;&#097;&#105;&#108;&#046;&#099;&#111;&#109;
@@ -70,8 +77,10 @@ entries:
       - title: Twitter
         url: https://twitter.com/tatemccormick
 
-  - title: 📖 about
+  - title: about
+    emoji: 📖
     url: pages/about
 
-  - title: 🚩 rss
+  - title: rss
+    emoji: 🚩
     url: feed.xml

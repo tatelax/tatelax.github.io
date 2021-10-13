@@ -2,9 +2,9 @@
   {%-for item in include.collection-%}
     <li>
     {%- if item.url -%}
-      <a href="{{ item.url }}">{{ item.title }}</a>
+      {{ item.emoji }} <a href="{{ item.url }}">{{ item.title }}</a>
     {%- else -%}
-      {{ item.title }}
+      {{ item.emoji }} {{ item.title }}
     {%- endif -%}
     </li>
 
