@@ -124,18 +124,20 @@ Over the years, I've been building a repository of interesting or useful links. 
 
 # 🏫 Online Courses
 
-### [Graph Theory](https://www.udemy.com/course/graph-theory/)
+### [CS231n: Convolutional Neural Networks for Visual Recognition](http://cs231n.stanford.edu/2017/)
 
-### [Discrete Mathematics](https://www.udemy.com/course/discrete-math/)
+### [Udemy - Graph Theory](https://www.udemy.com/course/graph-theory/)
 
-### [Data Structures & Algorithms](https://www.udemy.com/course/master-the-coding-interview-data-structures-algorithms/learn/lecture/12119332?start=1#overview)
+### [Udemy - Discrete Mathematics](https://www.udemy.com/course/discrete-math/)
 
-### [React Native + Hooks](https://www.udemy.com/course/the-complete-react-native-and-redux-course/)
+### [Udemy - Data Structures & Algorithms](https://www.udemy.com/course/master-the-coding-interview-data-structures-algorithms/learn/lecture/12119332?start=1#overview)
 
-### [Docker & Kubernetes](https://www.udemy.com/course/docker-and-kubernetes-the-complete-guide/)
+### [Udemy - React Native + Hooks](https://www.udemy.com/course/the-complete-react-native-and-redux-course/)
 
-### [Unreal Engine 4](https://www.udemy.com/course/unrealcourse/)
+### [Udemy - Docker & Kubernetes](https://www.udemy.com/course/docker-and-kubernetes-the-complete-guide/)
 
-### [Beginning C++](https://www.udemy.com/course/beginning-c-plus-plus-programming/)
+### [Udemy - Unreal Engine 4](https://www.udemy.com/course/unrealcourse/)
 
-### [OpenGL](https://www.udemy.com/course/graphics-with-modern-opengl/)
+### [Udemy - Beginning C++](https://www.udemy.com/course/beginning-c-plus-plus-programming/)
+
+### [Udemy - OpenGL](https://www.udemy.com/course/graphics-with-modern-opengl/)
