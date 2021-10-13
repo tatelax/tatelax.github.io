@@ -112,6 +112,8 @@ Over the years, I've been building a repository of interesting or useful links. 
 
 ### [Project Auditor - Find Issues with your Unity Project](https://github.com/Unity-Technologies/ProjectAuditor)
 
+### [Triplanar Shader Demo](https://gfycat.com/mammothwealthyguanaco)
+
 ---
 
 # 🏂 Cool
