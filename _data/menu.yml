@@ -2,15 +2,15 @@
 # https://github.com/riggraz/no-style-please#customize-the-menu
 
 entries:
+  - title: 🔗 interesting & useful links
+    url: pages/links
+
   - title: 📨 posts
     post_list:
       limit: 5
       show_more: true
       show_more_text: All Posts...
       show_more_url: archive.html
-
-  - title: 🔗 interesting links
-    url: pages/links
 
   - title: 👨‍💻 open-source
     entries:
