@@ -85,3 +85,5 @@ My Jenkinsfile consists of editing a version.txt file in my Unity project's Stre
 I'm also using 7zip to zip up the archive which gets sent back to the Jenkins host on line 47.
 
 Jenkinsfiles have their own syntax that you can use to do a lot of neat things. [Here's a link to the documentation](https://www.jenkins.io/doc/book/pipeline/syntax/).
+
+At this point, everything should be configured. When you commit to your branch, Jenkins should detect the change and notify the agent to start building from the latest commit on that branch. The agent will clone the repo and execute all of the steps specified in your Jenkinsfile.
