@@ -1,6 +1,6 @@
 ---
 layout: page
-title: 👨‍💻 Interesting Links
+title: 🔗 Interesting Links
 date-updated: 10-13-2021
 ---
 
