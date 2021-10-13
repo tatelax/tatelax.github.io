@@ -7,3 +7,7 @@ entries:
     entries:
       - title: NodeListServer
         url: https://github.com/SoftwareGuy/NodeListServer
+      - title: xNode
+        url: https://github.com/Siccity/xNode
+      - title: Command Terminal
+        url: https://github.com/stillwwater/command_terminal
