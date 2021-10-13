@@ -2,6 +2,6 @@
 # https://github.com/riggraz/no-style-please#customize-the-menu
 
 entries:
-  - title: interesting & useful links
+  - title: <font size="+2"><b>interesting & useful links</b></font>
     emoji: 🔗
     url: pages/links
