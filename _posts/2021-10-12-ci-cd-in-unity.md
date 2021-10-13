@@ -1,7 +1,7 @@
 ---
 layout: post
 category: code
-title: How to setup CI/CD on a Unity project
+title: How to setup CI/CD for a Unity project
 ---
 
 ## What?
