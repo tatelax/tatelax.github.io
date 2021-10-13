@@ -15,6 +15,8 @@ GitHub has a direct relationship with Jekyll. When you use Jekyll for your GitHu
 
 You can read more about Markdown on my post [here](https://tate.sh/code/2021/10/11/markdown-everything.html).
 
+*Also, a link to the source code for this website is at the footer of every page.*
+
 ## Why
 
 GitHub pages is free and reliable. Compare this to setting up a webserver on S3 or DO and you're setting yourself up for occasional maintenance or failures. Your GitHub page is just a git repository with a web view that GitHub hosts. Jekyll makes it easy to do more advanced things than pure HTML/CSS like blog posts.
