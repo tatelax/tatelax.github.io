@@ -53,3 +53,23 @@ Over the years, I've been building a repository of interesting or useful links. 
 ### [Fluid Behavior Trees](https://github.com/ashblue/fluid-behavior-tree)
 
 ### [Zero Allocation Code in C# and Unity](https://web.archive.org/web/20211013171631/https://www.sebaslab.com/zero-allocation-code-in-unity/)
+
+---
+
+# Online Courses
+
+### [Graph Theory](https://www.udemy.com/course/graph-theory/)
+
+### [Discrete Mathematics](https://www.udemy.com/course/discrete-math/)
+
+### [Data Structures & Algorithms](https://www.udemy.com/course/master-the-coding-interview-data-structures-algorithms/learn/lecture/12119332?start=1#overview)
+
+### [React Native + Hooks](https://www.udemy.com/course/the-complete-react-native-and-redux-course/)
+
+### [Docker & Kubernetes](https://www.udemy.com/course/docker-and-kubernetes-the-complete-guide/)
+
+### [Unreal Engine 4](https://www.udemy.com/course/unrealcourse/)
+
+### [Beginning C++](https://www.udemy.com/course/beginning-c-plus-plus-programming/)
+
+### [OpenGL](https://www.udemy.com/course/graphics-with-modern-opengl/)
