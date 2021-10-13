@@ -40,6 +40,8 @@ Art by Rowan Crawford.
     <main class="page-content" aria-label="Content">
       <div class="w">
         {{ content }}
+
+        {%-include footer.html-%}
       </div>
     </main>
 
@@ -49,6 +51,5 @@ Art by Rowan Crawford.
       {% endfor %}
     {% endif %}
 
-    {%-include footer.html-%}
   </body>
 </html>
