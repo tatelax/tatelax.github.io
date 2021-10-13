@@ -16,6 +16,11 @@ layout: default
     <br><time datetime="{{ page.date-updated }}">Updated {{ page.date-updated | date: site.theme_config.date_format }}</time>
     {% endif %}
 
+    <!--
+
+      TODO: I tried to automate the source link but page.name is null due to a jekyll bug...
+
+    -->
     {% if page.source %}
     <br/>✏️ <a href="{{ page.source }}">Edit</a>
     {% endif %}
