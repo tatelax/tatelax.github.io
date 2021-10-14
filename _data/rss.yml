@@ -3,5 +3,5 @@
 
 entries:
   - title: <font size="+2"><b>RSS</b></font>
-    emoji: 🚩
+    emoji: 🔔
     url: feed.xml

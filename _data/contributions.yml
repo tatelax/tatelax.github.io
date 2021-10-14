@@ -3,7 +3,7 @@
 
 entries:
   - title: <font size="+2"><b>Contributions</b></font>
-    emoji: 📚
+    emoji: 👨‍🔧
     entries:
       - title: NodeListServer
         url: https://github.com/SoftwareGuy/NodeListServer
