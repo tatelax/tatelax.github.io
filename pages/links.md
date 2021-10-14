@@ -1,7 +1,7 @@
 ---
 layout: page
 title: 🔗 Interesting Links
-date-updated: 10-13-2021
+date-updated: 10-14-2021
 source: https://github.com/tatelax/tatelax.github.io/blob/master/pages/links.md
 ---
 
@@ -55,19 +55,25 @@ Over the years, I've been building a repository of interesting or useful links. 
 
 ### [Monorepos and Forced Migrations](https://web.archive.org/web/20211013170827/https://buttondown.email/j2kun/archive/monorepos-and-forced-migrations/)
 
-### [Pro .NET Memory Management: For Better Code, Performance, and Scalability](https://www.amazon.com/dp/B07KGKGK8K?ref_=k4w_oembed_QiQ7ssAQb5iWcX&tag=kpembed-20&linkCode=kpd)
-
 ### [Things You Should Never Do Pt. 1](https://www.joelonsoftware.com/2000/04/06/things-you-should-never-do-part-i/)
 
 ### [Programming Sucks](https://www.stilldrinking.org/programming-sucks)
 
-### [MessagePack C# Serializer (JSON Alternative)](https://github.com/neuecc/MessagePack-CSharp)
-
 ### [Neural Networks Introduction (Sebastian Lague)](https://www.youtube.com/watch?v=bVQUSndDllU)
 
-### [ZString - Zero Allocation StringBuilder](https://github.com/Cysharp/ZString)
-
 ### [In-Depth ECS Explanation](https://skypjack.github.io/2019-02-14-ecs-baf-part-1/)
+
+---
+
+# 🟣 .NET/C#
+
+### [BenchmarkDotNet - A tool to benchmark your .NET code](https://benchmarkdotnet.org/articles/overview.html)
+
+### [Pro .NET Memory Management: For Better Code, Performance, and Scalability](https://www.amazon.com/dp/B07KGKGK8K?ref_=k4w_oembed_QiQ7ssAQb5iWcX&tag=kpembed-20&linkCode=kpd)
+
+### [MessagePack C# Serializer (JSON Alternative)](https://github.com/neuecc/MessagePack-CSharp)
+
+### [ZString - Zero Allocation StringBuilder](https://github.com/Cysharp/ZString)
 
 ---
 
