@@ -18,6 +18,7 @@ layout: default
     </h1>
   </div>
 
+
   {%-if site.theme_config.show_description-%}
     <p style="font-size:89%; 
               text-align: right;
@@ -34,18 +35,21 @@ layout: default
 
 </header>
 
-<!-- I was able to automate this without hardcoding
-but for some reason when code was pushed to GitHub
-the order of the menus was different from on my machine...-->
-
 {%-include menu_item.html collection=site.data.links.entries-%}
 {%-include menu_item.html collection=site.data.posts.entries-%}
-{%-include menu_item.html collection=site.data.opensource.entries-%}
-{%-include menu_item.html collection=site.data.projects.entries-%}
-{%-include menu_item.html collection=site.data.contributions.entries-%}
-{%-include menu_item.html collection=site.data.educational.entries-%}
-{%-include menu_item.html collection=site.data.contact.entries-%}
-{%-include menu_item.html collection=site.data.about.entries-%}
-{%-include menu_item.html collection=site.data.rss.entries-%}
+
+<div id="container">
+  <div id="left-col">
+    {%-include menu_item.html collection=site.data.opensource.entries-%}
+    {%-include menu_item.html collection=site.data.contributions.entries-%}
+    {%-include menu_item.html collection=site.data.projects.entries-%}
+  </div>
+  <div id="right-col">
+    {%-include menu_item.html collection=site.data.educational.entries-%}
+    {%-include menu_item.html collection=site.data.contact.entries-%}
+    {%-include menu_item.html collection=site.data.about.entries-%}
+    {%-include menu_item.html collection=site.data.rss.entries-%}
+  </div>
+</div> 
 
 {{ content }}
