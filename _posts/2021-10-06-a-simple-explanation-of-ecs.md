@@ -21,6 +21,7 @@ For a very in-depth overview of ECS, see [here.](https://skypjack.github.io/2019
 ECS provides many advantages over other programming architectures. I'm not going to focus on all of them, but I will compare it to the traditional (game)object + component architecture commonly seen in game engines today.
 
 ## ⚙️ How
+
 Let's compare ECS to the GameObject architecture we see in Unity today. A GameObject is a "real" object that exists in the game. Attached to it are components. Typically, we would see that the components contain both the business logic and the data related to the object. This approach is fine for small applications, but it does not scale well because data and usually logic are coupled with what we call *"view"* or the object we see on screen.
 
 **ECS decouples logic, data, and view.**
@@ -50,6 +51,7 @@ public class Entity : IEntity
 ```
 
 ### Component
+
 Notice, there's no logic or external referenced here. Just data.[^1]
 
 ```csharp
