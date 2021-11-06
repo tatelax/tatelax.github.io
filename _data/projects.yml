@@ -5,6 +5,8 @@ entries:
   - title: <font size="+2"><b>Projects</b></font>
     emoji: 👨‍🔬
     entries:
+      - title: (2021) Tiny Drive
+        url: projects/tinydrive
       - title: (2021) Hero Rescuers
         url: projects/herorescuers
       - title: (2020) Magellan

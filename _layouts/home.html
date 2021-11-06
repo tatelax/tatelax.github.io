@@ -41,13 +41,13 @@ layout: default
 <div id="container">
   <div id="left-col">
     {%-include menu_item.html collection=site.data.opensource.entries-%}
-    {%-include menu_item.html collection=site.data.contributions.entries-%}
     {%-include menu_item.html collection=site.data.projects.entries-%}
+    {%-include menu_item.html collection=site.data.about.entries-%}
   </div>
   <div id="right-col">
     {%-include menu_item.html collection=site.data.educational.entries-%}
+    {%-include menu_item.html collection=site.data.contributions.entries-%}
     {%-include menu_item.html collection=site.data.contact.entries-%}
-    {%-include menu_item.html collection=site.data.about.entries-%}
     {%-include menu_item.html collection=site.data.rss.entries-%}
   </div>
 </div> 
