@@ -1,9 +1,9 @@
 ---
 layout: post
 category: code
-title: Helpful Resources to Learning Unreal Engine for Unity Developers
+title: Helpful Resources for Unity Developers to Switch to Unreal Quickly
 date-updated: 08-20-2024
-source: https://github.com/tatelax/tatelax.github.io/blob/master/_posts/2021-10-06-a-simple-explanation-of-ecs.md
+source: https://github.com/tatelax/tatelax.github.io/blob/master/_posts/2024-08-20-helpful-resouces-to-learn-unreal.md
 ---
 
 ## 💡 Overview
