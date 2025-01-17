@@ -18,4 +18,6 @@ I wanted to see if AI could give companies some of these answers much sooner. An
 
 I created a rough mockup in an hour for what the UI could look like.
 
+---
+
 [![AIMarketResearch1](/assets/img/portfolio/AIMarketResearch/1.png)](/assets/img/portfolio/AIMarketResearch/1.png)
