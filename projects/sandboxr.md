@@ -9,7 +9,7 @@ Sandboxr was one of the first companies that allowed anyone to create a 3D print
 
 I met with the original co-founders of Sandboxr who were interested in developing a prototype for their idea using the Unity web player. It allowed users to select models and customize the appearance to exactly how they wanted, then place their order and within a week their 3D model would be delivered to their door.
 
-Sandboxr was aquired by WhiteClouds in 2016.
+[Sandboxr was aquired by WhiteClouds in 2016.](https://3dprintingindustry.com/news/whiteclouds-announces-acquisition-sandboxr-90680/){:target="\_blank"}
 
 ---
 

@@ -5,6 +5,8 @@ entries:
   - title: <font size="+2"><b>Open-Source</b></font>
     emoji: 👨‍💻
     entries:
+      - title: flutter_firebase_realtime_chat
+        url: https://github.com/tatelax/flutter_firebase_realtime_chat_core
       - title: LazyECS
         url: https://github.com/tatelax/LazyECS
         entries:
@@ -14,3 +16,5 @@ entries:
         url: https://github.com/tatelax/telegram_image_bot
       - title: unity_build_maker
         url: https://github.com/tatelax/unity_build_maker
+      - title: dall-e-telegram-bot
+        url: https://github.com/tatelax/dall-e-telegram-bot

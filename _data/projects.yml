@@ -5,6 +5,22 @@ entries:
   - title: <font size="+2"><b>Projects</b></font>
     emoji: 👨‍🔬
     entries:
+      - title: (2025) AI Market Research
+        url: projects/aimarketresearch
+      - title: (2025) pace
+        url: projects/pace
+      - title: (2024) Rescue Simulator - Online
+        url: projects/rso
+      - title: (2024) Wine
+        url: projects/wine
+      - title: (2024) melo
+        url: projects/melo
+      - title: (2023) Walmart AI + XR Prototype
+        url: projects/xraiassistant
+      - title: (2023) Walmart XR Video Capture
+        url: projects/walmartxrcapture
+      - title: (2022) Walmart Associate XR App
+        url: projects/walmartauc
       - title: (2021) Tiny Drive
         url: projects/tinydrive
       - title: (2021) Hero Rescuers

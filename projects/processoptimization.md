@@ -5,13 +5,13 @@ title: Process Optimization
 
 ## 💡 About
 
-During my time at [Process Research & Optimization (PRO)](https://processreopt.com/), I learned more about how large organizations struggle to maintain efficiency and how some of those inefficiencies can be solved.
+During my time at [Process Research & Optimization (PRO)](https://processreopt.com/){:target="\_blank"}, I learned more about how large organizations struggle to maintain efficiency and how some of those inefficiencies can be solved.
 
 I worked with various companies to help them understand their internal processes and how they can improve those processes to save time and money.
 
 ## 🔥 Problem
 
-We used a variety of tools, such as [Signavio](https://www.signavio.com/) to model a process from end-to-end, using BPMN, and run simulations to help clients understand where bottlenecks were occuring in their businesses processes. The problem with these tools, at the time, was they could not process the volume we wanted to simulate. Our clients had millions of transactions per year and the existing were unable to handle that level of volume. We also had several ideas to improve the visual aspect of these simulations to better understand what was happening and what all of the data actually meant.
+We used a variety of tools, such as [Signavio](https://www.signavio.com/){:target="\_blank"} to model a process from end-to-end, using BPMN, and run simulations to help clients understand where bottlenecks were occuring in their businesses processes. The problem with these tools, at the time, was they could not process the volume we wanted to simulate. Our clients had millions of transactions per year and the existing were unable to handle that level of volume. We also had several ideas to improve the visual aspect of these simulations to better understand what was happening and what all of the data actually meant.
 
 ## 🔧 Solution
 
@@ -19,7 +19,17 @@ I created a tool in Unity which allowed our consultants to model a business proc
 
 ---
 
-<center><a href = "https://vimeo.com/624633604">>See Video</a></center>
+<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%;">
+  <iframe
+    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"
+    src="https://www.youtube.com/embed/Jz4BOTSk03Q?si=Bn-HIgp74U_3u341"
+    title="YouTube video player"
+    frameborder="0"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+    referrerpolicy="strict-origin-when-cross-origin"
+    allowfullscreen>
+  </iframe>
+</div>
 
 ---
 
