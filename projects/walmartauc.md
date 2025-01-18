@@ -24,3 +24,21 @@ This tool helped improve efficiency by 20% but due to hardware costs and limitat
     allowfullscreen>
   </iframe>
 </div>
+
+> This is our first rough prototype where we demonstrated the ability to navigate a user through the store over several aisle distances. Note that AR tracking in recordings is not as smooth as what the headset wearer sees.
+
+---
+
+<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%;">
+  <iframe
+    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"
+    src="https://www.youtube.com/embed/9lY1Q9y4Iyg?si=zmiti-Fp_ma0GJoY"
+    title="YouTube video player"
+    frameborder="0"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+    referrerpolicy="strict-origin-when-cross-origin"
+    allowfullscreen>
+  </iframe>
+</div>
+
+> Here we demonstrate our custom 3D UI library that allows the user to look up an order using hand tracking. We also demonstrate our ability to recognize products on the shelf.

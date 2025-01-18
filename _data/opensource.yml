@@ -9,9 +9,8 @@ entries:
         url: https://github.com/tatelax/flutter_firebase_realtime_chat_core
       - title: LazyECS
         url: https://github.com/tatelax/LazyECS
-        entries:
-          - title: LazyECS.Networking
-            url: https://github.com/tatelax/LazyECS.Networking
+      - title: LazyECS.Networking
+        url: https://github.com/tatelax/LazyECS.Networking
       - title: telegram_image_bot
         url: https://github.com/tatelax/telegram_image_bot
       - title: unity_build_maker
