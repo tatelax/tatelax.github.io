@@ -1,7 +1,7 @@
 @import "tango.css";
 
-// Light theme variables
 :root {
+  /* Light theme variables - default */
   --bg-color: rgba(255, 251, 231, 1);
   --text-color: rgba(0, 0, 0, 0.87);
   --link-color: #1976d2;
@@ -14,18 +14,19 @@
   --footer-color: #b3ad91;
 }
 
-// Dark theme colors - Material Design dark theme
-[a="dark"] {
-  --bg-color: #121212;
-  --text-color: rgba(255, 255, 255, 0.87);
-  --link-color: #90caf9;
-  --code-bg: #1e1e1e;
-  --code-text: rgba(255, 255, 255, 0.87);
-  --blockquote-border: rgba(255, 255, 255, 0.12);
-  --hr-color: rgba(255, 255, 255, 0.12);
-  --table-border: rgba(255, 255, 255, 0.12);
-  --shadow-color: rgba(0, 0, 0, 0.5);
-  --footer-color: rgba(255, 255, 255, 0.6);
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg-color: #121212;
+    --text-color: rgba(255, 255, 255, 0.87);
+    --link-color: #90caf9;
+    --code-bg: #1e1e1e;
+    --code-text: rgba(255, 255, 255, 0.87);
+    --blockquote-border: rgba(255, 255, 255, 0.12);
+    --hr-color: rgba(255, 255, 255, 0.12);
+    --table-border: rgba(255, 255, 255, 0.12);
+    --shadow-color: rgba(0, 0, 0, 0.5);
+    --footer-color: rgba(255, 255, 255, 0.6);
+  }
 }
 
 // bg color is also needed in html in order to
