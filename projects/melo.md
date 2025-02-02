@@ -5,7 +5,7 @@ title: Melo
 
 ## 💡 About
 
-Melo is a tool I prototyped with [@clearly_vinay](https://www.instagram.com/clearly_vinay/){:target="\_blank"} to see what a "Figma for XR" tool could look like.
+Melo is a prototype I created to see what a "Figma for XR" tool could look like.
 
 We took some inspiration from work done at my past job at Walmart to see how a user could prototype a tool that let's users visualize what a retail store could look like. Major retailers are already doing this, but in huge warehouses that are difficult to rearrange. XR makes it so 1 person could do this job in minutes instead of hours and they could even do it from the comfort of their own home if they wanted to.
 
