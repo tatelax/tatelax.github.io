@@ -527,8 +527,12 @@ const PortfolioApp: React.FC = () => {
               </button>
             )}
 
-            <div className="hidden md:flex bg-black/20 p-1.5 rounded-full ml-2">
-              <User size={26} className="text-white" />
+            <div className="hidden md:flex ml-4 overflow-hidden">
+              <img
+                src="/images/tate.jpg"
+                alt="Tate McCormick"
+                className="w-10 h-10 rounded-full object-cover border border-white/30"
+              />
             </div>
 
             {/* Current context for mobile - hidden when search is expanded */}
@@ -799,16 +803,12 @@ const PortfolioApp: React.FC = () => {
                             key={year}
                             className={yearIndex > 0 ? "mt-6" : ""}
                           >
-                            {/* Year Divider */}
-                            <div className="relative mb-3">
-                              <div className="absolute inset-0 flex items-center">
-                                <div className="w-full border-t border-white/20"></div>
-                              </div>
-                              <div className="relative flex justify-start">
-                                <span className="bg-black/40 backdrop-blur-sm px-3 py-1 text-white/90 text-sm font-semibold rounded-md">
-                                  {year}
-                                </span>
-                              </div>
+                            {/* Year Divider - Year on left, line on right */}
+                            <div className="relative mb-3 flex items-center">
+                              <span className="bg-black/40 backdrop-blur-sm px-3 py-1 text-white/90 text-sm font-semibold rounded-md mr-3">
+                                {year}
+                              </span>
+                              <div className="border-t border-white/20 flex-grow"></div>
                             </div>
 
                             {/* Items for this year */}
