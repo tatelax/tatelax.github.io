@@ -30,10 +30,8 @@ type FolderStructure = {
 };
 
 const PortfolioApp: React.FC = () => {
-  const [selectedFolder, setSelectedFolder] = useState<string>("Experiments");
-  const [selectedFile, setSelectedFile] = useState<string>(
-    "Inner Creativity.png"
-  );
+  const [selectedFolder, setSelectedFolder] = useState<string>("");
+  const [selectedFile, setSelectedFile] = useState<string>("");
   const [searchQuery, setSearchQuery] = useState<string>("");
   const [searchResults, setSearchResults] = useState<FileItem[]>([]);
 
@@ -187,6 +185,22 @@ const PortfolioApp: React.FC = () => {
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
+
+  // Initialize the default folder and file when component mounts
+  useEffect(() => {
+    // If no folder is already selected, select the first one
+    if (!selectedFolder && folders.length > 0) {
+      const firstFolder = folders[0].name;
+      setSelectedFolder(firstFolder);
+
+      // Select the first file in that folder
+      if (folderStructure[firstFolder]?.length > 0) {
+        const firstFile = folderStructure[firstFolder][0].name;
+        setSelectedFile(firstFile);
+        updateUrl(firstFolder, firstFile);
+      }
+    }
+  }, [folders]);
 
   // Parse the URL when the component mounts
   useEffect(() => {
