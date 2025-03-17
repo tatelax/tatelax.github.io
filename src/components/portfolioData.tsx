@@ -5,15 +5,15 @@ import { ItemsMap, FoldersMap, FolderInfoMap } from "./PortfolioApp";
 export const portfolioData = {
   // All items with their details
   items: {
-    item1: {
-      id: "item1",
-      name: "Alternative Paint.png",
+    sandboxr: {
+      id: "sandboxr",
+      name: "Sandboxr",
       icon: "🎨",
       color: "#5A8DEE",
+      year: "2024",
       details: {
-        name: "Alternative Paint.png",
-        size: "2.1 MB",
-        created: "May 2024",
+        name: "Sandboxr - a 3D printing service.",
+        date: "May 2024",
         client: "Self-initiated",
         tags: ["Bold", "Experimental", "Digital"],
         description: "An exploration of digital painting techniques.",
@@ -21,6 +21,7 @@ export const portfolioData = {
           {
             path: "testimage.png",
             type: "image",
+            title: "Hello, World!",
             description:
               "This piece explores an alternative approach to digital painting, using unconventional brushes and textures to create depth. The technique involves layering multiple translucent colors to achieve a vibrant yet controlled chaos effect.",
           },
@@ -40,8 +41,7 @@ export const portfolioData = {
       color: "#5A8DEE",
       details: {
         name: "Blurred Ovals.png",
-        size: "1.8 MB",
-        created: "April 2024",
+        date: "April 2024",
         client: "Agency X",
         tags: ["Minimal", "Clean", "Abstract"],
         description: "A series of abstract compositions with blurred ovals.",
@@ -62,8 +62,7 @@ export const portfolioData = {
       color: "#38AF65",
       details: {
         name: "Toggle This.png",
-        size: "0.9 MB",
-        created: "June 2024",
+        date: "June 2024",
         client: "UI Elements Co.",
         tags: ["UI", "Components", "Interactive"],
         description:
@@ -98,8 +97,7 @@ export const portfolioData = {
       color: "#F8C881",
       details: {
         name: "God Rays.png",
-        size: "3.2 MB",
-        created: "March 2024",
+        date: "March 2024",
         client: "Self-initiated",
         tags: ["Lighting", "Natural", "Atmospheric"],
         description: "A study of light rays through different atmospheres.",
@@ -108,7 +106,7 @@ export const portfolioData = {
             path: "god-rays.png",
             type: "image",
             description:
-              "This atmospheric rendering explores the phenomenon of crepuscular rays ('god rays') as they filter through various atmospheric conditions. The piece was created using a combination of 3D volumetric rendering and hand-painted elements to achieve the ethereal quality of natural light.",
+              "This atmospheric rendering explores the phenomenon of crepuscular rays ('god rays') as they filter through various atmospheric conditions. The piece was date using a combination of 3D volumetric rendering and hand-painted elements to achieve the ethereal quality of natural light.",
           },
         ],
       },
@@ -120,8 +118,7 @@ export const portfolioData = {
       color: "#F39C74",
       details: {
         name: "Inner Creativity.png",
-        size: "2.4 MB",
-        created: "February 2024",
+        date: "February 2024",
         client: "Creative Mind Inc.",
         tags: ["Abstract", "Conceptual", "Mind"],
         description: "An abstract representation of the creative process.",
@@ -146,25 +143,26 @@ export const portfolioData = {
 
   // Folders with references to items
   folders: {
-    "Web Design": ["item1", "item2", "item3"],
-    "Product Design": ["item3", "item4", "item5"],
-    "Visual Design": ["item2", "item4"],
-    Experiments: ["item1", "item5"],
-    Portfolio: ["item1", "item2", "item3", "item4", "item5"],
+    Projects: ["sandboxr", "item2", "item3"],
+    Experiments: ["item2", "item3"],
+    "Open-Source": ["item3", "item4", "item5"],
+    Educational: ["item2", "item4"],
+    About: ["item5"],
   } as FoldersMap,
 
   // Folder metadata
   folderInfo: {
-    "Web Design": { icon: "📁", description: "Web interface designs" },
-    "Product Design": {
+    Projects: { icon: "📁", description: "Projects" },
+    Experiments: { icon: "📁", description: "Experiments" },
+    "Open-Source": {
       icon: "📁",
-      description: "Physical and digital product designs",
+      description: "Open-source stuff I've contributed to",
     },
-    "Visual Design": {
+    Educational: {
       icon: "📁",
-      description: "Visual experiments and studies",
+      description: "Educational projects",
     },
-    Experiments: { icon: "📁", description: "Experimental works and concepts" },
-    Portfolio: { icon: "📁", description: "Complete portfolio collection" },
+    About: { icon: "📁", description: "About me" },
+    Posts: { icon: "📁", description: "Posts" },
   } as FolderInfoMap,
 };

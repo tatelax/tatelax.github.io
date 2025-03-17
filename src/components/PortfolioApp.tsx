@@ -12,13 +12,13 @@ interface MediaFile {
   path: string;
   type: "image" | "video" | "pdf";
   thumbnail?: string; // Optional thumbnail for videos/pdfs
+  title?: string;
   description?: string; // Added description field for each media item
 }
 
 interface ItemDetails {
   name: string;
-  size: string;
-  created: string;
+  date: string;
   client: string;
   tags: string[];
   description?: string;
@@ -30,6 +30,7 @@ interface PortfolioItem {
   name: string;
   icon: string;
   color: string;
+  year?: string;
   details: ItemDetails;
 }
 
@@ -488,7 +489,7 @@ const PortfolioApp: React.FC = () => {
       }}
     >
       {/* Glass-like card that contains the entire UI */}
-      <div className="relative z-10 m-2 md:m-4 rounded-2xl overflow-hidden border border-white/30 shadow-2xl backdrop-filter backdrop-blur-xl bg-black/70 flex flex-col h-full">
+      <div className="relative z-10 m-2 md:m-4 rounded-2xl overflow-hidden border border-white/30 shadow-2xl backdrop-filter backdrop-blur-xl bg-black/70 flex flex-col h-full md:min-h-[1000px]">
         {/* Header - Updated for mobile with collapsible search */}
         <header className="p-3 flex justify-between items-center border-b border-white/20 backdrop-blur-lg">
           <div
@@ -596,7 +597,6 @@ const PortfolioApp: React.FC = () => {
             )}
           </div>
         </header>
-
         {/* Mobile menu drawer - only visible on mobile when toggled */}
         {mobileMenuOpen && (
           <div className="md:hidden absolute top-12 left-0 right-0 bottom-0 z-20 bg-black/90 backdrop-blur-md">
@@ -645,14 +645,13 @@ const PortfolioApp: React.FC = () => {
             </div>
           </div>
         )}
-
         {/* Main Content - Responsive Layout */}
         <div className="flex flex-1 overflow-hidden">
           {searchQuery.trim() === "" ? (
             // Normal layout - responsive with conditional display on mobile
             <>
               {/* Left Sidebar - Hidden on mobile */}
-              <div className="hidden md:block md:w-1/4 lg:w-1/5 xl:w-1/5 2xl:w-1/6 md:flex md:flex-col bg-white/5 backdrop-blur-md overflow-y-auto border-r border-white/20 h-full max-w-sm">
+              <div className="hidden md:w-1/4 lg:w-1/5 xl:w-1/5 2xl:w-1/6 md:flex md:flex-col bg-white/5 backdrop-blur-md overflow-y-auto border-r border-white/20 h-full max-w-sm">
                 <div className="p-7">
                   <div className="mb-6">
                     <h1
@@ -715,36 +714,80 @@ const PortfolioApp: React.FC = () => {
               >
                 <div className="p-6">
                   {currentItems.length > 0 ? (
-                    <div className="space-y-1">
-                      {currentItems.map((item) => (
-                        <div
-                          key={item.id}
-                          className={`flex items-center justify-between p-3 md:p-2 hover:bg-white/5 rounded-md cursor-pointer transition-all ${
-                            selectedItemId === item.id ? "bg-white/10" : ""
-                          }`}
-                          onClick={() => handleItemSelect(item.id)}
-                        >
-                          <div className="flex items-center">
-                            <div
-                              className="w-10 h-10 md:w-8 md:h-8 mr-3 md:mr-2 flex items-center justify-center rounded-md border-2 border-white"
-                              style={{ backgroundColor: item.color }}
-                            >
-                              <span className="text-base">{item.icon}</span>
+                    <div>
+                      {(() => {
+                        // Group items by year
+                        const itemsByYear = currentItems.reduce((acc, item) => {
+                          const year = item.year || "Undated";
+                          if (!acc[year]) acc[year] = [];
+                          acc[year].push(item);
+                          return acc;
+                        }, {});
+
+                        // Get years and sort them in descending order
+                        const years = Object.keys(itemsByYear).sort((a, b) => {
+                          // Handle 'Undated' special case
+                          if (a === "Undated") return 1;
+                          if (b === "Undated") return -1;
+                          return b - a; // Descending order
+                        });
+
+                        return years.map((year, yearIndex) => (
+                          <div
+                            key={year}
+                            className={yearIndex > 0 ? "mt-6" : ""}
+                          >
+                            {/* Year Divider */}
+                            <div className="relative mb-3">
+                              <div className="absolute inset-0 flex items-center">
+                                <div className="w-full border-t border-white/20"></div>
+                              </div>
+                              <div className="relative flex justify-start">
+                                <span className="bg-black/40 backdrop-blur-sm px-3 py-1 text-white/90 text-sm font-semibold rounded-md">
+                                  {year}
+                                </span>
+                              </div>
                             </div>
-                            <span className="text-white text-base truncate font-semibold">
-                              {item.name}
-                            </span>
+
+                            {/* Items for this year */}
+                            <div className="space-y-1">
+                              {itemsByYear[year].map((item) => (
+                                <div
+                                  key={item.id}
+                                  className={`flex items-center justify-between p-3 md:p-2 hover:bg-white/5 rounded-md cursor-pointer transition-all ${
+                                    selectedItemId === item.id
+                                      ? "bg-white/10"
+                                      : ""
+                                  }`}
+                                  onClick={() => handleItemSelect(item.id)}
+                                >
+                                  <div className="flex items-center">
+                                    <div
+                                      className="w-10 h-10 md:w-8 md:h-8 mr-3 md:mr-2 flex items-center justify-center rounded-md border-2 border-white"
+                                      style={{ backgroundColor: item.color }}
+                                    >
+                                      <span className="text-base">
+                                        {item.icon}
+                                      </span>
+                                    </div>
+                                    <span className="text-white text-base truncate font-semibold">
+                                      {item.name}
+                                    </span>
+                                  </div>
+                                  <ChevronRight
+                                    size={18}
+                                    className={`${
+                                      selectedItemId === item.id
+                                        ? "text-white"
+                                        : "text-white/50"
+                                    }`}
+                                  />
+                                </div>
+                              ))}
+                            </div>
                           </div>
-                          <ChevronRight
-                            size={18}
-                            className={`${
-                              selectedItemId === item.id
-                                ? "text-white"
-                                : "text-white/50"
-                            }`}
-                          />
-                        </div>
-                      ))}
+                        ));
+                      })()}
                     </div>
                   ) : (
                     <div className="text-white/70 p-4 text-center text-base">
@@ -795,7 +838,9 @@ const PortfolioApp: React.FC = () => {
                             {/* Right Column - Media Description */}
                             <div className="rounded-lg p-6 flex flex-col justify-start h-full overflow-y-auto">
                               <h3 className="text-xl font-semibold text-white mb-4">
-                                Media Details
+                                {currentMedia && currentMedia.title
+                                  ? currentMedia.title
+                                  : ""}
                               </h3>
 
                               {currentMedia && currentMedia.description ? (
@@ -817,16 +862,16 @@ const PortfolioApp: React.FC = () => {
                       <div className="p-4 border-t border-white/20">
                         <div className="text-white">
                           <h2 className="text-lg font-semibold mb-1">
-                            {selectedItem.name}
+                            {selectedItem.details.name}
                           </h2>
                           <p className="text-white/70 text-base mb-4">
-                            {selectedItem.details.size}
+                            {selectedItem.details.description}
                           </p>
 
                           <div className="space-y-2 text-base">
                             <div className="flex justify-between">
-                              <span className="text-white/70">Created</span>
-                              <span>{selectedItem.details.created}</span>
+                              <span className="text-white/70">Date</span>
+                              <span>{selectedItem.details.date}</span>
                             </div>
                             <div className="flex justify-between">
                               <span className="text-white/70">Client</span>
@@ -838,16 +883,6 @@ const PortfolioApp: React.FC = () => {
                                 {selectedItem.details.tags.join(", ")}
                               </span>
                             </div>
-                            {selectedItem.details.description && (
-                              <div className="pt-2">
-                                <span className="text-white/70 block mb-1">
-                                  Description
-                                </span>
-                                <p className="text-white/90">
-                                  {selectedItem.details.description}
-                                </p>
-                              </div>
-                            )}
                           </div>
                         </div>
                       </div>
@@ -947,18 +982,6 @@ const PortfolioApp: React.FC = () => {
                             <h3 className="text-xl font-semibold text-white mb-4">
                               Media Details
                             </h3>
-
-                            {currentMedia && currentMedia.description ? (
-                              <div className="space-y-4">
-                                <p className="text-white/90 text-base">
-                                  {currentMedia.description}
-                                </p>
-                              </div>
-                            ) : (
-                              <p className="text-white/70 italic">
-                                No description available for this media.
-                              </p>
-                            )}
                           </div>
                         </div>
                       )}
@@ -967,16 +990,16 @@ const PortfolioApp: React.FC = () => {
                     <div className="p-4 border-t border-white/20">
                       <div className="text-white">
                         <h2 className="text-lg font-semibold mb-1">
-                          {selectedItem.name}
+                          {selectedItem.details.name}
                         </h2>
                         <p className="text-white/70 text-base mb-4">
-                          {selectedItem.details.size}
+                          {selectedItem.details.description}
                         </p>
 
                         <div className="space-y-2 text-base">
                           <div className="flex justify-between">
                             <span className="text-white/70">Created</span>
-                            <span>{selectedItem.details.created}</span>
+                            <span>{selectedItem.details.date}</span>
                           </div>
                           <div className="flex justify-between">
                             <span className="text-white/70">Client</span>
