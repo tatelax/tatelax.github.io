@@ -285,7 +285,7 @@ const PortfolioApp: React.FC = () => {
       // Select the first item in that folder
       const folderItems = getItemsInFolder(firstFolder);
       if (folderItems.length > 0) {
-        const firstItem = folderItems[0];
+        const firstItem = folderItems[folderItems.length - 1];
         setSelectedItemId(firstItem.id);
         updateUrl(firstFolder, firstItem.id);
       }
@@ -411,7 +411,7 @@ const PortfolioApp: React.FC = () => {
       if (media.type === "image") {
         return {
           original: basePath,
-          thumbnail: basePath,
+          thumbnail: thumbPath,
           originalAlt: selectedItem.name,
           thumbnailAlt: selectedItem.name,
           renderItem: () => (
@@ -790,7 +790,7 @@ const PortfolioApp: React.FC = () => {
                           currentItems.reduce((acc, item) => {
                             const year = item.year || "Undated";
                             if (!acc[year]) acc[year] = [];
-                            acc[year].push(item);
+                            acc[year].unshift(item);
                             return acc;
                           }, {} as { [year: string]: PortfolioItem[] });
 
@@ -1052,7 +1052,6 @@ const PortfolioApp: React.FC = () => {
                                 showFullscreenButton={true}
                                 useBrowserFullscreen={true}
                                 slideInterval={3000}
-                                lazyLoad={true}
                                 slideDuration={450}
                                 additionalClass="portfolio-gallery fit-content h-full items-center justify-center"
                                 thumbnailPosition="left"

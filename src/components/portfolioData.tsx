@@ -852,37 +852,6 @@ export const portfolioData = {
         ],
       },
     },
-    pace: {
-      id: "pace",
-      name: "pace",
-      icon: "🧠",
-      image: "images/icons/paceicontiny.jpg",
-      color: "#F39C74",
-      year: "2025",
-      details: {
-        name: "pace",
-        date: "2025",
-        client: "self",
-        tags: ["Swift", "Design", "Engineering"],
-        description: "A social habit building app for iOS.",
-        media: [
-          {
-            path: "images/portfolio/pace/1.png",
-            type: "image",
-            title: "Dashboard",
-            description:
-              "This is the dashboard view of the pace app. This is where users can see all of the groups they belong to.",
-          },
-          {
-            path: "images/portfolio/pace/1.png",
-            type: "image",
-            thumbnail: "creative-process-thumb.png",
-            description:
-              "This comprehensive PDF explores the theoretical framework behind the visual representation. It includes additional diagrams, research citations, and practical exercises for enhancing creative thinking based on neuroscience principles.",
-          },
-        ],
-      },
-    },
     aimarketresearch: {
       id: "aimarketresearch",
       name: "AI Market Research",
@@ -905,6 +874,51 @@ export const portfolioData = {
         ],
       },
     },
+    pace: {
+      id: "pace",
+      name: "pace",
+      icon: "🧠",
+      image: "images/icons/paceicontiny.jpg",
+      color: "#F39C74",
+      year: "2025",
+      details: {
+        name: "pace",
+        date: "2025",
+        client: "self",
+        tags: ["Swift", "Design", "Engineering"],
+        description: "A social habit building app for iOS.",
+        media: [
+          {
+            path: "images/portfolio/pace/1.png",
+            type: "image",
+            title: "Dashboard",
+            description:
+              "This is the dashboard view of the pace app. This is where users can see all of the groups they belong to.",
+          },
+          {
+            path: "images/portfolio/pace/2.png",
+            type: "image",
+            title: "Dashboard",
+            description:
+              "This is the dashboard view of the pace app. This is where users can see all of the groups they belong to.",
+          },
+          {
+            path: "images/portfolio/pace/3.png",
+            type: "image",
+            title: "Dashboard",
+            description:
+              "This is the dashboard view of the pace app. This is where users can see all of the groups they belong to.",
+          },
+          {
+            path: "images/portfolio/pace/4.png",
+            type: "image",
+            title: "Dashboard",
+            description:
+              "This is the dashboard view of the pace app. This is where users can see all of the groups they belong to.",
+          },
+        ],
+      },
+    },
   } as ItemsMap,
 
   // Folders with references to items
@@ -923,9 +937,9 @@ export const portfolioData = {
       "walmartaixr",
       "walmartspectatorview",
       "rso",
-      "pace",
-      "melo",
       "aimarketresearch",
+      "melo",
+      "pace",
     ],
     Experiments: ["tinydrive", "melo", "aimarketresearch"],
     "Open-Source": ["item3", "item4", "item5"],
