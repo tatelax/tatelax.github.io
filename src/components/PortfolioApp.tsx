@@ -37,6 +37,49 @@ const PortfolioApp: React.FC = () => {
   const [searchQuery, setSearchQuery] = useState<string>("");
   const [searchResults, setSearchResults] = useState<FileItem[]>([]);
 
+  // Parse the URL when the component mounts
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const folderParam = params.get("folder");
+    const fileParam = params.get("file");
+
+    // If folder is in URL and exists in our structure
+    if (folderParam && folderStructure[folderParam]) {
+      setSelectedFolder(folderParam);
+
+      // If file is in URL and exists in the folder
+      if (fileParam) {
+        const fileExists = folderStructure[folderParam].some(
+          (file) => file.name === fileParam
+        );
+        if (fileExists) {
+          setSelectedFile(fileParam);
+        } else if (folderStructure[folderParam].length > 0) {
+          // If file doesn't exist, select first file in folder
+          setSelectedFile(folderStructure[folderParam][0].name);
+          updateUrl(folderParam, folderStructure[folderParam][0].name);
+        }
+      } else if (folderStructure[folderParam].length > 0) {
+        // If no file in URL, select first file in folder
+        setSelectedFile(folderStructure[folderParam][0].name);
+        updateUrl(folderParam, folderStructure[folderParam][0].name);
+      }
+    } else if (fileParam) {
+      // If only file is in URL, find which folder contains it
+      for (const folderName in folderStructure) {
+        const fileExists = folderStructure[folderName].some(
+          (file) => file.name === fileParam
+        );
+        if (fileExists) {
+          setSelectedFolder(folderName);
+          setSelectedFile(fileParam);
+          updateUrl(folderName, fileParam);
+          break;
+        }
+      }
+    }
+  }, []);
+
   const folderStructure: FolderStructure = {
     "Web Design": [
       { name: "Alternative Paint.png", icon: "🎨", color: "#5A8DEE" },
@@ -87,6 +130,7 @@ const PortfolioApp: React.FC = () => {
   useEffect(() => {
     if (searchQuery.trim() === "") {
       setSearchResults([]);
+      // Don't reset URL when search is cleared if we're in normal browsing mode
       return;
     }
 
@@ -107,7 +151,13 @@ const PortfolioApp: React.FC = () => {
 
     // Select the first result by default if there are any
     if (results.length > 0) {
-      setSelectedFile(results[0].name);
+      const file = results[0].name;
+      const folder = results[0].folder || selectedFolder;
+      setSelectedFile(file);
+      updateUrl(folder, file);
+    } else {
+      // If no search results, reset URL to root
+      resetUrlToRoot();
     }
   }, [searchQuery]);
 
@@ -126,9 +176,59 @@ const PortfolioApp: React.FC = () => {
     return currentFiles[0];
   };
 
+  // Update URL when a file or folder is selected
+  const updateUrl = (foldername: string, filename?: string) => {
+    const url = new URL(window.location.href);
+    url.searchParams.set("folder", foldername);
+
+    if (filename) {
+      url.searchParams.set("file", filename);
+    } else {
+      url.searchParams.delete("file");
+    }
+
+    window.history.pushState({}, "", url);
+  };
+
+  // Reset URL to root (no parameters)
+  const resetUrlToRoot = () => {
+    const url = new URL(window.location.href);
+    url.search = "";
+    window.history.pushState({}, "", url);
+  };
+
+  // Handle file selection with URL update
+  const handleFileSelect = (filename: string, folderName?: string) => {
+    setSelectedFile(filename);
+
+    // If folder is provided, use it, otherwise use currently selected folder
+    const folder = folderName || selectedFolder;
+    updateUrl(folder, filename);
+  };
+
+  // Handle folder selection with URL update
+  const handleFolderSelect = (folderName: string) => {
+    setSelectedFolder(folderName);
+
+    // Update URL with new folder
+    if (folderStructure[folderName]?.length > 0) {
+      const firstFile = folderStructure[folderName][0].name;
+      setSelectedFile(firstFile);
+      updateUrl(folderName, firstFile);
+    } else {
+      // If folder is empty, just update folder in URL
+      updateUrl(folderName);
+    }
+  };
   // Handle search input change
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchQuery(e.target.value);
+    const newQuery = e.target.value;
+    setSearchQuery(newQuery);
+
+    // If search is cleared, restore the normal URL with current selection
+    if (newQuery.trim() === "" && selectedFolder) {
+      updateUrl(selectedFolder, selectedFile);
+    }
   };
 
   return (
@@ -174,13 +274,7 @@ const PortfolioApp: React.FC = () => {
                       className={`flex items-center justify-between p-2 hover:bg-gray-800 rounded cursor-pointer ${
                         selectedFolder === folder.name ? "bg-gray-800" : ""
                       }`}
-                      onClick={() => {
-                        setSelectedFolder(folder.name);
-                        // Set selected file to first file in the folder, if any exist
-                        if (folderStructure[folder.name]?.length > 0) {
-                          setSelectedFile(folderStructure[folder.name][0].name);
-                        }
-                      }}
+                      onClick={() => handleFolderSelect(folder.name)}
                     >
                       <div className="flex items-center">
                         <span
@@ -217,7 +311,7 @@ const PortfolioApp: React.FC = () => {
                         className={`flex items-center justify-between p-2 hover:bg-gray-800 rounded cursor-pointer ${
                           selectedFile === file.name ? "bg-gray-800" : ""
                         }`}
-                        onClick={() => setSelectedFile(file.name)}
+                        onClick={() => handleFileSelect(file.name, file.folder)}
                       >
                         <div className="flex items-center">
                           <div
@@ -310,7 +404,7 @@ const PortfolioApp: React.FC = () => {
                       className={`flex items-center justify-between p-2 hover:bg-gray-800 rounded cursor-pointer ${
                         selectedFile === file.name ? "bg-gray-800" : ""
                       }`}
-                      onClick={() => setSelectedFile(file.name)}
+                      onClick={() => handleFileSelect(file.name)}
                     >
                       <div className="flex flex-col">
                         <div className="flex items-center">
