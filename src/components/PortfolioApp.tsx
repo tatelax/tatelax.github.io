@@ -433,7 +433,13 @@ const PortfolioApp: React.FC = () => {
   };
 
   return (
-    <div className="flex flex-col h-screen bg-[url('/images/background.png')] relative">
+    <div
+      className="flex flex-col h-screen bg-[url('/images/background.png')] relative"
+      style={{
+        fontFamily:
+          "system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif",
+      }}
+    >
       {/* Glass-like card that contains the entire UI */}
       <div className="relative z-10 m-2 md:m-15 rounded-lg overflow-hidden border border-white/20 shadow-2xl backdrop-filter backdrop-blur-xl bg-black/70 flex flex-col h-full">
         {/* Header - Updated for mobile with collapsible search */}
@@ -448,7 +454,7 @@ const PortfolioApp: React.FC = () => {
               className="md:hidden bg-black/20 p-1.5 rounded-full"
               onClick={toggleMobileMenu}
             >
-              <Menu size={16} className="text-white" />
+              <Menu size={18} className="text-white" />
             </button>
 
             {/* Back button for mobile when viewing file details */}
@@ -457,17 +463,17 @@ const PortfolioApp: React.FC = () => {
                 className="md:hidden bg-black/20 p-1.5 rounded-full ml-2"
                 onClick={handleBackToFiles}
               >
-                <ChevronLeft size={16} className="text-white" />
+                <ChevronLeft size={18} className="text-white" />
               </button>
             )}
 
             <div className="hidden md:flex bg-black/20 p-1.5 rounded-full ml-1">
-              <User size={16} className="text-white" />
+              <User size={18} className="text-white" />
             </div>
 
             {/* Current context for mobile - hidden when search is expanded */}
             <div className={`md:hidden ${searchExpanded ? "hidden" : "block"}`}>
-              <span className="text-white text-sm font-medium">
+              <span className="text-white text-base font-medium">
                 {viewingFileDetail ? selectedItem?.name : selectedFolder}
               </span>
             </div>
@@ -481,21 +487,21 @@ const PortfolioApp: React.FC = () => {
                   className="md:hidden bg-black/20 p-1.5 rounded-full mr-2"
                   onClick={toggleSearchExpansion}
                 >
-                  <ChevronLeft size={16} className="text-white" />
+                  <ChevronLeft size={18} className="text-white" />
                 </button>
                 <div className="relative flex-1">
                   <input
                     type="text"
                     placeholder="Search"
-                    className="bg-black/20 backdrop-blur-lg rounded-lg py-1.5 pl-8 pr-2 w-full text-white text-sm border border-white/10"
+                    className="bg-black/20 backdrop-blur-lg rounded-lg py-2 pl-8 pr-2 w-full text-white text-base border border-white/10"
                     value={searchQuery}
                     onChange={handleSearchChange}
                     onBlur={handleSearchBlur}
                     autoFocus
                   />
                   <Search
-                    size={14}
-                    className="absolute left-2 top-2.5 text-white/70"
+                    size={16}
+                    className="absolute left-2 top-3 text-white/70"
                   />
                 </div>
               </div>
@@ -506,13 +512,13 @@ const PortfolioApp: React.FC = () => {
                   <input
                     type="text"
                     placeholder="Search"
-                    className="bg-black/20 backdrop-blur-lg rounded-lg py-1 pl-8 pr-2 w-48 text-white text-sm border border-white/10"
+                    className="bg-black/20 backdrop-blur-lg rounded-lg py-1.5 pl-8 pr-2 w-48 text-white text-base border border-white/10"
                     value={searchQuery}
                     onChange={handleSearchChange}
                   />
                   <Search
-                    size={14}
-                    className="absolute left-2 top-2 text-white/70"
+                    size={16}
+                    className="absolute left-2 top-2.5 text-white/70"
                   />
                 </div>
 
@@ -521,7 +527,7 @@ const PortfolioApp: React.FC = () => {
                   className="md:hidden bg-black/20 p-1.5 rounded-full"
                   onClick={toggleSearchExpansion}
                 >
-                  <Search size={16} className="text-white" />
+                  <Search size={18} className="text-white" />
                 </button>
               </>
             )}
@@ -533,10 +539,10 @@ const PortfolioApp: React.FC = () => {
           <div className="md:hidden absolute top-12 left-0 right-0 bottom-0 z-20 bg-black/90 backdrop-blur-md">
             <div className="p-4">
               <div className="mb-6">
-                <h1 className="text-lg font-bold mb-1 text-white">
+                <h1 className="text-xl font-bold mb-1 text-white">
                   Tate McCormick
                 </h1>
-                <p className="text-white/80 text-sm">Redmond, WA.</p>
+                <p className="text-white/80 text-base">Redmond, WA.</p>
               </div>
             </div>
 
@@ -552,7 +558,7 @@ const PortfolioApp: React.FC = () => {
                   >
                     <div className="flex items-center">
                       <span
-                        className={`mr-3 text-lg ${
+                        className={`mr-3 text-xl ${
                           selectedFolder === folder.name
                             ? "text-white"
                             : "text-white/80"
@@ -560,12 +566,10 @@ const PortfolioApp: React.FC = () => {
                       >
                         {folder.icon}
                       </span>
-                      <span className="text-white text-base">
-                        {folder.name}
-                      </span>
+                      <span className="text-white text-lg">{folder.name}</span>
                     </div>
                     <ChevronRight
-                      size={18}
+                      size={20}
                       className={`${
                         selectedFolder === folder.name
                           ? "text-white"
@@ -585,13 +589,13 @@ const PortfolioApp: React.FC = () => {
             // Normal layout - responsive with conditional display on mobile
             <>
               {/* Left Sidebar - Hidden on mobile */}
-              <div className="hidden md:w-64 md:flex md:flex-col bg-white/10 backdrop-blur-md overflow-y-auto border-r border-white/10 h-full">
+              <div className="hidden md:w-80 md:flex md:flex-col bg-white/10 backdrop-blur-md overflow-y-auto border-r border-white/10 h-full">
                 <div className="p-4">
                   <div className="mb-6">
-                    <h1 className="text-lg font-bold mb-1 text-white">
+                    <h1 className="text-xl font-bold mb-1 text-white">
                       Tate McCormick
                     </h1>
-                    <p className="text-white/80 text-sm">Redmond, WA.</p>
+                    <p className="text-white/80 text-base">Redmond, WA.</p>
                   </div>
                 </div>
 
@@ -608,7 +612,7 @@ const PortfolioApp: React.FC = () => {
                       >
                         <div className="flex items-center">
                           <span
-                            className={`mr-2 text-base ${
+                            className={`mr-2 text-lg ${
                               selectedFolder === folder.name
                                 ? "text-white"
                                 : "text-white/80"
@@ -616,12 +620,12 @@ const PortfolioApp: React.FC = () => {
                           >
                             {folder.icon}
                           </span>
-                          <span className="text-white text-sm">
+                          <span className="text-white text-base">
                             {folder.name}
                           </span>
                         </div>
                         <ChevronRight
-                          size={16}
+                          size={18}
                           className={`${
                             selectedFolder === folder.name
                               ? "text-white"
@@ -636,7 +640,7 @@ const PortfolioApp: React.FC = () => {
 
               {/* Middle - File List - Conditionally shown/hidden on mobile */}
               <div
-                className={`w-full md:w-72 bg-white/5 backdrop-blur-md border-r border-white/10 overflow-y-auto ${
+                className={`w-full md:w-88 bg-white/5 backdrop-blur-md border-r border-white/10 overflow-y-auto ${
                   viewingFileDetail ? "hidden md:block" : "block"
                 }`}
               >
@@ -656,14 +660,14 @@ const PortfolioApp: React.FC = () => {
                               className="w-10 h-10 md:w-8 md:h-8 mr-3 md:mr-2 flex items-center justify-center rounded-md"
                               style={{ backgroundColor: item.color }}
                             >
-                              <span className="text-sm">{item.icon}</span>
+                              <span className="text-base">{item.icon}</span>
                             </div>
-                            <span className="text-white text-sm truncate">
+                            <span className="text-white text-base truncate">
                               {item.name}
                             </span>
                           </div>
                           <ChevronRight
-                            size={16}
+                            size={18}
                             className={`${
                               selectedItemId === item.id
                                 ? "text-white"
@@ -674,7 +678,7 @@ const PortfolioApp: React.FC = () => {
                       ))}
                     </div>
                   ) : (
-                    <div className="text-white/70 p-4 text-center text-sm">
+                    <div className="text-white/70 p-4 text-center text-base">
                       No files in this folder
                     </div>
                   )}
@@ -697,9 +701,9 @@ const PortfolioApp: React.FC = () => {
                             onClick={handlePrevMedia}
                             className="p-2 bg-black/30 rounded-full text-white hover:bg-black/50 transition-colors"
                           >
-                            <ChevronLeft size={20} />
+                            <ChevronLeft size={22} />
                           </button>
-                          <div className="text-white text-sm">
+                          <div className="text-white text-base">
                             {currentMediaIndex + 1} /{" "}
                             {selectedItem.details.media.length}
                           </div>
@@ -707,7 +711,7 @@ const PortfolioApp: React.FC = () => {
                             onClick={handleNextMedia}
                             className="p-2 bg-black/30 rounded-full text-white hover:bg-black/50 transition-colors"
                           >
-                            <ChevronRight size={20} />
+                            <ChevronRight size={22} />
                           </button>
                         </div>
                       )}
@@ -720,14 +724,14 @@ const PortfolioApp: React.FC = () => {
 
                     <div className="p-4 border-t border-white/10">
                       <div className="text-white">
-                        <h2 className="text-base font-semibold mb-1">
+                        <h2 className="text-lg font-semibold mb-1">
                           {selectedItem.name}
                         </h2>
-                        <p className="text-white/70 text-sm mb-4">
+                        <p className="text-white/70 text-base mb-4">
                           {selectedItem.details.size}
                         </p>
 
-                        <div className="space-y-2 text-sm">
+                        <div className="space-y-2 text-base">
                           <div className="flex justify-between">
                             <span className="text-white/70">Created</span>
                             <span>{selectedItem.details.created}</span>
@@ -767,7 +771,7 @@ const PortfolioApp: React.FC = () => {
                 }`}
               >
                 <div className="p-3">
-                  <h2 className="text-sm font-medium mb-2 text-white/70 uppercase tracking-wider px-2">
+                  <h2 className="text-base font-medium mb-2 text-white/70 uppercase tracking-wider px-2">
                     Search Results
                   </h2>
                   <div className="space-y-1">
@@ -785,18 +789,18 @@ const PortfolioApp: React.FC = () => {
                               className="w-10 h-10 md:w-8 md:h-8 mr-3 md:mr-2 flex items-center justify-center rounded-md"
                               style={{ backgroundColor: item.color }}
                             >
-                              <span className="text-sm">{item.icon}</span>
+                              <span className="text-base">{item.icon}</span>
                             </div>
-                            <span className="text-white text-sm truncate">
+                            <span className="text-white text-base truncate">
                               {item.name}
                             </span>
                           </div>
-                          <span className="text-xs text-white/60 ml-12 md:ml-10 mt-0.5">
+                          <span className="text-sm text-white/60 ml-12 md:ml-10 mt-0.5">
                             {item.folderId}
                           </span>
                         </div>
                         <ChevronRight
-                          size={16}
+                          size={18}
                           className={`${
                             selectedItemId === item.id
                               ? "text-white"
@@ -825,9 +829,9 @@ const PortfolioApp: React.FC = () => {
                             onClick={handlePrevMedia}
                             className="p-2 bg-black/30 rounded-full text-white hover:bg-black/50 transition-colors"
                           >
-                            <ChevronLeft size={20} />
+                            <ChevronLeft size={22} />
                           </button>
-                          <div className="text-white text-sm">
+                          <div className="text-white text-base">
                             {currentMediaIndex + 1} /{" "}
                             {selectedItem.details.media.length}
                           </div>
@@ -835,7 +839,7 @@ const PortfolioApp: React.FC = () => {
                             onClick={handleNextMedia}
                             className="p-2 bg-black/30 rounded-full text-white hover:bg-black/50 transition-colors"
                           >
-                            <ChevronRight size={20} />
+                            <ChevronRight size={22} />
                           </button>
                         </div>
                       )}
@@ -848,14 +852,14 @@ const PortfolioApp: React.FC = () => {
 
                     <div className="p-4 border-t border-white/10">
                       <div className="text-white">
-                        <h2 className="text-base font-semibold mb-1">
+                        <h2 className="text-lg font-semibold mb-1">
                           {selectedItem.name}
                         </h2>
-                        <p className="text-white/70 text-sm mb-4">
+                        <p className="text-white/70 text-base mb-4">
                           {selectedItem.details.size}
                         </p>
 
-                        <div className="space-y-2 text-sm">
+                        <div className="space-y-2 text-base">
                           <div className="flex justify-between">
                             <span className="text-white/70">Created</span>
                             <span>{selectedItem.details.created}</span>
@@ -888,7 +892,7 @@ const PortfolioApp: React.FC = () => {
           ) : (
             // No search results
             <div className="flex-1 flex items-center justify-center">
-              <div className="text-white text-xl">No results found</div>
+              <div className="text-white text-2xl">No results found</div>
             </div>
           )}
         </div>
