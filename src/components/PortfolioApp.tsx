@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { ChevronRight, Search, User } from "lucide-react";
+import { ChevronRight, ChevronLeft, Search, User, Menu } from "lucide-react";
 
 // Define interfaces for our data structures
 interface FileItem {
@@ -36,6 +36,10 @@ const PortfolioApp: React.FC = () => {
   );
   const [searchQuery, setSearchQuery] = useState<string>("");
   const [searchResults, setSearchResults] = useState<FileItem[]>([]);
+
+  // Mobile-specific states
+  const [mobileMenuOpen, setMobileMenuOpen] = useState<boolean>(false);
+  const [viewingFileDetail, setViewingFileDetail] = useState<boolean>(false);
 
   const folderStructure: FolderStructure = {
     "Web Design": [
@@ -83,6 +87,16 @@ const PortfolioApp: React.FC = () => {
     tags: "Bold, Experimental",
   };
 
+  // Mobile menu toggle
+  const toggleMobileMenu = () => {
+    setMobileMenuOpen(!mobileMenuOpen);
+  };
+
+  // Back button handler for mobile
+  const handleBackToFiles = () => {
+    setViewingFileDetail(false);
+  };
+
   // Update URL when a file or folder is selected
   const updateUrl = (foldername: string, filename?: string) => {
     const url = new URL(window.location.href);
@@ -108,6 +122,11 @@ const PortfolioApp: React.FC = () => {
   const handleFileSelect = (filename: string, folderName?: string) => {
     setSelectedFile(filename);
 
+    // On mobile, switch to file detail view
+    if (window.innerWidth < 768) {
+      setViewingFileDetail(true);
+    }
+
     // If folder is provided, use it, otherwise use currently selected folder
     const folder = folderName || selectedFolder;
     updateUrl(folder, filename);
@@ -116,6 +135,8 @@ const PortfolioApp: React.FC = () => {
   // Handle folder selection with URL update
   const handleFolderSelect = (folderName: string) => {
     setSelectedFolder(folderName);
+    setMobileMenuOpen(false); // Close mobile menu after selection
+    setViewingFileDetail(false); // Return to file list view on mobile
 
     // Update URL with new folder
     if (folderStructure[folderName]?.length > 0) {
@@ -136,8 +157,23 @@ const PortfolioApp: React.FC = () => {
     // If search is cleared, restore the normal URL with current selection
     if (newQuery.trim() === "" && selectedFolder) {
       updateUrl(selectedFolder, selectedFile);
+      setViewingFileDetail(false); // Return to file list on mobile when search is cleared
     }
   };
+
+  // Check screen size and adjust view accordingly
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth >= 768) {
+        // Reset mobile-specific states when on desktop
+        setViewingFileDetail(false);
+        setMobileMenuOpen(false);
+      }
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   // Parse the URL when the component mounts
   useEffect(() => {
@@ -156,6 +192,10 @@ const PortfolioApp: React.FC = () => {
         );
         if (fileExists) {
           setSelectedFile(fileParam);
+          // Set mobile view state based on screen size
+          if (window.innerWidth < 768) {
+            setViewingFileDetail(true);
+          }
         } else if (folderStructure[folderParam].length > 0) {
           // If file doesn't exist, select first file in folder
           setSelectedFile(folderStructure[folderParam][0].name);
@@ -176,6 +216,11 @@ const PortfolioApp: React.FC = () => {
           setSelectedFolder(folderName);
           setSelectedFile(fileParam);
           updateUrl(folderName, fileParam);
+
+          // Set mobile view state based on screen size
+          if (window.innerWidth < 768) {
+            setViewingFileDetail(true);
+          }
           break;
         }
       }
@@ -211,6 +256,11 @@ const PortfolioApp: React.FC = () => {
       const folder = results[0].folder || selectedFolder;
       setSelectedFile(file);
       updateUrl(folder, file);
+
+      // On mobile, don't automatically go to detail view for search results
+      if (window.innerWidth < 768) {
+        setViewingFileDetail(false);
+      }
     } else {
       // If no search results, reset URL to root
       resetUrlToRoot();
@@ -234,23 +284,45 @@ const PortfolioApp: React.FC = () => {
 
   return (
     <div className="flex flex-col h-screen bg-[url('/images/background.png')] relative">
-      {/* Apply a glass-like background overlay */}
-      {/* <div className="absolute inset-0 bg-gradient-to-b from-purple-500/30 to-blue-700/30 backdrop-blur-sm"></div> */}
-
       {/* Glass-like card that contains the entire UI */}
-      <div className="relative z-10 m-15 rounded-lg overflow-hidden border border-white/20 shadow-2xl backdrop-filter backdrop-blur-xl bg-black/70 flex flex-col h-full">
-        {/* Header */}
+      <div className="relative z-10 m-2 md:m-15 rounded-lg overflow-hidden border border-white/20 shadow-2xl backdrop-filter backdrop-blur-xl bg-black/70 flex flex-col h-full">
+        {/* Header - Updated for mobile */}
         <header className="p-2 flex justify-between items-center border-b border-white/10 backdrop-blur-lg">
           <div className="flex items-center space-x-2">
-            <div className="bg-black/20 p-1.5 rounded-full ml-1">
+            {/* Mobile menu button - shown only on small screens */}
+            <button
+              className="md:hidden bg-black/20 p-1.5 rounded-full"
+              onClick={toggleMobileMenu}
+            >
+              <Menu size={16} className="text-white" />
+            </button>
+
+            {/* Back button for mobile when viewing file details */}
+            {viewingFileDetail && (
+              <button
+                className="md:hidden bg-black/20 p-1.5 rounded-full ml-2"
+                onClick={handleBackToFiles}
+              >
+                <ChevronLeft size={16} className="text-white" />
+              </button>
+            )}
+
+            <div className="hidden md:flex bg-black/20 p-1.5 rounded-full ml-1">
               <User size={16} className="text-white" />
+            </div>
+
+            {/* Current context for mobile */}
+            <div className="md:hidden">
+              <span className="text-white text-sm font-medium">
+                {viewingFileDetail ? selectedFile : selectedFolder}
+              </span>
             </div>
           </div>
           <div className="relative">
             <input
               type="text"
               placeholder="Search"
-              className="bg-black/20 backdrop-blur-lg rounded-lg py-1 pl-8 pr-2 w-48 text-white text-sm border border-white/10"
+              className="bg-black/20 backdrop-blur-lg rounded-lg py-1 pl-8 pr-2 w-36 sm:w-48 text-white text-sm border border-white/10"
               value={searchQuery}
               onChange={handleSearchChange}
             />
@@ -258,13 +330,64 @@ const PortfolioApp: React.FC = () => {
           </div>
         </header>
 
-        {/* Main Content */}
+        {/* Mobile menu drawer - only visible on mobile when toggled */}
+        {mobileMenuOpen && (
+          <div className="md:hidden absolute top-12 left-0 right-0 bottom-0 z-20 bg-black/90 backdrop-blur-md">
+            <div className="p-4">
+              <div className="mb-6">
+                <h1 className="text-lg font-bold mb-1 text-white">
+                  Tate McCormick
+                </h1>
+                <p className="text-white/80 text-sm">Redmond, WA.</p>
+              </div>
+            </div>
+
+            <div className="p-4">
+              <div className="space-y-2">
+                {folders.map((folder) => (
+                  <div
+                    key={folder.name}
+                    className={`flex items-center justify-between p-3 hover:bg-white/5 rounded-md cursor-pointer transition-all ${
+                      selectedFolder === folder.name ? "bg-white/10" : ""
+                    }`}
+                    onClick={() => handleFolderSelect(folder.name)}
+                  >
+                    <div className="flex items-center">
+                      <span
+                        className={`mr-3 text-lg ${
+                          selectedFolder === folder.name
+                            ? "text-white"
+                            : "text-white/80"
+                        }`}
+                      >
+                        {folder.icon}
+                      </span>
+                      <span className="text-white text-base">
+                        {folder.name}
+                      </span>
+                    </div>
+                    <ChevronRight
+                      size={18}
+                      className={`${
+                        selectedFolder === folder.name
+                          ? "text-white"
+                          : "text-white/50"
+                      }`}
+                    />
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Main Content - Responsive Layout */}
         <div className="flex flex-1 overflow-hidden">
           {searchQuery.trim() === "" ? (
-            // Normal layout - folders on left, files in middle, preview on right
+            // Normal layout - responsive with conditional display on mobile
             <>
-              {/* Left Sidebar - Profile & Folders */}
-              <div className="w-64 bg-white/10 backdrop-blur-md overflow-y-auto border-r border-white/10 flex flex-col h-full">
+              {/* Left Sidebar - Hidden on mobile */}
+              <div className="hidden md:w-64 md:flex md:flex-col bg-white/10 backdrop-blur-md overflow-y-auto border-r border-white/10 h-full">
                 <div className="p-4">
                   <div className="mb-6">
                     <h1 className="text-lg font-bold mb-1 text-white">
@@ -274,7 +397,7 @@ const PortfolioApp: React.FC = () => {
                   </div>
                 </div>
 
-                {/* Folder list now anchored to bottom */}
+                {/* Folder list anchored to bottom */}
                 <div className="mt-auto p-4">
                   <div className="space-y-1">
                     {folders.map((folder) => (
@@ -313,22 +436,26 @@ const PortfolioApp: React.FC = () => {
                 </div>
               </div>
 
-              {/* Middle - File List */}
-              <div className="w-72 bg-white/5 backdrop-blur-md border-r border-white/10 overflow-y-auto">
+              {/* Middle - File List - Conditionally shown/hidden on mobile */}
+              <div
+                className={`w-full md:w-72 bg-white/5 backdrop-blur-md border-r border-white/10 overflow-y-auto ${
+                  viewingFileDetail ? "hidden md:block" : "block"
+                }`}
+              >
                 <div className="p-3">
                   {currentFiles.length > 0 ? (
                     <div className="space-y-1">
                       {currentFiles.map((file) => (
                         <div
                           key={file.name}
-                          className={`flex items-center justify-between p-2 hover:bg-white/5 rounded-md cursor-pointer transition-all ${
+                          className={`flex items-center justify-between p-3 md:p-2 hover:bg-white/5 rounded-md cursor-pointer transition-all ${
                             selectedFile === file.name ? "bg-white/10" : ""
                           }`}
                           onClick={() => handleFileSelect(file.name)}
                         >
                           <div className="flex items-center">
                             <div
-                              className="w-8 h-8 mr-2 flex items-center justify-center rounded-md"
+                              className="w-10 h-10 md:w-8 md:h-8 mr-3 md:mr-2 flex items-center justify-center rounded-md"
                               style={{ backgroundColor: file.color }}
                             >
                               <span className="text-sm">{file.icon}</span>
@@ -356,8 +483,12 @@ const PortfolioApp: React.FC = () => {
                 </div>
               </div>
 
-              {/* Right - Preview */}
-              <div className="flex-1 bg-white/5 backdrop-blur-md overflow-y-auto flex flex-col">
+              {/* Right - Preview - Conditionally shown/hidden on mobile */}
+              <div
+                className={`w-full flex-1 md:flex-1 bg-white/5 backdrop-blur-md overflow-y-auto flex flex-col ${
+                  viewingFileDetail ? "block" : "hidden md:flex"
+                }`}
+              >
                 <div className="flex-1 p-4 flex items-center justify-center">
                   <div className="w-full max-w-xs">
                     {selectedFile === "Inner Creativity.png" && (
@@ -413,10 +544,14 @@ const PortfolioApp: React.FC = () => {
               </div>
             </>
           ) : searchResults.length > 0 ? (
-            // Search mode - 2-column layout
+            // Search mode - responsive with conditional display on mobile
             <>
-              {/* Left - Search Results */}
-              <div className="w-72 bg-white/5 backdrop-blur-md border-r border-white/10 overflow-y-auto">
+              {/* Left - Search Results - Hidden on mobile when viewing detail */}
+              <div
+                className={`w-full md:w-72 bg-white/5 backdrop-blur-md border-r border-white/10 overflow-y-auto ${
+                  viewingFileDetail ? "hidden md:block" : "block"
+                }`}
+              >
                 <div className="p-3">
                   <h2 className="text-sm font-medium mb-2 text-white/70 uppercase tracking-wider px-2">
                     Search Results
@@ -425,7 +560,7 @@ const PortfolioApp: React.FC = () => {
                     {searchResults.map((file) => (
                       <div
                         key={file.name}
-                        className={`flex items-center justify-between p-2 hover:bg-white/5 rounded-md cursor-pointer transition-all ${
+                        className={`flex items-center justify-between p-3 md:p-2 hover:bg-white/5 rounded-md cursor-pointer transition-all ${
                           selectedFile === file.name ? "bg-white/10" : ""
                         }`}
                         onClick={() => handleFileSelect(file.name, file.folder)}
@@ -433,7 +568,7 @@ const PortfolioApp: React.FC = () => {
                         <div className="flex flex-col">
                           <div className="flex items-center">
                             <div
-                              className="w-8 h-8 mr-2 flex items-center justify-center rounded-md"
+                              className="w-10 h-10 md:w-8 md:h-8 mr-3 md:mr-2 flex items-center justify-center rounded-md"
                               style={{ backgroundColor: file.color }}
                             >
                               <span className="text-sm">{file.icon}</span>
@@ -442,7 +577,7 @@ const PortfolioApp: React.FC = () => {
                               {file.name}
                             </span>
                           </div>
-                          <span className="text-xs text-white/60 ml-10 mt-0.5">
+                          <span className="text-xs text-white/60 ml-12 md:ml-10 mt-0.5">
                             {file.folder}
                           </span>
                         </div>
@@ -460,8 +595,12 @@ const PortfolioApp: React.FC = () => {
                 </div>
               </div>
 
-              {/* Right - Preview */}
-              <div className="flex-1 bg-white/5 backdrop-blur-md overflow-y-auto flex flex-col">
+              {/* Right - Preview - Shown on mobile only when viewing detail */}
+              <div
+                className={`w-full flex-1 md:flex-1 bg-white/5 backdrop-blur-md overflow-y-auto flex flex-col ${
+                  viewingFileDetail ? "block" : "hidden md:flex"
+                }`}
+              >
                 <div className="flex-1 p-4 flex items-center justify-center">
                   <div className="w-full max-w-xs">
                     {selectedFile === "Inner Creativity.png" && (
