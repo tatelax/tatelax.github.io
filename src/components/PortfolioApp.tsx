@@ -405,6 +405,7 @@ const PortfolioApp: React.FC = () => {
 
     return selectedItem.details.media.map((media) => {
       const basePath = `${media.path}`;
+      const thumbPath = `${media.thumbnail ? media.thumbnail : media.path}`;
 
       // Format based on media type
       if (media.type === "image") {
@@ -496,7 +497,8 @@ const PortfolioApp: React.FC = () => {
       style={{
         fontFamily:
           "system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif",
-        backgroundImage: "url('/images/background.jpg')",
+        backgroundImage:
+          "url('/images/pexels-adrien-olichon-1257089-2387793.jpg')",
         backgroundSize: "cover",
         backgroundPosition: "center",
         backgroundRepeat: "no-repeat",
@@ -807,10 +809,10 @@ const PortfolioApp: React.FC = () => {
                           >
                             {/* Year Divider - Year on left, line on right */}
                             <div className="relative mb-3 flex items-center">
-                              <span className="bg-black/40 backdrop-blur-sm px-3 py-1 text-white/90 text-sm font-semibold rounded-md mr-3">
+                              <span className="bg-black/20 backdrop-blur-sm px-3 py-1 text-white/90 text-sm font-semibold rounded-md mr-3">
                                 {year}
                               </span>
-                              <div className="border-t border-white/20 flex-grow"></div>
+                              <div className="border-t border-white/8 flex-grow"></div>
                             </div>
 
                             {/* Items for this year */}
@@ -934,7 +936,7 @@ const PortfolioApp: React.FC = () => {
 
                       <div className="p-4 border-t border-white/20">
                         <div className="text-white">
-                          <h2 className="text-lg font-semibold mb-1">
+                          <h2 className="text-2xl font-semibold mb-1">
                             {selectedItem.details.name}
                           </h2>
                           <p className="text-white/70 text-base mb-4">
@@ -974,8 +976,8 @@ const PortfolioApp: React.FC = () => {
                 }`}
               >
                 <div className="p-3">
-                  <h2 className="text-base font-medium mb-2 text-white/70 uppercase tracking-wider px-2">
-                    Search Results
+                  <h2 className="text-base font-semibold mb-4 text-white/70 uppercase tracking-wider px-2">
+                    Results
                   </h2>
                   <div className="space-y-1">
                     {searchResults.map((item) => (
@@ -994,7 +996,7 @@ const PortfolioApp: React.FC = () => {
                             >
                               {item.image ? (
                                 <img
-                                  src={`/images/${item.image}`}
+                                  src={`${item.image}`}
                                   alt={item.name}
                                   className="w-full h-full object-cover"
                                 />
@@ -1002,7 +1004,7 @@ const PortfolioApp: React.FC = () => {
                                 <span className="text-base">{item.icon}</span>
                               )}
                             </div>
-                            <span className="text-white text-base truncate">
+                            <span className="text-white font-semibold text-base truncate">
                               {item.name}
                             </span>
                           </div>
@@ -1032,37 +1034,54 @@ const PortfolioApp: React.FC = () => {
                 {selectedItem && (
                   <>
                     {/* Two column layout for media content and description */}
-                    <div className="flex-1 p-4">
+                    <div className="flex-1 p-4 flex flex-col h-full overflow-hidden">
                       {selectedItem.details.media.length > 0 && (
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:divide-x md:divide-white/20">
-                          {/* Left Column - Image Gallery */}
-                          <div className="image-gallery-container">
-                            <ImageGallery
-                              items={getGalleryItems()}
-                              showPlayButton={false}
-                              showBullets={
-                                selectedItem.details.media.length > 1
-                              }
-                              showThumbnails={
-                                selectedItem.details.media.length > 1
-                              }
-                              showFullscreenButton={true}
-                              useBrowserFullscreen={true}
-                              slideInterval={3000}
-                              slideDuration={450}
-                              additionalClass="portfolio-gallery fit-content"
-                              thumbnailPosition="bottom"
-                              onSlide={handleSlideChange}
-                              renderLeftNav={renderLeftNav}
-                              renderRightNav={renderRightNav}
-                            />
+                        <div className="grid grid-cols-1 md:grid-cols-10 gap-6 md:divide-x md:divide-white/20 h-full">
+                          {/* Left Column - Image Gallery (70%) */}
+                          <div className="image-gallery-container h-full md:col-span-7">
+                            <div className="h-full">
+                              <ImageGallery
+                                items={getGalleryItems()}
+                                showPlayButton={false}
+                                showBullets={
+                                  selectedItem.details.media.length > 1
+                                }
+                                showThumbnails={
+                                  selectedItem.details.media.length > 1
+                                }
+                                showFullscreenButton={true}
+                                useBrowserFullscreen={true}
+                                slideInterval={3000}
+                                lazyLoad={true}
+                                slideDuration={450}
+                                additionalClass="portfolio-gallery fit-content h-full items-center justify-center"
+                                thumbnailPosition="left"
+                                onSlide={handleSlideChange}
+                                renderLeftNav={renderLeftNav}
+                                renderRightNav={renderRightNav}
+                              />
+                            </div>
                           </div>
 
-                          {/* Right Column - Media Description */}
-                          <div className="rounded-lg p-6 flex flex-col justify-start h-full">
+                          {/* Right Column - Media Description (30%) */}
+                          <div className="rounded-lg p-6 flex flex-col justify-start h-full overflow-y-auto mac-scrollbar md:col-span-3">
                             <h3 className="text-xl font-semibold text-white mb-4">
-                              Media Details
+                              {currentMedia && currentMedia.title
+                                ? currentMedia.title
+                                : ""}
                             </h3>
+
+                            {currentMedia && currentMedia.description ? (
+                              <div className="space-y-4">
+                                <p className="text-white/90 text-base">
+                                  {currentMedia.description}
+                                </p>
+                              </div>
+                            ) : (
+                              <p className="text-white/70 italic">
+                                No description available for this media.
+                              </p>
+                            )}
                           </div>
                         </div>
                       )}

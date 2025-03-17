@@ -20,14 +20,32 @@ export const portfolioData = {
         description: "An exploration of digital painting techniques.",
         media: [
           {
-            path: "testimage.png",
+            path: "images/portfolio/sandboxr/1.jpg",
             type: "image",
             title: "Hello, World!",
             description:
               "This piece explores an alternative approach to digital painting, using unconventional brushes and textures to create depth. The technique involves layering multiple translucent colors to achieve a vibrant yet controlled chaos effect.",
           },
           {
-            path: "testimage.png",
+            path: "images/portfolio/sandboxr/2.jpg",
+            type: "image",
+            description:
+              "A close-up detail of the painting showing the intricate brushwork and texture. Notice how the overlapping layers create an almost three-dimensional effect when viewed from different angles.",
+          },
+          {
+            path: "images/portfolio/sandboxr/3.jpg",
+            type: "image",
+            description:
+              "A close-up detail of the painting showing the intricate brushwork and texture. Notice how the overlapping layers create an almost three-dimensional effect when viewed from different angles.",
+          },
+          {
+            path: "images/portfolio/sandboxr/4.jpg",
+            type: "image",
+            description:
+              "A close-up detail of the painting showing the intricate brushwork and texture. Notice how the overlapping layers create an almost three-dimensional effect when viewed from different angles.",
+          },
+          {
+            path: "images/portfolio/sandboxr/5.png",
             type: "image",
             description:
               "A close-up detail of the painting showing the intricate brushwork and texture. Notice how the overlapping layers create an almost three-dimensional effect when viewed from different angles.",
@@ -49,7 +67,25 @@ export const portfolioData = {
         description: "A series of abstract compositions with blurred ovals.",
         media: [
           {
-            path: "blurred-ovals.png",
+            path: "images/portfolio/cavecrusade/1.png",
+            type: "image",
+            description:
+              "This minimalist composition features a series of overlapping oval shapes with carefully calibrated blur effects. The gradual transition between sharp and blurred elements creates a sense of depth and movement within a deceptively simple framework.",
+          },
+          {
+            path: "images/portfolio/cavecrusade/2.png",
+            type: "image",
+            description:
+              "This minimalist composition features a series of overlapping oval shapes with carefully calibrated blur effects. The gradual transition between sharp and blurred elements creates a sense of depth and movement within a deceptively simple framework.",
+          },
+          {
+            path: "images/portfolio/cavecrusade/3.png",
+            type: "image",
+            description:
+              "This minimalist composition features a series of overlapping oval shapes with carefully calibrated blur effects. The gradual transition between sharp and blurred elements creates a sense of depth and movement within a deceptively simple framework.",
+          },
+          {
+            path: "images/portfolio/cavecrusade/4.png",
             type: "image",
             description:
               "This minimalist composition features a series of overlapping oval shapes with carefully calibrated blur effects. The gradual transition between sharp and blurred elements creates a sense of depth and movement within a deceptively simple framework.",
@@ -72,23 +108,40 @@ export const portfolioData = {
           "A collection of toggle switch designs for web interfaces.",
         media: [
           {
-            path: "toggle-this-1.png",
+            path: "images/portfolio/pro/video.mp4",
+            type: "video",
+            description:
+              "The primary toggle design featuring a smooth animation curve and tactile visual feedback. This design prioritizes accessibility while maintaining a modern aesthetic that works across both light and dark mode interfaces.",
+          },
+          {
+            path: "images/portfolio/pro/2.png",
             type: "image",
             description:
               "The primary toggle design featuring a smooth animation curve and tactile visual feedback. This design prioritizes accessibility while maintaining a modern aesthetic that works across both light and dark mode interfaces.",
           },
           {
-            path: "toggle-this-2.png",
+            path: "images/portfolio/pro/3.png",
             type: "image",
             description:
-              "Alternative toggle states showing various color combinations and states (active, inactive, disabled, and hover). Each variation maintains the core design language while adapting to different contexts.",
+              "The primary toggle design featuring a smooth animation curve and tactile visual feedback. This design prioritizes accessibility while maintaining a modern aesthetic that works across both light and dark mode interfaces.",
           },
           {
-            path: "toggle-demo.mp4",
-            type: "video",
-            thumbnail: "toggle-thumb.png",
+            path: "images/portfolio/pro/4.png",
+            type: "image",
             description:
-              "This video demonstrates the toggle switch in action, showing the fluid microinteractions and state transitions. The animation timing was carefully calibrated to feel responsive without being distracting.",
+              "The primary toggle design featuring a smooth animation curve and tactile visual feedback. This design prioritizes accessibility while maintaining a modern aesthetic that works across both light and dark mode interfaces.",
+          },
+          {
+            path: "images/portfolio/pro/5.png",
+            type: "image",
+            description:
+              "The primary toggle design featuring a smooth animation curve and tactile visual feedback. This design prioritizes accessibility while maintaining a modern aesthetic that works across both light and dark mode interfaces.",
+          },
+          {
+            path: "images/portfolio/pro/6.png",
+            type: "image",
+            description:
+              "The primary toggle design featuring a smooth animation curve and tactile visual feedback. This design prioritizes accessibility while maintaining a modern aesthetic that works across both light and dark mode interfaces.",
           },
         ],
       },
@@ -107,7 +160,31 @@ export const portfolioData = {
         description: "A study of light rays through different atmospheres.",
         media: [
           {
-            path: "god-rays.png",
+            path: "images/portfolio/emergenyc/1.jpg",
+            type: "image",
+            description:
+              "This atmospheric rendering explores the phenomenon of crepuscular rays ('god rays') as they filter through various atmospheric conditions. The piece was date using a combination of 3D volumetric rendering and hand-painted elements to achieve the ethereal quality of natural light.",
+          },
+          {
+            path: "images/portfolio/emergenyc/2.jpg",
+            type: "image",
+            description:
+              "This atmospheric rendering explores the phenomenon of crepuscular rays ('god rays') as they filter through various atmospheric conditions. The piece was date using a combination of 3D volumetric rendering and hand-painted elements to achieve the ethereal quality of natural light.",
+          },
+          {
+            path: "images/portfolio/emergenyc/3.jpg",
+            type: "image",
+            description:
+              "This atmospheric rendering explores the phenomenon of crepuscular rays ('god rays') as they filter through various atmospheric conditions. The piece was date using a combination of 3D volumetric rendering and hand-painted elements to achieve the ethereal quality of natural light.",
+          },
+          {
+            path: "images/portfolio/emergenyc/4.jpg",
+            type: "image",
+            description:
+              "This atmospheric rendering explores the phenomenon of crepuscular rays ('god rays') as they filter through various atmospheric conditions. The piece was date using a combination of 3D volumetric rendering and hand-painted elements to achieve the ethereal quality of natural light.",
+          },
+          {
+            path: "images/portfolio/emergenyc/5.jpg",
             type: "image",
             description:
               "This atmospheric rendering explores the phenomenon of crepuscular rays ('god rays') as they filter through various atmospheric conditions. The piece was date using a combination of 3D volumetric rendering and hand-painted elements to achieve the ethereal quality of natural light.",
@@ -129,17 +206,46 @@ export const portfolioData = {
         description: "An abstract representation of the creative process.",
         media: [
           {
-            path: "inner-creativity.png",
+            path: "images/portfolio/volygon/1.png",
             type: "image",
             description:
               "This abstract visualization maps the neural pathways of creative thinking. The interconnected nodes represent different cognitive functions, while the flowing lines illustrate how ideas connect and transform during the creative process.",
           },
           {
-            path: "creative-process.pdf",
-            type: "pdf",
-            thumbnail: "creative-process-thumb.png",
+            path: "images/portfolio/volygon/2.png",
+            type: "image",
             description:
-              "This comprehensive PDF explores the theoretical framework behind the visual representation. It includes additional diagrams, research citations, and practical exercises for enhancing creative thinking based on neuroscience principles.",
+              "This abstract visualization maps the neural pathways of creative thinking. The interconnected nodes represent different cognitive functions, while the flowing lines illustrate how ideas connect and transform during the creative process.",
+          },
+          {
+            path: "images/portfolio/volygon/3.png",
+            type: "image",
+            description:
+              "This abstract visualization maps the neural pathways of creative thinking. The interconnected nodes represent different cognitive functions, while the flowing lines illustrate how ideas connect and transform during the creative process.",
+          },
+          {
+            path: "images/portfolio/volygon/4.png",
+            type: "image",
+            description:
+              "This abstract visualization maps the neural pathways of creative thinking. The interconnected nodes represent different cognitive functions, while the flowing lines illustrate how ideas connect and transform during the creative process.",
+          },
+          {
+            path: "images/portfolio/volygon/5.png",
+            type: "image",
+            description:
+              "This abstract visualization maps the neural pathways of creative thinking. The interconnected nodes represent different cognitive functions, while the flowing lines illustrate how ideas connect and transform during the creative process.",
+          },
+          {
+            path: "images/portfolio/volygon/6.png",
+            type: "image",
+            description:
+              "This abstract visualization maps the neural pathways of creative thinking. The interconnected nodes represent different cognitive functions, while the flowing lines illustrate how ideas connect and transform during the creative process.",
+          },
+          {
+            path: "images/portfolio/volygon/7.png",
+            type: "image",
+            description:
+              "This abstract visualization maps the neural pathways of creative thinking. The interconnected nodes represent different cognitive functions, while the flowing lines illustrate how ideas connect and transform during the creative process.",
           },
         ],
       },
@@ -158,46 +264,305 @@ export const portfolioData = {
         description: "An abstract representation of the creative process.",
         media: [
           {
-            path: "inner-creativity.png",
+            path: "images/portfolio/magellan/full/1.png",
+            thumbnail: "images/portfolio/magellan/thumbnails/1.png",
             type: "image",
             description:
               "This abstract visualization maps the neural pathways of creative thinking. The interconnected nodes represent different cognitive functions, while the flowing lines illustrate how ideas connect and transform during the creative process.",
           },
           {
-            path: "creative-process.pdf",
-            type: "pdf",
-            thumbnail: "creative-process-thumb.png",
-            description:
-              "This comprehensive PDF explores the theoretical framework behind the visual representation. It includes additional diagrams, research citations, and practical exercises for enhancing creative thinking based on neuroscience principles.",
-          },
-        ],
-      },
-    },
-    herorescuers: {
-      id: "herorescuers",
-      name: "Hero Rescuers",
-      icon: "🚨",
-      color: "#ff5733",
-      year: "2021",
-      details: {
-        name: "Volygon",
-        date: "2021",
-        client: "Creative Mind Inc.",
-        tags: ["Abstract", "Conceptual", "Mind"],
-        description: "An abstract representation of the creative process.",
-        media: [
-          {
-            path: "inner-creativity.png",
+            path: "images/portfolio/magellan/full/2.png",
+            thumbnail: "images/portfolio/magellan/thumbnails/2.png",
             type: "image",
             description:
               "This abstract visualization maps the neural pathways of creative thinking. The interconnected nodes represent different cognitive functions, while the flowing lines illustrate how ideas connect and transform during the creative process.",
           },
           {
-            path: "creative-process.pdf",
-            type: "pdf",
-            thumbnail: "creative-process-thumb.png",
+            path: "images/portfolio/magellan/full/3.png",
+            thumbnail: "images/portfolio/magellan/thumbnails/3.png",
+            type: "image",
             description:
-              "This comprehensive PDF explores the theoretical framework behind the visual representation. It includes additional diagrams, research citations, and practical exercises for enhancing creative thinking based on neuroscience principles.",
+              "This abstract visualization maps the neural pathways of creative thinking. The interconnected nodes represent different cognitive functions, while the flowing lines illustrate how ideas connect and transform during the creative process.",
+          },
+          {
+            path: "images/portfolio/magellan/full/4.png",
+            thumbnail: "images/portfolio/magellan/thumbnails/4.png",
+            type: "image",
+            description:
+              "This abstract visualization maps the neural pathways of creative thinking. The interconnected nodes represent different cognitive functions, while the flowing lines illustrate how ideas connect and transform during the creative process.",
+          },
+          {
+            path: "images/portfolio/magellan/full/5.png",
+            thumbnail: "images/portfolio/magellan/thumbnails/5.png",
+            type: "image",
+            description:
+              "This abstract visualization maps the neural pathways of creative thinking. The interconnected nodes represent different cognitive functions, while the flowing lines illustrate how ideas connect and transform during the creative process.",
+          },
+          {
+            path: "images/portfolio/magellan/full/6.png",
+            thumbnail: "images/portfolio/magellan/thumbnails/6.png",
+            type: "image",
+            description:
+              "This abstract visualization maps the neural pathways of creative thinking. The interconnected nodes represent different cognitive functions, while the flowing lines illustrate how ideas connect and transform during the creative process.",
+          },
+          {
+            path: "images/portfolio/magellan/full/7.png",
+            thumbnail: "images/portfolio/magellan/thumbnails/7.png",
+            type: "image",
+            description:
+              "This abstract visualization maps the neural pathways of creative thinking. The interconnected nodes represent different cognitive functions, while the flowing lines illustrate how ideas connect and transform during the creative process.",
+          },
+          {
+            path: "images/portfolio/magellan/full/8.png",
+            thumbnail: "images/portfolio/magellan/thumbnails/8.png",
+            type: "image",
+            description:
+              "This abstract visualization maps the neural pathways of creative thinking. The interconnected nodes represent different cognitive functions, while the flowing lines illustrate how ideas connect and transform during the creative process.",
+          },
+          {
+            path: "images/portfolio/magellan/full/9.png",
+            thumbnail: "images/portfolio/magellan/thumbnails/9.png",
+            type: "image",
+            description:
+              "This abstract visualization maps the neural pathways of creative thinking. The interconnected nodes represent different cognitive functions, while the flowing lines illustrate how ideas connect and transform during the creative process.",
+          },
+          {
+            path: "images/portfolio/magellan/full/10.png",
+            thumbnail: "images/portfolio/magellan/thumbnails/10.png",
+            type: "image",
+            description:
+              "This abstract visualization maps the neural pathways of creative thinking. The interconnected nodes represent different cognitive functions, while the flowing lines illustrate how ideas connect and transform during the creative process.",
+          },
+          {
+            path: "images/portfolio/magellan/full/11.png",
+            thumbnail: "images/portfolio/magellan/thumbnails/11.png",
+            type: "image",
+            description:
+              "This abstract visualization maps the neural pathways of creative thinking. The interconnected nodes represent different cognitive functions, while the flowing lines illustrate how ideas connect and transform during the creative process.",
+          },
+          {
+            path: "images/portfolio/magellan/full/12.png",
+            thumbnail: "images/portfolio/magellan/thumbnails/12.png",
+            type: "image",
+            description:
+              "This abstract visualization maps the neural pathways of creative thinking. The interconnected nodes represent different cognitive functions, while the flowing lines illustrate how ideas connect and transform during the creative process.",
+          },
+          {
+            path: "images/portfolio/magellan/full/13.png",
+            thumbnail: "images/portfolio/magellan/thumbnails/13.png",
+            type: "image",
+            description:
+              "This abstract visualization maps the neural pathways of creative thinking. The interconnected nodes represent different cognitive functions, while the flowing lines illustrate how ideas connect and transform during the creative process.",
+          },
+          {
+            path: "images/portfolio/magellan/full/14.png",
+            thumbnail: "images/portfolio/magellan/thumbnails/14.png",
+            type: "image",
+            description:
+              "This abstract visualization maps the neural pathways of creative thinking. The interconnected nodes represent different cognitive functions, while the flowing lines illustrate how ideas connect and transform during the creative process.",
+          },
+          {
+            path: "images/portfolio/magellan/full/15.png",
+            thumbnail: "images/portfolio/magellan/thumbnails/15.png",
+            type: "image",
+            description:
+              "This abstract visualization maps the neural pathways of creative thinking. The interconnected nodes represent different cognitive functions, while the flowing lines illustrate how ideas connect and transform during the creative process.",
+          },
+          {
+            path: "images/portfolio/magellan/full/16.png",
+            thumbnail: "images/portfolio/magellan/thumbnails/16.png",
+            type: "image",
+            description:
+              "This abstract visualization maps the neural pathways of creative thinking. The interconnected nodes represent different cognitive functions, while the flowing lines illustrate how ideas connect and transform during the creative process.",
+          },
+          {
+            path: "images/portfolio/magellan/full/17.png",
+            thumbnail: "images/portfolio/magellan/thumbnails/17.png",
+            type: "image",
+            description:
+              "This abstract visualization maps the neural pathways of creative thinking. The interconnected nodes represent different cognitive functions, while the flowing lines illustrate how ideas connect and transform during the creative process.",
+          },
+          {
+            path: "images/portfolio/magellan/full/18.png",
+            thumbnail: "images/portfolio/magellan/thumbnails/18.png",
+            type: "image",
+            description:
+              "This abstract visualization maps the neural pathways of creative thinking. The interconnected nodes represent different cognitive functions, while the flowing lines illustrate how ideas connect and transform during the creative process.",
+          },
+          {
+            path: "images/portfolio/magellan/full/19.png",
+            thumbnail: "images/portfolio/magellan/thumbnails/19.png",
+            type: "image",
+            description:
+              "This abstract visualization maps the neural pathways of creative thinking. The interconnected nodes represent different cognitive functions, while the flowing lines illustrate how ideas connect and transform during the creative process.",
+          },
+          {
+            path: "images/portfolio/magellan/full/20.png",
+            thumbnail: "images/portfolio/magellan/thumbnails/20.png",
+            type: "image",
+            description:
+              "This abstract visualization maps the neural pathways of creative thinking. The interconnected nodes represent different cognitive functions, while the flowing lines illustrate how ideas connect and transform during the creative process.",
+          },
+          {
+            path: "images/portfolio/magellan/full/21.png",
+            thumbnail: "images/portfolio/magellan/thumbnails/21.png",
+            type: "image",
+            description:
+              "This abstract visualization maps the neural pathways of creative thinking. The interconnected nodes represent different cognitive functions, while the flowing lines illustrate how ideas connect and transform during the creative process.",
+          },
+          {
+            path: "images/portfolio/magellan/full/22.png",
+            thumbnail: "images/portfolio/magellan/thumbnails/22.png",
+            type: "image",
+            description:
+              "This abstract visualization maps the neural pathways of creative thinking. The interconnected nodes represent different cognitive functions, while the flowing lines illustrate how ideas connect and transform during the creative process.",
+          },
+          {
+            path: "images/portfolio/magellan/full/23.png",
+            thumbnail: "images/portfolio/magellan/thumbnails/23.png",
+            type: "image",
+            description:
+              "This abstract visualization maps the neural pathways of creative thinking. The interconnected nodes represent different cognitive functions, while the flowing lines illustrate how ideas connect and transform during the creative process.",
+          },
+          {
+            path: "images/portfolio/magellan/full/24.png",
+            thumbnail: "images/portfolio/magellan/thumbnails/24.png",
+            type: "image",
+            description:
+              "This abstract visualization maps the neural pathways of creative thinking. The interconnected nodes represent different cognitive functions, while the flowing lines illustrate how ideas connect and transform during the creative process.",
+          },
+          {
+            path: "images/portfolio/magellan/full/25.png",
+            thumbnail: "images/portfolio/magellan/thumbnails/25.png",
+            type: "image",
+            description:
+              "This abstract visualization maps the neural pathways of creative thinking. The interconnected nodes represent different cognitive functions, while the flowing lines illustrate how ideas connect and transform during the creative process.",
+          },
+          {
+            path: "images/portfolio/magellan/full/26.png",
+            thumbnail: "images/portfolio/magellan/thumbnails/26.png",
+            type: "image",
+            description:
+              "This abstract visualization maps the neural pathways of creative thinking. The interconnected nodes represent different cognitive functions, while the flowing lines illustrate how ideas connect and transform during the creative process.",
+          },
+          {
+            path: "images/portfolio/magellan/full/27.png",
+            thumbnail: "images/portfolio/magellan/thumbnails/27.png",
+            type: "image",
+            description:
+              "This abstract visualization maps the neural pathways of creative thinking. The interconnected nodes represent different cognitive functions, while the flowing lines illustrate how ideas connect and transform during the creative process.",
+          },
+          {
+            path: "images/portfolio/magellan/full/28.png",
+            thumbnail: "images/portfolio/magellan/thumbnails/28.png",
+            type: "image",
+            description:
+              "This abstract visualization maps the neural pathways of creative thinking. The interconnected nodes represent different cognitive functions, while the flowing lines illustrate how ideas connect and transform during the creative process.",
+          },
+          {
+            path: "images/portfolio/magellan/full/29.png",
+            thumbnail: "images/portfolio/magellan/thumbnails/29.png",
+            type: "image",
+            description:
+              "This abstract visualization maps the neural pathways of creative thinking. The interconnected nodes represent different cognitive functions, while the flowing lines illustrate how ideas connect and transform during the creative process.",
+          },
+          {
+            path: "images/portfolio/magellan/full/30.png",
+            thumbnail: "images/portfolio/magellan/thumbnails/30.png",
+            type: "image",
+            description:
+              "This abstract visualization maps the neural pathways of creative thinking. The interconnected nodes represent different cognitive functions, while the flowing lines illustrate how ideas connect and transform during the creative process.",
+          },
+          {
+            path: "images/portfolio/magellan/full/31.png",
+            thumbnail: "images/portfolio/magellan/thumbnails/31.png",
+            type: "image",
+            description:
+              "This abstract visualization maps the neural pathways of creative thinking. The interconnected nodes represent different cognitive functions, while the flowing lines illustrate how ideas connect and transform during the creative process.",
+          },
+          {
+            path: "images/portfolio/magellan/full/32.png",
+            thumbnail: "images/portfolio/magellan/thumbnails/32.png",
+            type: "image",
+            description:
+              "This abstract visualization maps the neural pathways of creative thinking. The interconnected nodes represent different cognitive functions, while the flowing lines illustrate how ideas connect and transform during the creative process.",
+          },
+          {
+            path: "images/portfolio/magellan/full/33.png",
+            thumbnail: "images/portfolio/magellan/thumbnails/33.png",
+            type: "image",
+            description:
+              "This abstract visualization maps the neural pathways of creative thinking. The interconnected nodes represent different cognitive functions, while the flowing lines illustrate how ideas connect and transform during the creative process.",
+          },
+          {
+            path: "images/portfolio/magellan/full/34.png",
+            thumbnail: "images/portfolio/magellan/thumbnails/34.png",
+            type: "image",
+            description:
+              "This abstract visualization maps the neural pathways of creative thinking. The interconnected nodes represent different cognitive functions, while the flowing lines illustrate how ideas connect and transform during the creative process.",
+          },
+          {
+            path: "images/portfolio/magellan/full/35.png",
+            thumbnail: "images/portfolio/magellan/thumbnails/35.png",
+            type: "image",
+            description:
+              "This abstract visualization maps the neural pathways of creative thinking. The interconnected nodes represent different cognitive functions, while the flowing lines illustrate how ideas connect and transform during the creative process.",
+          },
+          {
+            path: "images/portfolio/magellan/full/36.png",
+            thumbnail: "images/portfolio/magellan/thumbnails/36.png",
+            type: "image",
+            description:
+              "This abstract visualization maps the neural pathways of creative thinking. The interconnected nodes represent different cognitive functions, while the flowing lines illustrate how ideas connect and transform during the creative process.",
+          },
+          {
+            path: "images/portfolio/magellan/full/37.png",
+            thumbnail: "images/portfolio/magellan/thumbnails/37.png",
+            type: "image",
+            description:
+              "This abstract visualization maps the neural pathways of creative thinking. The interconnected nodes represent different cognitive functions, while the flowing lines illustrate how ideas connect and transform during the creative process.",
+          },
+          {
+            path: "images/portfolio/magellan/full/38.png",
+            thumbnail: "images/portfolio/magellan/thumbnails/38.png",
+            type: "image",
+            description:
+              "This abstract visualization maps the neural pathways of creative thinking. The interconnected nodes represent different cognitive functions, while the flowing lines illustrate how ideas connect and transform during the creative process.",
+          },
+          {
+            path: "images/portfolio/magellan/full/39.png",
+            thumbnail: "images/portfolio/magellan/thumbnails/39.png",
+            type: "image",
+            description:
+              "This abstract visualization maps the neural pathways of creative thinking. The interconnected nodes represent different cognitive functions, while the flowing lines illustrate how ideas connect and transform during the creative process.",
+          },
+          {
+            path: "images/portfolio/magellan/full/40.png",
+            thumbnail: "images/portfolio/magellan/thumbnails/40.png",
+            type: "image",
+            description:
+              "This abstract visualization maps the neural pathways of creative thinking. The interconnected nodes represent different cognitive functions, while the flowing lines illustrate how ideas connect and transform during the creative process.",
+          },
+          {
+            path: "images/portfolio/magellan/full/41.png",
+            thumbnail: "images/portfolio/magellan/thumbnails/41.png",
+            type: "image",
+            description:
+              "This abstract visualization maps the neural pathways of creative thinking. The interconnected nodes represent different cognitive functions, while the flowing lines illustrate how ideas connect and transform during the creative process.",
+          },
+          {
+            path: "images/portfolio/magellan/full/42.png",
+            thumbnail: "images/portfolio/magellan/thumbnails/42.png",
+            type: "image",
+            description:
+              "This abstract visualization maps the neural pathways of creative thinking. The interconnected nodes represent different cognitive functions, while the flowing lines illustrate how ideas connect and transform during the creative process.",
+          },
+          {
+            path: "images/portfolio/magellan/full/43.png",
+            thumbnail: "images/portfolio/magellan/thumbnails/43.png",
+            type: "image",
+            description:
+              "This abstract visualization maps the neural pathways of creative thinking. The interconnected nodes represent different cognitive functions, while the flowing lines illustrate how ideas connect and transform during the creative process.",
           },
         ],
       },
@@ -211,22 +576,33 @@ export const portfolioData = {
       details: {
         name: "Tiny Drive",
         date: "2021",
-        client: "Creative Mind Inc.",
+        client: "self",
         tags: ["Abstract", "Conceptual", "Mind"],
         description: "An abstract representation of the creative process.",
         media: [
           {
-            path: "inner-creativity.png",
+            path: "images/portfolio/tinydrive/1.jpg",
             type: "image",
             description:
               "This abstract visualization maps the neural pathways of creative thinking. The interconnected nodes represent different cognitive functions, while the flowing lines illustrate how ideas connect and transform during the creative process.",
           },
           {
-            path: "creative-process.pdf",
-            type: "pdf",
-            thumbnail: "creative-process-thumb.png",
+            path: "images/portfolio/tinydrive/2.jpg",
+            type: "image",
             description:
-              "This comprehensive PDF explores the theoretical framework behind the visual representation. It includes additional diagrams, research citations, and practical exercises for enhancing creative thinking based on neuroscience principles.",
+              "This abstract visualization maps the neural pathways of creative thinking. The interconnected nodes represent different cognitive functions, while the flowing lines illustrate how ideas connect and transform during the creative process.",
+          },
+          {
+            path: "images/portfolio/tinydrive/3.jpg",
+            type: "image",
+            description:
+              "This abstract visualization maps the neural pathways of creative thinking. The interconnected nodes represent different cognitive functions, while the flowing lines illustrate how ideas connect and transform during the creative process.",
+          },
+          {
+            path: "images/portfolio/tinydrive/4.jpg",
+            type: "image",
+            description:
+              "This abstract visualization maps the neural pathways of creative thinking. The interconnected nodes represent different cognitive functions, while the flowing lines illustrate how ideas connect and transform during the creative process.",
           },
         ],
       },
@@ -241,7 +617,7 @@ export const portfolioData = {
       details: {
         name: "Walmart Associate Use Case",
         date: "2022",
-        client: "Creative Mind Inc.",
+        client: "Walmart, Inc.",
         tags: ["Abstract", "Conceptual", "Mind"],
         description: "An abstract representation of the creative process.",
         media: [
@@ -250,13 +626,6 @@ export const portfolioData = {
             type: "image",
             description:
               "This abstract visualization maps the neural pathways of creative thinking. The interconnected nodes represent different cognitive functions, while the flowing lines illustrate how ideas connect and transform during the creative process.",
-          },
-          {
-            path: "creative-process.pdf",
-            type: "pdf",
-            thumbnail: "creative-process-thumb.png",
-            description:
-              "This comprehensive PDF explores the theoretical framework behind the visual representation. It includes additional diagrams, research citations, and practical exercises for enhancing creative thinking based on neuroscience principles.",
           },
         ],
       },
@@ -270,7 +639,7 @@ export const portfolioData = {
       year: "2023",
       details: {
         name: "Walmart XR Video",
-        date: "2018",
+        date: "2023",
         client: "Walmart, Inc.",
         tags: ["Abstract", "Conceptual", "Mind"],
         description: "An abstract representation of the creative process.",
@@ -306,17 +675,10 @@ export const portfolioData = {
         description: "An abstract representation of the creative process.",
         media: [
           {
-            path: "inner-creativity.png",
+            path: "images/portfolio/xraiassistant/1.png",
             type: "image",
             description:
               "This abstract visualization maps the neural pathways of creative thinking. The interconnected nodes represent different cognitive functions, while the flowing lines illustrate how ideas connect and transform during the creative process.",
-          },
-          {
-            path: "creative-process.pdf",
-            type: "pdf",
-            thumbnail: "creative-process-thumb.png",
-            description:
-              "This comprehensive PDF explores the theoretical framework behind the visual representation. It includes additional diagrams, research citations, and practical exercises for enhancing creative thinking based on neuroscience principles.",
           },
         ],
       },
@@ -336,17 +698,40 @@ export const portfolioData = {
         description: "An abstract representation of the creative process.",
         media: [
           {
-            path: "inner-creativity.png",
+            path: "images/portfolio/spectatorview/1.png",
             type: "image",
             description:
               "This abstract visualization maps the neural pathways of creative thinking. The interconnected nodes represent different cognitive functions, while the flowing lines illustrate how ideas connect and transform during the creative process.",
           },
           {
-            path: "creative-process.pdf",
-            type: "pdf",
-            thumbnail: "creative-process-thumb.png",
+            path: "images/portfolio/spectatorview/2.png",
+            type: "image",
             description:
-              "This comprehensive PDF explores the theoretical framework behind the visual representation. It includes additional diagrams, research citations, and practical exercises for enhancing creative thinking based on neuroscience principles.",
+              "This abstract visualization maps the neural pathways of creative thinking. The interconnected nodes represent different cognitive functions, while the flowing lines illustrate how ideas connect and transform during the creative process.",
+          },
+          {
+            path: "images/portfolio/spectatorview/3.png",
+            type: "image",
+            description:
+              "This abstract visualization maps the neural pathways of creative thinking. The interconnected nodes represent different cognitive functions, while the flowing lines illustrate how ideas connect and transform during the creative process.",
+          },
+          {
+            path: "images/portfolio/spectatorview/4.png",
+            type: "image",
+            description:
+              "This abstract visualization maps the neural pathways of creative thinking. The interconnected nodes represent different cognitive functions, while the flowing lines illustrate how ideas connect and transform during the creative process.",
+          },
+          {
+            path: "images/portfolio/spectatorview/5.png",
+            type: "image",
+            description:
+              "This abstract visualization maps the neural pathways of creative thinking. The interconnected nodes represent different cognitive functions, while the flowing lines illustrate how ideas connect and transform during the creative process.",
+          },
+          {
+            path: "images/portfolio/spectatorview/6.png",
+            type: "image",
+            description:
+              "This abstract visualization maps the neural pathways of creative thinking. The interconnected nodes represent different cognitive functions, while the flowing lines illustrate how ideas connect and transform during the creative process.",
           },
         ],
       },
@@ -369,13 +754,6 @@ export const portfolioData = {
             type: "image",
             description:
               "This abstract visualization maps the neural pathways of creative thinking. The interconnected nodes represent different cognitive functions, while the flowing lines illustrate how ideas connect and transform during the creative process.",
-          },
-          {
-            path: "creative-process.pdf",
-            type: "pdf",
-            thumbnail: "creative-process-thumb.png",
-            description:
-              "This comprehensive PDF explores the theoretical framework behind the visual representation. It includes additional diagrams, research citations, and practical exercises for enhancing creative thinking based on neuroscience principles.",
           },
         ],
       },
@@ -424,17 +802,52 @@ export const portfolioData = {
         description: "An abstract representation of the creative process.",
         media: [
           {
-            path: "inner-creativity.png",
+            path: "images/portfolio/rso/1.png",
             type: "image",
             description:
               "This abstract visualization maps the neural pathways of creative thinking. The interconnected nodes represent different cognitive functions, while the flowing lines illustrate how ideas connect and transform during the creative process.",
           },
           {
-            path: "creative-process.pdf",
-            type: "pdf",
-            thumbnail: "creative-process-thumb.png",
+            path: "images/portfolio/rso/2.png",
+            type: "image",
             description:
-              "This comprehensive PDF explores the theoretical framework behind the visual representation. It includes additional diagrams, research citations, and practical exercises for enhancing creative thinking based on neuroscience principles.",
+              "This abstract visualization maps the neural pathways of creative thinking. The interconnected nodes represent different cognitive functions, while the flowing lines illustrate how ideas connect and transform during the creative process.",
+          },
+          {
+            path: "images/portfolio/rso/3.png",
+            type: "image",
+            description:
+              "This abstract visualization maps the neural pathways of creative thinking. The interconnected nodes represent different cognitive functions, while the flowing lines illustrate how ideas connect and transform during the creative process.",
+          },
+          {
+            path: "images/portfolio/rso/4.png",
+            type: "image",
+            description:
+              "This abstract visualization maps the neural pathways of creative thinking. The interconnected nodes represent different cognitive functions, while the flowing lines illustrate how ideas connect and transform during the creative process.",
+          },
+          {
+            path: "images/portfolio/rso/5.png",
+            type: "image",
+            description:
+              "This abstract visualization maps the neural pathways of creative thinking. The interconnected nodes represent different cognitive functions, while the flowing lines illustrate how ideas connect and transform during the creative process.",
+          },
+          {
+            path: "images/portfolio/rso/6.png",
+            type: "image",
+            description:
+              "This abstract visualization maps the neural pathways of creative thinking. The interconnected nodes represent different cognitive functions, while the flowing lines illustrate how ideas connect and transform during the creative process.",
+          },
+          {
+            path: "images/portfolio/rso/7.png",
+            type: "image",
+            description:
+              "This abstract visualization maps the neural pathways of creative thinking. The interconnected nodes represent different cognitive functions, while the flowing lines illustrate how ideas connect and transform during the creative process.",
+          },
+          {
+            path: "images/portfolio/rso/8.png",
+            type: "image",
+            description:
+              "This abstract visualization maps the neural pathways of creative thinking. The interconnected nodes represent different cognitive functions, while the flowing lines illustrate how ideas connect and transform during the creative process.",
           },
         ],
       },
@@ -484,17 +897,10 @@ export const portfolioData = {
         description: "An abstract representation of the creative process.",
         media: [
           {
-            path: "inner-creativity.png",
+            path: "images/portfolio/aimarketresearch/1.png",
             type: "image",
             description:
               "This abstract visualization maps the neural pathways of creative thinking. The interconnected nodes represent different cognitive functions, while the flowing lines illustrate how ideas connect and transform during the creative process.",
-          },
-          {
-            path: "creative-process.pdf",
-            type: "pdf",
-            thumbnail: "creative-process-thumb.png",
-            description:
-              "This comprehensive PDF explores the theoretical framework behind the visual representation. It includes additional diagrams, research citations, and practical exercises for enhancing creative thinking based on neuroscience principles.",
           },
         ],
       },
@@ -518,10 +924,13 @@ export const portfolioData = {
       "walmartspectatorview",
       "rso",
       "pace",
+      "melo",
+      "aimarketresearch",
     ],
     Experiments: ["tinydrive", "melo", "aimarketresearch"],
     "Open-Source": ["item3", "item4", "item5"],
     Educational: ["item2", "item4"],
+    Photography: [],
     About: ["item5"],
   } as FoldersMap,
 
@@ -539,5 +948,6 @@ export const portfolioData = {
     },
     About: { icon: "📁", description: "About me" },
     Posts: { icon: "📁", description: "Posts" },
+    Photography: { icon: "📁", description: "Photography" },
   } as FolderInfoMap,
 };
