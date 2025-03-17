@@ -74,6 +74,116 @@ export interface FoldersMap {
   [key: string]: string[];
 }
 
+// Create a reusable component for the item details panel
+const ItemDetailsPanel = ({
+  selectedItem,
+  currentMedia,
+  currentMediaIndex,
+  handleSlideChange,
+  getGalleryItems,
+  variant = "normal", // 'normal' or 'search'
+}) => {
+  // Determine styling based on variant
+  const containerClasses =
+    variant === "normal"
+      ? "w-full md:w-5/12 lg:w-7/12 xl:w-3/5 2xl:w-2/3 bg-white/7"
+      : "w-full md:w-2/3 lg:w-3/4 xl:w-4/5 2xl:w-5/6 bg-white/5";
+
+  const headingClass = variant === "normal" ? "text-2xl" : "text-lg";
+  const dateLabel = variant === "normal" ? "Date" : "Created";
+
+  const lazyLoad = variant === "normal" ? true : false;
+
+  return (
+    <div
+      className={`${containerClasses} backdrop-blur-md overflow-y-auto flex flex-col h-full mac-scrollbar`}
+    >
+      <div className="h-full flex flex-col">
+        {selectedItem && (
+          <>
+            {/* Two column layout for media content and description */}
+            <div className="flex-1 p-4 flex flex-col h-full overflow-hidden">
+              {selectedItem.details.media.length > 0 && (
+                <div className="grid grid-cols-1 md:grid-cols-10 gap-6 md:divide-x md:divide-white/20 h-full">
+                  {/* Left Column - Image Gallery (70%) */}
+                  <div className="image-gallery-container h-full md:col-span-7">
+                    <div className="h-full">
+                      <ImageGallery
+                        items={getGalleryItems()}
+                        showPlayButton={false}
+                        showBullets={selectedItem.details.media.length > 1}
+                        showThumbnails={selectedItem.details.media.length > 1}
+                        showFullscreenButton={true}
+                        useBrowserFullscreen={true}
+                        slideInterval={3000}
+                        lazyLoad={lazyLoad}
+                        slideDuration={450}
+                        additionalClass="portfolio-gallery fit-content h-full items-center justify-center"
+                        thumbnailPosition="left"
+                        onSlide={handleSlideChange}
+                        renderLeftNav={renderLeftNav}
+                        renderRightNav={renderRightNav}
+                        startIndex={currentMediaIndex}
+                      />
+                    </div>
+                  </div>
+
+                  {/* Right Column - Media Description (30%) */}
+                  <div className="rounded-lg p-6 flex flex-col justify-start h-full overflow-y-auto mac-scrollbar md:col-span-3">
+                    <h3 className="text-xl font-semibold text-white mb-4">
+                      {currentMedia && currentMedia.title
+                        ? currentMedia.title
+                        : ""}
+                    </h3>
+
+                    {currentMedia && currentMedia.description ? (
+                      <div className="space-y-4">
+                        <p className="text-white/90 text-base">
+                          {currentMedia.description}
+                        </p>
+                      </div>
+                    ) : (
+                      <p className="text-white/70 italic">
+                        No description available for this media.
+                      </p>
+                    )}
+                  </div>
+                </div>
+              )}
+            </div>
+
+            <div className="p-4 border-t border-white/20">
+              <div className="text-white">
+                <h2 className={`${headingClass} font-semibold mb-1`}>
+                  {selectedItem.details.name}
+                </h2>
+                <p className="text-white/70 text-base mb-4">
+                  {selectedItem.details.description}
+                </p>
+
+                <div className="space-y-2 text-base">
+                  <div className="flex justify-between">
+                    <span className="text-white/70">{dateLabel}</span>
+                    <span>{selectedItem.details.date}</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span className="text-white/70">Client</span>
+                    <span>{selectedItem.details.client}</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span className="text-white/70">Tags</span>
+                    <span>{selectedItem.details.tags.join(", ")}</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </>
+        )}
+      </div>
+    </div>
+  );
+};
+
 const PortfolioApp: React.FC = () => {
   const [selectedFolder, setSelectedFolder] = useState<string>("");
   const [selectedItemId, setSelectedItemId] = useState<string>("");
@@ -871,101 +981,15 @@ const PortfolioApp: React.FC = () => {
                 </div>
               </div>
 
-              {/* Right - Preview - Conditionally shown/hidden on mobile */}
-              <div
-                className={`w-full md:w-5/12 lg:w-7/12 xl:w-3/5 2xl:w-2/3 bg-white/7 backdrop-blur-md overflow-y-auto flex flex-col h-full mac-scrollbar ${
-                  viewingFileDetail ? "block" : "hidden md:flex"
-                }`}
-              >
-                <div className="h-full flex flex-col">
-                  {selectedItem && (
-                    <>
-                      {/* Two column layout for media content and description */}
-                      <div className="flex-1 p-4 flex flex-col h-full overflow-hidden">
-                        {selectedItem.details.media.length > 0 && (
-                          <div className="grid grid-cols-1 md:grid-cols-10 gap-6 md:divide-x md:divide-white/20 h-full">
-                            {/* Left Column - Image Gallery (70%) */}
-                            <div className="image-gallery-container h-full md:col-span-7">
-                              <div className="h-full">
-                                <ImageGallery
-                                  items={getGalleryItems()}
-                                  showPlayButton={false}
-                                  showBullets={
-                                    selectedItem.details.media.length > 1
-                                  }
-                                  showThumbnails={
-                                    selectedItem.details.media.length > 1
-                                  }
-                                  showFullscreenButton={true}
-                                  useBrowserFullscreen={true}
-                                  slideInterval={3000}
-                                  lazyLoad={true}
-                                  slideDuration={450}
-                                  additionalClass="portfolio-gallery fit-content h-full items-center justify-center"
-                                  thumbnailPosition="left"
-                                  onSlide={handleSlideChange}
-                                  renderLeftNav={renderLeftNav}
-                                  renderRightNav={renderRightNav}
-                                  startIndex={currentMediaIndex}
-                                />
-                              </div>
-                            </div>
-
-                            {/* Right Column - Media Description (30%) */}
-                            <div className="rounded-lg p-6 flex flex-col justify-start h-full overflow-y-auto mac-scrollbar md:col-span-3">
-                              <h3 className="text-xl font-semibold text-white mb-4">
-                                {currentMedia && currentMedia.title
-                                  ? currentMedia.title
-                                  : ""}
-                              </h3>
-
-                              {currentMedia && currentMedia.description ? (
-                                <div className="space-y-4">
-                                  <p className="text-white/90 text-base">
-                                    {currentMedia.description}
-                                  </p>
-                                </div>
-                              ) : (
-                                <p className="text-white/70 italic">
-                                  No description available for this media.
-                                </p>
-                              )}
-                            </div>
-                          </div>
-                        )}
-                      </div>
-
-                      <div className="p-4 border-t border-white/20">
-                        <div className="text-white">
-                          <h2 className="text-2xl font-semibold mb-1">
-                            {selectedItem.details.name}
-                          </h2>
-                          <p className="text-white/70 text-base mb-4">
-                            {selectedItem.details.description}
-                          </p>
-
-                          <div className="space-y-2 text-base">
-                            <div className="flex justify-between">
-                              <span className="text-white/70">Date</span>
-                              <span>{selectedItem.details.date}</span>
-                            </div>
-                            <div className="flex justify-between">
-                              <span className="text-white/70">Client</span>
-                              <span>{selectedItem.details.client}</span>
-                            </div>
-                            <div className="flex justify-between">
-                              <span className="text-white/70">Tags</span>
-                              <span>
-                                {selectedItem.details.tags.join(", ")}
-                              </span>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </>
-                  )}
-                </div>
-              </div>
+              {/* Right - Preview - Using the ItemDetailsPanel component */}
+              <ItemDetailsPanel
+                selectedItem={selectedItem}
+                currentMedia={currentMedia}
+                currentMediaIndex={currentMediaIndex}
+                handleSlideChange={handleSlideChange}
+                getGalleryItems={getGalleryItems}
+                variant="normal"
+              />
             </>
           ) : searchResults.length > 0 ? (
             // Search mode - responsive with conditional display on mobile
@@ -1026,106 +1050,16 @@ const PortfolioApp: React.FC = () => {
                   </div>
                 </div>
               </div>
-              {/* Right - Preview - Shown on mobile only when viewing detail */}
-              <div
-                className={`w-full md:w-2/3 lg:w-3/4 xl:w-4/5 2xl:w-5/6 bg-white/5 backdrop-blur-md overflow-y-auto flex flex-col ${
-                  viewingFileDetail ? "block" : "hidden md:flex"
-                }`}
-              >
-                {selectedItem && (
-                  <>
-                    {/* Two column layout for media content and description */}
-                    <div className="flex-1 p-4 flex flex-col h-full overflow-hidden">
-                      {selectedItem.details.media.length > 0 && (
-                        <div className="grid grid-cols-1 md:grid-cols-10 gap-6 md:divide-x md:divide-white/20 h-full">
-                          {/* Left Column - Image Gallery (70%) */}
-                          <div className="image-gallery-container h-full md:col-span-7">
-                            <div className="h-full">
-                              <ImageGallery
-                                items={getGalleryItems()}
-                                showPlayButton={false}
-                                showBullets={
-                                  selectedItem.details.media.length > 1
-                                }
-                                showThumbnails={
-                                  selectedItem.details.media.length > 1
-                                }
-                                showFullscreenButton={true}
-                                useBrowserFullscreen={true}
-                                slideInterval={3000}
-                                slideDuration={450}
-                                additionalClass="portfolio-gallery fit-content h-full items-center justify-center"
-                                thumbnailPosition="left"
-                                onSlide={handleSlideChange}
-                                renderLeftNav={renderLeftNav}
-                                renderRightNav={renderRightNav}
-                                startIndex={currentMediaIndex}
-                              />
-                            </div>
-                          </div>
 
-                          {/* Right Column - Media Description (30%) */}
-                          <div className="rounded-lg p-6 flex flex-col justify-start h-full overflow-y-auto mac-scrollbar md:col-span-3">
-                            <h3 className="text-xl font-semibold text-white mb-4">
-                              {currentMedia && currentMedia.title
-                                ? currentMedia.title
-                                : ""}
-                            </h3>
-
-                            {currentMedia && currentMedia.description ? (
-                              <div className="space-y-4">
-                                <p className="text-white/90 text-base">
-                                  {currentMedia.description}
-                                </p>
-                              </div>
-                            ) : (
-                              <p className="text-white/70 italic">
-                                No description available for this media.
-                              </p>
-                            )}
-                          </div>
-                        </div>
-                      )}
-                    </div>
-
-                    <div className="p-4 border-t border-white/20">
-                      <div className="text-white">
-                        <h2 className="text-lg font-semibold mb-1">
-                          {selectedItem.details.name}
-                        </h2>
-                        <p className="text-white/70 text-base mb-4">
-                          {selectedItem.details.description}
-                        </p>
-
-                        <div className="space-y-2 text-base">
-                          <div className="flex justify-between">
-                            <span className="text-white/70">Created</span>
-                            <span>{selectedItem.details.date}</span>
-                          </div>
-                          <div className="flex justify-between">
-                            <span className="text-white/70">Client</span>
-                            <span>{selectedItem.details.client}</span>
-                          </div>
-                          <div className="flex justify-between">
-                            <span className="text-white/70">Tags</span>
-                            <span>{selectedItem.details.tags.join(", ")}</span>
-                          </div>
-                          {selectedItem.details.description && (
-                            <div className="pt-2">
-                              <span className="text-white/70 block mb-1">
-                                Description
-                              </span>
-                              <p className="text-white/90">
-                                {selectedItem.details.description}
-                              </p>
-                            </div>
-                          )}
-                        </div>
-                      </div>
-                    </div>
-                  </>
-                )}
-              </div>
+              {/* Right - Preview - Using the ItemDetailsPanel component */}
+              <ItemDetailsPanel
+                selectedItem={selectedItem}
+                currentMedia={currentMedia}
+                currentMediaIndex={currentMediaIndex}
+                handleSlideChange={handleSlideChange}
+                getGalleryItems={getGalleryItems}
+                variant="search"
+              />
             </>
           ) : (
             // No search results
