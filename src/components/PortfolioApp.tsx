@@ -40,6 +40,7 @@ const PortfolioApp: React.FC = () => {
   // Mobile-specific states
   const [mobileMenuOpen, setMobileMenuOpen] = useState<boolean>(false);
   const [viewingFileDetail, setViewingFileDetail] = useState<boolean>(false);
+  const [searchExpanded, setSearchExpanded] = useState<boolean>(false);
 
   const folderStructure: FolderStructure = {
     "Web Design": [
@@ -158,6 +159,18 @@ const PortfolioApp: React.FC = () => {
     if (newQuery.trim() === "" && selectedFolder) {
       updateUrl(selectedFolder, selectedFile);
       setViewingFileDetail(false); // Return to file list on mobile when search is cleared
+    }
+  };
+
+  // Toggle search bar expansion on mobile
+  const toggleSearchExpansion = () => {
+    setSearchExpanded(!searchExpanded);
+  };
+
+  // Close search when input is blurred and empty
+  const handleSearchBlur = () => {
+    if (searchQuery.trim() === "") {
+      setSearchExpanded(false);
     }
   };
 
@@ -286,10 +299,14 @@ const PortfolioApp: React.FC = () => {
     <div className="flex flex-col h-screen bg-[url('/images/background.png')] relative">
       {/* Glass-like card that contains the entire UI */}
       <div className="relative z-10 m-2 md:m-15 rounded-lg overflow-hidden border border-white/20 shadow-2xl backdrop-filter backdrop-blur-xl bg-black/70 flex flex-col h-full">
-        {/* Header - Updated for mobile */}
+        {/* Header - Updated for mobile with collapsible search */}
         <header className="p-2 flex justify-between items-center border-b border-white/10 backdrop-blur-lg">
-          <div className="flex items-center space-x-2">
-            {/* Mobile menu button - shown only on small screens */}
+          <div
+            className={`flex items-center space-x-2 ${
+              searchExpanded ? "md:flex hidden" : "flex"
+            }`}
+          >
+            {/* Mobile menu button - shown only on small screens when search is not expanded */}
             <button
               className="md:hidden bg-black/20 p-1.5 rounded-full"
               onClick={toggleMobileMenu}
@@ -311,22 +328,66 @@ const PortfolioApp: React.FC = () => {
               <User size={16} className="text-white" />
             </div>
 
-            {/* Current context for mobile */}
-            <div className="md:hidden">
+            {/* Current context for mobile - hidden when search is expanded */}
+            <div className={`md:hidden ${searchExpanded ? "hidden" : "block"}`}>
               <span className="text-white text-sm font-medium">
                 {viewingFileDetail ? selectedFile : selectedFolder}
               </span>
             </div>
           </div>
-          <div className="relative">
-            <input
-              type="text"
-              placeholder="Search"
-              className="bg-black/20 backdrop-blur-lg rounded-lg py-1 pl-8 pr-2 w-36 sm:w-48 text-white text-sm border border-white/10"
-              value={searchQuery}
-              onChange={handleSearchChange}
-            />
-            <Search size={14} className="absolute left-2 top-2 text-white/70" />
+
+          {/* Collapsible search for mobile */}
+          <div className={`relative ${searchExpanded ? "flex-1" : ""}`}>
+            {searchExpanded ? (
+              <div className="flex items-center w-full">
+                <button
+                  className="md:hidden bg-black/20 p-1.5 rounded-full mr-2"
+                  onClick={toggleSearchExpansion}
+                >
+                  <ChevronLeft size={16} className="text-white" />
+                </button>
+                <div className="relative flex-1">
+                  <input
+                    type="text"
+                    placeholder="Search"
+                    className="bg-black/20 backdrop-blur-lg rounded-lg py-1.5 pl-8 pr-2 w-full text-white text-sm border border-white/10"
+                    value={searchQuery}
+                    onChange={handleSearchChange}
+                    onBlur={handleSearchBlur}
+                    autoFocus
+                  />
+                  <Search
+                    size={14}
+                    className="absolute left-2 top-2.5 text-white/70"
+                  />
+                </div>
+              </div>
+            ) : (
+              <>
+                {/* Desktop search bar */}
+                <div className="hidden md:block relative">
+                  <input
+                    type="text"
+                    placeholder="Search"
+                    className="bg-black/20 backdrop-blur-lg rounded-lg py-1 pl-8 pr-2 w-48 text-white text-sm border border-white/10"
+                    value={searchQuery}
+                    onChange={handleSearchChange}
+                  />
+                  <Search
+                    size={14}
+                    className="absolute left-2 top-2 text-white/70"
+                  />
+                </div>
+
+                {/* Mobile search icon */}
+                <button
+                  className="md:hidden bg-black/20 p-1.5 rounded-full"
+                  onClick={toggleSearchExpansion}
+                >
+                  <Search size={16} className="text-white" />
+                </button>
+              </>
+            )}
           </div>
         </header>
 
