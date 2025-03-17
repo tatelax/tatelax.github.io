@@ -539,54 +539,57 @@ const PortfolioApp: React.FC = () => {
             </div>
           </div>
 
-          {/* Collapsible search for mobile */}
-          {/* Social Media Icons - Hidden on mobile or when search is expanded */}
           <div
-            className={`hidden md:flex items-center space-x-2 mx-4 ${
-              searchExpanded ? "md:hidden" : ""
-            }`}
+            className={`relative ${
+              searchExpanded ? "flex-1" : ""
+            } flex items-center`}
           >
-            <a
-              href="mailto:contact@example.com"
-              className="bg-black/20 hover:bg-black/40 p-2 rounded-full transition-colors"
+            {/* Social Media Icons - Hidden on mobile or when search is expanded */}
+            <div
+              className={`hidden md:flex items-center space-x-2 mr-10 ${
+                searchExpanded ? "md:hidden" : ""
+              }`}
             >
-              <Mail size={16} className="text-white" />
-            </a>
-            <a
-              href="https://github.com/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="bg-black/20 hover:bg-black/40 p-2 rounded-full transition-colors"
-            >
-              <Github size={16} className="text-white" />
-            </a>
-            <a
-              href="https://instagram.com/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="bg-black/20 hover:bg-black/40 p-2 rounded-full transition-colors"
-            >
-              <Instagram size={16} className="text-white" />
-            </a>
-            <a
-              href="https://x.com/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="bg-black/20 hover:bg-black/40 p-2 rounded-full transition-colors"
-            >
-              <Twitter size={16} className="text-white" />
-            </a>
-            <a
-              href="https://linkedin.com/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="bg-black/20 hover:bg-black/40 p-2 rounded-full transition-colors"
-            >
-              <Linkedin size={16} className="text-white" />
-            </a>
-          </div>
+              <a
+                href="mailto:hi@tate.sh"
+                className="bg-black/20 hover:bg-black/40 p-2 rounded-full transition-colors"
+              >
+                <Mail size={16} className="text-white" />
+              </a>
+              <a
+                href="https://github.com/tatelax"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-black/20 hover:bg-black/40 p-2 rounded-full transition-colors"
+              >
+                <Github size={16} className="text-white" />
+              </a>
+              <a
+                href="https://instagram.com/tatelax"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-black/20 hover:bg-black/40 p-2 rounded-full transition-colors"
+              >
+                <Instagram size={16} className="text-white" />
+              </a>
+              <a
+                href="https://x.com/tatemccormick"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-black/20 hover:bg-black/40 p-2 rounded-full transition-colors"
+              >
+                <Twitter size={16} className="text-white" />
+              </a>
+              <a
+                href="https://www.linkedin.com/in/tatemccormick/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-black/20 hover:bg-black/40 p-2 rounded-full transition-colors"
+              >
+                <Linkedin size={16} className="text-white" />
+              </a>
+            </div>
 
-          <div className={`relative ${searchExpanded ? "flex-1" : ""}`}>
             {searchExpanded ? (
               <div className="flex items-center w-full">
                 <button
