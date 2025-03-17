@@ -1,14 +1,45 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { ChevronRight, ChevronLeft, Search, User, Menu } from "lucide-react";
+import { portfolioData } from "./portfolioData";
 
 // Define interfaces for our data structures
-interface FileItem {
+interface MediaFile {
+  path: string;
+  type: "image" | "video" | "pdf";
+  thumbnail?: string; // Optional thumbnail for videos/pdfs
+}
+
+interface ItemDetails {
+  name: string;
+  size: string;
+  created: string;
+  client: string;
+  tags: string[];
+  description?: string;
+  media: MediaFile[];
+}
+
+interface PortfolioItem {
+  id: string; // Unique identifier for each item
   name: string;
   icon: string;
   color: string;
-  folder?: string; // Added folder for search results
+  details: ItemDetails;
+}
+
+interface SearchResult extends PortfolioItem {
+  folderId: string;
+}
+
+interface FolderInfo {
+  icon: string;
+  description: string;
+}
+
+export interface FolderInfoMap {
+  [key: string]: FolderInfo;
 }
 
 interface FolderItem {
@@ -16,75 +47,73 @@ interface FolderItem {
   icon: string;
 }
 
-interface FileDetails {
-  name: string;
-  size: string;
-  created: string;
-  client: string;
-  tags: string;
+export interface ItemsMap {
+  [key: string]: PortfolioItem;
 }
 
-// Define type for our folder structure
-type FolderStructure = {
-  [key: string]: FileItem[];
-};
+export interface FoldersMap {
+  [key: string]: string[];
+}
 
 const PortfolioApp: React.FC = () => {
   const [selectedFolder, setSelectedFolder] = useState<string>("");
-  const [selectedFile, setSelectedFile] = useState<string>("");
+  const [selectedItemId, setSelectedItemId] = useState<string>("");
   const [searchQuery, setSearchQuery] = useState<string>("");
-  const [searchResults, setSearchResults] = useState<FileItem[]>([]);
+  const [searchResults, setSearchResults] = useState<SearchResult[]>([]);
+  const [currentMediaIndex, setCurrentMediaIndex] = useState<number>(0);
 
   // Mobile-specific states
   const [mobileMenuOpen, setMobileMenuOpen] = useState<boolean>(false);
   const [viewingFileDetail, setViewingFileDetail] = useState<boolean>(false);
   const [searchExpanded, setSearchExpanded] = useState<boolean>(false);
 
-  const folderStructure: FolderStructure = {
-    "Web Design": [
-      { name: "Alternative Paint.png", icon: "🎨", color: "#5A8DEE" },
-      { name: "Blurred Ovals.png", icon: "⭕", color: "#5A8DEE" },
-      { name: "Toggle This.png", icon: "🔘", color: "#38AF65" },
-    ],
-    "Product Design": [
-      { name: "God Rays.png", icon: "🌞", color: "#F8C881" },
-      { name: "Foil.png", icon: "✨", color: "#4D4D4D" },
-      { name: "Dream Glow.png", icon: "💫", color: "#B0AFFF" },
-    ],
-    "Visual Design": [
-      { name: "Fire Glow.png", icon: "🔥", color: "#E63C2E" },
-      { name: "Warmth.png", icon: "🔆", color: "#F8AF5F" },
-      { name: "Pink Layers.png", icon: "💗", color: "#E63C3C" },
-    ],
-    Experiments: [
-      { name: "Inner Creativity.png", icon: "🧠", color: "#F39C74" },
-      { name: "Gradient Fluid.png", icon: "📄", color: "#F1F1F1" },
-      { name: "Greenery.png", icon: "🌿", color: "#38AF65" },
-      { name: "Into the Fold.png", icon: "📂", color: "#F8D881" },
-      { name: "Micro Objects.png", icon: "🔍", color: "#F15887" },
-      { name: "Dimensional.png", icon: "🧊", color: "#F15887" },
-    ],
-    "Don't open": [
-      { name: "Gradient Collective.png", icon: "🎨", color: "#5A8DEE" },
-    ],
-  };
-
   // Get list of folders with their icons
-  const folders: FolderItem[] = [
-    { name: "Web Design", icon: "📁" },
-    { name: "Product Design", icon: "📁" },
-    { name: "Visual Design", icon: "📁" },
-    { name: "Experiments", icon: "📁" },
-    { name: "Don't open", icon: "📁" },
-  ];
+  const folders: FolderItem[] = Object.keys(portfolioData.folders).map(
+    (folderName) => ({
+      name: folderName,
+      icon: portfolioData.folderInfo[folderName]?.icon || "📁",
+    })
+  );
 
-  const fileDetails: FileDetails = {
-    name: selectedFile,
-    size: "2.1 MB",
-    created: "May 2024",
-    client: "Self-initiated",
-    tags: "Bold, Experimental",
-  };
+  // Helper function to get item by ID - memoized to avoid dependency loops
+  const getItemById = useCallback((id: string): PortfolioItem | undefined => {
+    return portfolioData.items[id];
+  }, []);
+
+  // Helper function to get current selected item - memoized
+  const getSelectedItem = useCallback((): PortfolioItem | undefined => {
+    return selectedItemId ? getItemById(selectedItemId) : undefined;
+  }, [selectedItemId, getItemById]);
+
+  // Helper function to get items in a folder - memoized
+  const getItemsInFolder = useCallback(
+    (folderName: string): PortfolioItem[] => {
+      const itemIds = portfolioData.folders[folderName] || [];
+      return itemIds.map((id) => portfolioData.items[id]).filter(Boolean);
+    },
+    []
+  );
+
+  // Update URL when a file or folder is selected - memoized
+  const updateUrl = useCallback((foldername: string, itemId?: string) => {
+    const url = new URL(window.location.href);
+    url.searchParams.set("folder", foldername);
+
+    if (itemId) {
+      url.searchParams.set("item", itemId);
+    } else {
+      url.searchParams.delete("item");
+    }
+
+    window.history.pushState({}, "", url);
+  }, []);
+
+  // Reset URL to root (no parameters) - memoized
+  const resetUrlToRoot = useCallback(() => {
+    const url = new URL(window.location.href);
+    url.search = "";
+    window.history.pushState({}, "", url);
+  }, []);
 
   // Mobile menu toggle
   const toggleMobileMenu = () => {
@@ -96,69 +125,62 @@ const PortfolioApp: React.FC = () => {
     setViewingFileDetail(false);
   };
 
-  // Update URL when a file or folder is selected
-  const updateUrl = (foldername: string, filename?: string) => {
-    const url = new URL(window.location.href);
-    url.searchParams.set("folder", foldername);
+  // Handle item selection with URL update
+  const handleItemSelect = useCallback(
+    (itemId: string, folderName?: string) => {
+      setSelectedItemId(itemId);
+      setCurrentMediaIndex(0); // Reset to first media when selecting new item
 
-    if (filename) {
-      url.searchParams.set("file", filename);
-    } else {
-      url.searchParams.delete("file");
-    }
+      // On mobile, switch to file detail view
+      if (window.innerWidth < 768) {
+        setViewingFileDetail(true);
+      }
 
-    window.history.pushState({}, "", url);
-  };
-
-  // Reset URL to root (no parameters)
-  const resetUrlToRoot = () => {
-    const url = new URL(window.location.href);
-    url.search = "";
-    window.history.pushState({}, "", url);
-  };
-
-  // Handle file selection with URL update
-  const handleFileSelect = (filename: string, folderName?: string) => {
-    setSelectedFile(filename);
-
-    // On mobile, switch to file detail view
-    if (window.innerWidth < 768) {
-      setViewingFileDetail(true);
-    }
-
-    // If folder is provided, use it, otherwise use currently selected folder
-    const folder = folderName || selectedFolder;
-    updateUrl(folder, filename);
-  };
+      // If folder is provided, use it, otherwise use currently selected folder
+      const folder = folderName || selectedFolder;
+      if (folder) {
+        updateUrl(folder, itemId);
+      }
+    },
+    [selectedFolder, updateUrl]
+  );
 
   // Handle folder selection with URL update
-  const handleFolderSelect = (folderName: string) => {
-    setSelectedFolder(folderName);
-    setMobileMenuOpen(false); // Close mobile menu after selection
-    setViewingFileDetail(false); // Return to file list view on mobile
+  const handleFolderSelect = useCallback(
+    (folderName: string) => {
+      setSelectedFolder(folderName);
+      setMobileMenuOpen(false); // Close mobile menu after selection
+      setViewingFileDetail(false); // Return to file list view on mobile
 
-    // Update URL with new folder
-    if (folderStructure[folderName]?.length > 0) {
-      const firstFile = folderStructure[folderName][0].name;
-      setSelectedFile(firstFile);
-      updateUrl(folderName, firstFile);
-    } else {
-      // If folder is empty, just update folder in URL
-      updateUrl(folderName);
-    }
-  };
+      const folderItems = getItemsInFolder(folderName);
+
+      // Update URL with new folder
+      if (folderItems.length > 0) {
+        const firstItem = folderItems[0];
+        setSelectedItemId(firstItem.id);
+        updateUrl(folderName, firstItem.id);
+      } else {
+        // If folder is empty, just update folder in URL
+        updateUrl(folderName);
+      }
+    },
+    [getItemsInFolder, updateUrl]
+  );
 
   // Handle search input change
-  const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const newQuery = e.target.value;
-    setSearchQuery(newQuery);
+  const handleSearchChange = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      const newQuery = e.target.value;
+      setSearchQuery(newQuery);
 
-    // If search is cleared, restore the normal URL with current selection
-    if (newQuery.trim() === "" && selectedFolder) {
-      updateUrl(selectedFolder, selectedFile);
-      setViewingFileDetail(false); // Return to file list on mobile when search is cleared
-    }
-  };
+      // If search is cleared, restore the normal URL with current selection
+      if (newQuery.trim() === "" && selectedFolder) {
+        updateUrl(selectedFolder, selectedItemId);
+        setViewingFileDetail(false); // Return to file list on mobile when search is cleared
+      }
+    },
+    [selectedFolder, selectedItemId, updateUrl]
+  );
 
   // Toggle search bar expansion on mobile
   const toggleSearchExpansion = () => {
@@ -169,6 +191,23 @@ const PortfolioApp: React.FC = () => {
   const handleSearchBlur = () => {
     if (searchQuery.trim() === "") {
       setSearchExpanded(false);
+    }
+  };
+
+  // Navigate between media files
+  const handleNextMedia = () => {
+    const item = getSelectedItem();
+    if (item && item.details.media.length > 0) {
+      setCurrentMediaIndex((prev) => (prev + 1) % item.details.media.length);
+    }
+  };
+
+  const handlePrevMedia = () => {
+    const item = getSelectedItem();
+    if (item && item.details.media.length > 0) {
+      setCurrentMediaIndex((prev) =>
+        prev === 0 ? item.details.media.length - 1 : prev - 1
+      );
     }
   };
 
@@ -186,63 +225,87 @@ const PortfolioApp: React.FC = () => {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  // Initialize the default folder and file when component mounts
+  // Handle browser navigation events
+  useEffect(() => {
+    const handlePopState = () => {
+      const params = new URLSearchParams(window.location.search);
+      const folderParam = params.get("folder");
+      const itemParam = params.get("item");
+
+      if (folderParam && portfolioData.folders[folderParam]) {
+        setSelectedFolder(folderParam);
+
+        if (itemParam && portfolioData.items[itemParam]) {
+          setSelectedItemId(itemParam);
+          if (window.innerWidth < 768) {
+            setViewingFileDetail(true);
+          }
+        } else {
+          const folderItems = getItemsInFolder(folderParam);
+          if (folderItems.length > 0) {
+            setSelectedItemId(folderItems[0].id);
+          }
+        }
+      }
+
+      // Clear search when navigating with browser buttons
+      setSearchQuery("");
+      setSearchResults([]);
+    };
+
+    window.addEventListener("popstate", handlePopState);
+    return () => window.removeEventListener("popstate", handlePopState);
+  }, [getItemsInFolder]);
+
+  // Initialize the default folder and item when component mounts
   useEffect(() => {
     // If no folder is already selected, select the first one
     if (!selectedFolder && folders.length > 0) {
       const firstFolder = folders[0].name;
       setSelectedFolder(firstFolder);
 
-      // Select the first file in that folder
-      if (folderStructure[firstFolder]?.length > 0) {
-        const firstFile = folderStructure[firstFolder][0].name;
-        setSelectedFile(firstFile);
-        updateUrl(firstFolder, firstFile);
+      // Select the first item in that folder
+      const folderItems = getItemsInFolder(firstFolder);
+      if (folderItems.length > 0) {
+        const firstItem = folderItems[0];
+        setSelectedItemId(firstItem.id);
+        updateUrl(firstFolder, firstItem.id);
       }
     }
-  }, [folders]);
+  }, [folders, selectedFolder, getItemsInFolder, updateUrl]);
 
   // Parse the URL when the component mounts
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
     const folderParam = params.get("folder");
-    const fileParam = params.get("file");
+    const itemParam = params.get("item");
 
     // If folder is in URL and exists in our structure
-    if (folderParam && folderStructure[folderParam]) {
+    if (folderParam && portfolioData.folders[folderParam]) {
       setSelectedFolder(folderParam);
 
-      // If file is in URL and exists in the folder
-      if (fileParam) {
-        const fileExists = folderStructure[folderParam].some(
-          (file) => file.name === fileParam
-        );
-        if (fileExists) {
-          setSelectedFile(fileParam);
-          // Set mobile view state based on screen size
-          if (window.innerWidth < 768) {
-            setViewingFileDetail(true);
-          }
-        } else if (folderStructure[folderParam].length > 0) {
-          // If file doesn't exist, select first file in folder
-          setSelectedFile(folderStructure[folderParam][0].name);
-          updateUrl(folderParam, folderStructure[folderParam][0].name);
+      // If item is in URL and exists
+      if (itemParam && portfolioData.items[itemParam]) {
+        setSelectedItemId(itemParam);
+        // Set mobile view state based on screen size
+        if (window.innerWidth < 768) {
+          setViewingFileDetail(true);
         }
-      } else if (folderStructure[folderParam].length > 0) {
-        // If no file in URL, select first file in folder
-        setSelectedFile(folderStructure[folderParam][0].name);
-        updateUrl(folderParam, folderStructure[folderParam][0].name);
+      } else {
+        // If no item in URL or invalid item, select first item in folder
+        const folderItems = getItemsInFolder(folderParam);
+        if (folderItems.length > 0) {
+          setSelectedItemId(folderItems[0].id);
+          updateUrl(folderParam, folderItems[0].id);
+        }
       }
-    } else if (fileParam) {
-      // If only file is in URL, find which folder contains it
-      for (const folderName in folderStructure) {
-        const fileExists = folderStructure[folderName].some(
-          (file) => file.name === fileParam
-        );
-        if (fileExists) {
+    } else if (itemParam && portfolioData.items[itemParam]) {
+      // If only item is in URL, find which folder contains it
+      for (const folderName in portfolioData.folders) {
+        if (portfolioData.folders[folderName].includes(itemParam)) {
           setSelectedFolder(folderName);
-          setSelectedFile(fileParam);
-          updateUrl(folderName, fileParam);
+          setSelectedItemId(itemParam);
+          updateUrl(folderName, itemParam);
 
           // Set mobile view state based on screen size
           if (window.innerWidth < 768) {
@@ -252,7 +315,7 @@ const PortfolioApp: React.FC = () => {
         }
       }
     }
-  }, []);
+  }, [getItemsInFolder, updateUrl]);
 
   // Perform search when query changes
   useEffect(() => {
@@ -262,51 +325,111 @@ const PortfolioApp: React.FC = () => {
       return;
     }
 
-    const results: FileItem[] = [];
+    const results: SearchResult[] = [];
     const query = searchQuery.toLowerCase();
 
-    // Search through all folders and files
-    for (const folderName in folderStructure) {
-      folderStructure[folderName].forEach((file) => {
-        if (file.name.toLowerCase().includes(query)) {
-          // Add the folder information to the file for display in search results
-          results.push({ ...file, folder: folderName });
+    // Search through all items
+    for (const itemId in portfolioData.items) {
+      const item = portfolioData.items[itemId];
+      const itemName = item.name.toLowerCase();
+      const itemTags = item.details.tags.join(" ").toLowerCase();
+      const itemDesc = (item.details.description || "").toLowerCase();
+
+      if (
+        itemName.includes(query) ||
+        itemTags.includes(query) ||
+        itemDesc.includes(query)
+      ) {
+        // Find which folders contain this item
+        for (const folderName in portfolioData.folders) {
+          if (portfolioData.folders[folderName].includes(itemId)) {
+            results.push({
+              ...item,
+              folderId: folderName,
+            });
+            break; // Just add the first folder match to avoid duplicates in results
+          }
         }
-      });
+      }
     }
 
     setSearchResults(results);
 
     // Select the first result by default if there are any
     if (results.length > 0) {
-      const file = results[0].name;
-      const folder = results[0].folder || selectedFolder;
-      setSelectedFile(file);
-      updateUrl(folder, file);
+      const item = results[0];
+      setSelectedItemId(item.id);
+      updateUrl(item.folderId, item.id);
 
       // On mobile, don't automatically go to detail view for search results
       if (window.innerWidth < 768) {
         setViewingFileDetail(false);
       }
-    } else {
-      // If no search results, reset URL to root
-      resetUrlToRoot();
+    } else if (searchQuery.trim() !== "") {
+      // Only clear selection if this is an actual search with no results
+      // Don't reset URL completely, just show "no results" state
+      setSelectedItemId("");
     }
-  }, [searchQuery]);
+  }, [searchQuery, updateUrl]);
 
-  // Get files for the currently selected folder
-  const currentFiles: FileItem[] = folderStructure[selectedFolder] || [];
+  // Get current items in the selected folder
+  const currentItems = selectedFolder ? getItemsInFolder(selectedFolder) : [];
 
-  const getFileByName = (name: string): FileItem | undefined => {
-    // Look through all files in all folders to find the one that matches
-    for (const folderName in folderStructure) {
-      const fileMatch = folderStructure[folderName].find(
-        (file) => file.name === name
-      );
-      if (fileMatch) return fileMatch;
+  // Get the current selected item
+  const selectedItem = getSelectedItem();
+
+  // Get the current media file
+  const currentMedia = selectedItem?.details.media[currentMediaIndex];
+
+  // Function to render media
+  const renderMedia = (media: MediaFile) => {
+    if (!media) return null;
+
+    const imagePath = `/images/${media.path}`;
+
+    switch (media.type) {
+      case "image":
+        return (
+          <img
+            src={imagePath}
+            alt={selectedItem?.name || "Image"}
+            className="max-w-full max-h-full object-contain rounded-md"
+          />
+        );
+      case "video":
+        return (
+          <video
+            src={imagePath}
+            controls
+            className="max-w-full max-h-full object-contain rounded-md"
+            poster={media.thumbnail ? `/images/${media.thumbnail}` : undefined}
+          />
+        );
+      case "pdf":
+        return (
+          <div className="flex flex-col items-center">
+            {media.thumbnail && (
+              <img
+                src={`/images/${media.thumbnail}`}
+                alt="PDF preview"
+                className="max-w-full object-contain rounded-md mb-2"
+              />
+            )}
+            <a
+              href={imagePath}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-4 py-2 bg-white/10 hover:bg-white/20 rounded-md text-white transition-colors"
+            >
+              View PDF
+            </a>
+          </div>
+        );
+      default:
+        return (
+          <div className="text-white text-center">Unsupported media type</div>
+        );
     }
-    // Fallback to first file in current folder
-    return currentFiles[0];
   };
 
   return (
@@ -345,7 +468,7 @@ const PortfolioApp: React.FC = () => {
             {/* Current context for mobile - hidden when search is expanded */}
             <div className={`md:hidden ${searchExpanded ? "hidden" : "block"}`}>
               <span className="text-white text-sm font-medium">
-                {viewingFileDetail ? selectedFile : selectedFolder}
+                {viewingFileDetail ? selectedItem?.name : selectedFolder}
               </span>
             </div>
           </div>
@@ -518,31 +641,31 @@ const PortfolioApp: React.FC = () => {
                 }`}
               >
                 <div className="p-3">
-                  {currentFiles.length > 0 ? (
+                  {currentItems.length > 0 ? (
                     <div className="space-y-1">
-                      {currentFiles.map((file) => (
+                      {currentItems.map((item) => (
                         <div
-                          key={file.name}
+                          key={item.id}
                           className={`flex items-center justify-between p-3 md:p-2 hover:bg-white/5 rounded-md cursor-pointer transition-all ${
-                            selectedFile === file.name ? "bg-white/10" : ""
+                            selectedItemId === item.id ? "bg-white/10" : ""
                           }`}
-                          onClick={() => handleFileSelect(file.name)}
+                          onClick={() => handleItemSelect(item.id)}
                         >
                           <div className="flex items-center">
                             <div
                               className="w-10 h-10 md:w-8 md:h-8 mr-3 md:mr-2 flex items-center justify-center rounded-md"
-                              style={{ backgroundColor: file.color }}
+                              style={{ backgroundColor: item.color }}
                             >
-                              <span className="text-sm">{file.icon}</span>
+                              <span className="text-sm">{item.icon}</span>
                             </div>
                             <span className="text-white text-sm truncate">
-                              {file.name}
+                              {item.name}
                             </span>
                           </div>
                           <ChevronRight
                             size={16}
                             className={`${
-                              selectedFile === file.name
+                              selectedItemId === item.id
                                 ? "text-white"
                                 : "text-white/50"
                             }`}
@@ -564,58 +687,74 @@ const PortfolioApp: React.FC = () => {
                   viewingFileDetail ? "block" : "hidden md:flex"
                 }`}
               >
-                <div className="flex-1 p-4 flex items-center justify-center">
-                  <div className="w-full max-w-xs">
-                    {selectedFile === "Inner Creativity.png" && (
-                      <div className="aspect-w-3 aspect-h-4">
-                        <div className="bg-gradient-to-br from-yellow-400 via-pink-500 to-red-500 p-2 rounded-md">
-                          <div className="grid grid-cols-4 gap-1">
-                            {[...Array(16)].map((_, i) => (
-                              <div
-                                key={i}
-                                className={`h-6 ${
-                                  i % 2 === 0
-                                    ? "bg-yellow-300/50"
-                                    : "bg-pink-400/50"
-                                } ${i > 7 ? "rounded-sm" : ""}`}
-                              ></div>
-                            ))}
+                {selectedItem && (
+                  <>
+                    <div className="flex-1 p-4 flex flex-col items-center justify-center">
+                      {/* Media carousel controls */}
+                      {selectedItem.details.media.length > 1 && (
+                        <div className="w-full flex justify-between items-center mb-4">
+                          <button
+                            onClick={handlePrevMedia}
+                            className="p-2 bg-black/30 rounded-full text-white hover:bg-black/50 transition-colors"
+                          >
+                            <ChevronLeft size={20} />
+                          </button>
+                          <div className="text-white text-sm">
+                            {currentMediaIndex + 1} /{" "}
+                            {selectedItem.details.media.length}
                           </div>
-                          <div className="mt-2 flex justify-center">
-                            <div className="h-24 w-20 bg-orange-300/70 rounded-t-full"></div>
-                          </div>
-                          <div className="text-center mt-2 text-xs">MANS</div>
+                          <button
+                            onClick={handleNextMedia}
+                            className="p-2 bg-black/30 rounded-full text-white hover:bg-black/50 transition-colors"
+                          >
+                            <ChevronRight size={20} />
+                          </button>
                         </div>
-                      </div>
-                    )}
-                  </div>
-                </div>
+                      )}
 
-                <div className="p-4 border-t border-white/10">
-                  <div className="text-white">
-                    <h2 className="text-base font-semibold mb-1">
-                      {fileDetails.name}
-                    </h2>
-                    <p className="text-white/70 text-sm mb-4">
-                      {fileDetails.size}
-                    </p>
-
-                    <div className="space-y-2 text-sm">
-                      <div className="flex justify-between">
-                        <span className="text-white/70">Created</span>
-                        <span>{fileDetails.created}</span>
-                      </div>
-                      <div className="flex justify-between">
-                        <span className="text-white/70">Client</span>
-                        <span>{fileDetails.client}</span>
-                      </div>
-                      <div className="flex justify-between">
-                        <span className="text-white/70">Tags</span>
-                        <span>{fileDetails.tags}</span>
+                      {/* Media content */}
+                      <div className="w-full max-w-md flex items-center justify-center">
+                        {currentMedia && renderMedia(currentMedia)}
                       </div>
                     </div>
-                  </div>
-                </div>
+
+                    <div className="p-4 border-t border-white/10">
+                      <div className="text-white">
+                        <h2 className="text-base font-semibold mb-1">
+                          {selectedItem.name}
+                        </h2>
+                        <p className="text-white/70 text-sm mb-4">
+                          {selectedItem.details.size}
+                        </p>
+
+                        <div className="space-y-2 text-sm">
+                          <div className="flex justify-between">
+                            <span className="text-white/70">Created</span>
+                            <span>{selectedItem.details.created}</span>
+                          </div>
+                          <div className="flex justify-between">
+                            <span className="text-white/70">Client</span>
+                            <span>{selectedItem.details.client}</span>
+                          </div>
+                          <div className="flex justify-between">
+                            <span className="text-white/70">Tags</span>
+                            <span>{selectedItem.details.tags.join(", ")}</span>
+                          </div>
+                          {selectedItem.details.description && (
+                            <div className="pt-2">
+                              <span className="text-white/70 block mb-1">
+                                Description
+                              </span>
+                              <p className="text-white/90">
+                                {selectedItem.details.description}
+                              </p>
+                            </div>
+                          )}
+                        </div>
+                      </div>
+                    </div>
+                  </>
+                )}
               </div>
             </>
           ) : searchResults.length > 0 ? (
@@ -632,34 +771,34 @@ const PortfolioApp: React.FC = () => {
                     Search Results
                   </h2>
                   <div className="space-y-1">
-                    {searchResults.map((file) => (
+                    {searchResults.map((item) => (
                       <div
-                        key={file.name}
+                        key={item.id}
                         className={`flex items-center justify-between p-3 md:p-2 hover:bg-white/5 rounded-md cursor-pointer transition-all ${
-                          selectedFile === file.name ? "bg-white/10" : ""
+                          selectedItemId === item.id ? "bg-white/10" : ""
                         }`}
-                        onClick={() => handleFileSelect(file.name, file.folder)}
+                        onClick={() => handleItemSelect(item.id, item.folderId)}
                       >
                         <div className="flex flex-col">
                           <div className="flex items-center">
                             <div
                               className="w-10 h-10 md:w-8 md:h-8 mr-3 md:mr-2 flex items-center justify-center rounded-md"
-                              style={{ backgroundColor: file.color }}
+                              style={{ backgroundColor: item.color }}
                             >
-                              <span className="text-sm">{file.icon}</span>
+                              <span className="text-sm">{item.icon}</span>
                             </div>
                             <span className="text-white text-sm truncate">
-                              {file.name}
+                              {item.name}
                             </span>
                           </div>
                           <span className="text-xs text-white/60 ml-12 md:ml-10 mt-0.5">
-                            {file.folder}
+                            {item.folderId}
                           </span>
                         </div>
                         <ChevronRight
                           size={16}
                           className={`${
-                            selectedFile === file.name
+                            selectedItemId === item.id
                               ? "text-white"
                               : "text-white/50"
                           }`}
@@ -676,64 +815,80 @@ const PortfolioApp: React.FC = () => {
                   viewingFileDetail ? "block" : "hidden md:flex"
                 }`}
               >
-                <div className="flex-1 p-4 flex items-center justify-center">
-                  <div className="w-full max-w-xs">
-                    {selectedFile === "Inner Creativity.png" && (
-                      <div className="aspect-w-3 aspect-h-4">
-                        <div className="bg-gradient-to-br from-yellow-400 via-pink-500 to-red-500 p-2 rounded-md">
-                          <div className="grid grid-cols-4 gap-1">
-                            {[...Array(16)].map((_, i) => (
-                              <div
-                                key={i}
-                                className={`h-6 ${
-                                  i % 2 === 0
-                                    ? "bg-yellow-300/50"
-                                    : "bg-pink-400/50"
-                                } ${i > 7 ? "rounded-sm" : ""}`}
-                              ></div>
-                            ))}
+                {selectedItem && (
+                  <>
+                    <div className="flex-1 p-4 flex flex-col items-center justify-center">
+                      {/* Media carousel controls */}
+                      {selectedItem.details.media.length > 1 && (
+                        <div className="w-full flex justify-between items-center mb-4">
+                          <button
+                            onClick={handlePrevMedia}
+                            className="p-2 bg-black/30 rounded-full text-white hover:bg-black/50 transition-colors"
+                          >
+                            <ChevronLeft size={20} />
+                          </button>
+                          <div className="text-white text-sm">
+                            {currentMediaIndex + 1} /{" "}
+                            {selectedItem.details.media.length}
                           </div>
-                          <div className="mt-2 flex justify-center">
-                            <div className="h-24 w-20 bg-orange-300/70 rounded-t-full"></div>
-                          </div>
-                          <div className="text-center mt-2 text-xs">MANS</div>
+                          <button
+                            onClick={handleNextMedia}
+                            className="p-2 bg-black/30 rounded-full text-white hover:bg-black/50 transition-colors"
+                          >
+                            <ChevronRight size={20} />
+                          </button>
                         </div>
-                      </div>
-                    )}
-                  </div>
-                </div>
+                      )}
 
-                <div className="p-4 border-t border-white/10">
-                  <div className="text-white">
-                    <h2 className="text-base font-semibold mb-1">
-                      {fileDetails.name}
-                    </h2>
-                    <p className="text-white/70 text-sm mb-4">
-                      {fileDetails.size}
-                    </p>
-
-                    <div className="space-y-2 text-sm">
-                      <div className="flex justify-between">
-                        <span className="text-white/70">Created</span>
-                        <span>{fileDetails.created}</span>
-                      </div>
-                      <div className="flex justify-between">
-                        <span className="text-white/70">Client</span>
-                        <span>{fileDetails.client}</span>
-                      </div>
-                      <div className="flex justify-between">
-                        <span className="text-white/70">Tags</span>
-                        <span>{fileDetails.tags}</span>
+                      {/* Media content */}
+                      <div className="w-full max-w-md flex items-center justify-center">
+                        {currentMedia && renderMedia(currentMedia)}
                       </div>
                     </div>
-                  </div>
-                </div>
+
+                    <div className="p-4 border-t border-white/10">
+                      <div className="text-white">
+                        <h2 className="text-base font-semibold mb-1">
+                          {selectedItem.name}
+                        </h2>
+                        <p className="text-white/70 text-sm mb-4">
+                          {selectedItem.details.size}
+                        </p>
+
+                        <div className="space-y-2 text-sm">
+                          <div className="flex justify-between">
+                            <span className="text-white/70">Created</span>
+                            <span>{selectedItem.details.created}</span>
+                          </div>
+                          <div className="flex justify-between">
+                            <span className="text-white/70">Client</span>
+                            <span>{selectedItem.details.client}</span>
+                          </div>
+                          <div className="flex justify-between">
+                            <span className="text-white/70">Tags</span>
+                            <span>{selectedItem.details.tags.join(", ")}</span>
+                          </div>
+                          {selectedItem.details.description && (
+                            <div className="pt-2">
+                              <span className="text-white/70 block mb-1">
+                                Description
+                              </span>
+                              <p className="text-white/90">
+                                {selectedItem.details.description}
+                              </p>
+                            </div>
+                          )}
+                        </div>
+                      </div>
+                    </div>
+                  </>
+                )}
               </div>
             </>
           ) : (
             // No search results
             <div className="flex-1 flex items-center justify-center">
-              <div className="text-white text-xl">No results :(</div>
+              <div className="text-white text-xl">No results found</div>
             </div>
           )}
         </div>
