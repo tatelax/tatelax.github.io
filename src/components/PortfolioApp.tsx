@@ -1,7 +1,19 @@
 "use client";
 
 import React, { useState, useEffect, useCallback } from "react";
-import { ChevronRight, ChevronLeft, Search, User, Menu, X } from "lucide-react";
+import {
+  ChevronRight,
+  ChevronLeft,
+  Search,
+  User,
+  Menu,
+  X,
+  Mail,
+  Github,
+  Instagram,
+  Twitter,
+  Linkedin,
+} from "lucide-react";
 import { portfolioData } from "./portfolioData";
 import ImageGallery from "react-image-gallery";
 import { renderLeftNav, renderRightNav } from "./GalleryNavigation";
@@ -528,6 +540,52 @@ const PortfolioApp: React.FC = () => {
           </div>
 
           {/* Collapsible search for mobile */}
+          {/* Social Media Icons - Hidden on mobile or when search is expanded */}
+          <div
+            className={`hidden md:flex items-center space-x-2 mx-4 ${
+              searchExpanded ? "md:hidden" : ""
+            }`}
+          >
+            <a
+              href="mailto:contact@example.com"
+              className="bg-black/20 hover:bg-black/40 p-2 rounded-full transition-colors"
+            >
+              <Mail size={16} className="text-white" />
+            </a>
+            <a
+              href="https://github.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-black/20 hover:bg-black/40 p-2 rounded-full transition-colors"
+            >
+              <Github size={16} className="text-white" />
+            </a>
+            <a
+              href="https://instagram.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-black/20 hover:bg-black/40 p-2 rounded-full transition-colors"
+            >
+              <Instagram size={16} className="text-white" />
+            </a>
+            <a
+              href="https://x.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-black/20 hover:bg-black/40 p-2 rounded-full transition-colors"
+            >
+              <Twitter size={16} className="text-white" />
+            </a>
+            <a
+              href="https://linkedin.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-black/20 hover:bg-black/40 p-2 rounded-full transition-colors"
+            >
+              <Linkedin size={16} className="text-white" />
+            </a>
+          </div>
+
           <div className={`relative ${searchExpanded ? "flex-1" : ""}`}>
             {searchExpanded ? (
               <div className="flex items-center w-full">
@@ -717,19 +775,20 @@ const PortfolioApp: React.FC = () => {
                     <div>
                       {(() => {
                         // Group items by year
-                        const itemsByYear = currentItems.reduce((acc, item) => {
-                          const year = item.year || "Undated";
-                          if (!acc[year]) acc[year] = [];
-                          acc[year].push(item);
-                          return acc;
-                        }, {});
+                        const itemsByYear: { [year: string]: PortfolioItem[] } =
+                          currentItems.reduce((acc, item) => {
+                            const year = item.year || "Undated";
+                            if (!acc[year]) acc[year] = [];
+                            acc[year].push(item);
+                            return acc;
+                          }, {} as { [year: string]: PortfolioItem[] });
 
                         // Get years and sort them in descending order
                         const years = Object.keys(itemsByYear).sort((a, b) => {
                           // Handle 'Undated' special case
                           if (a === "Undated") return 1;
                           if (b === "Undated") return -1;
-                          return b - a; // Descending order
+                          return b.localeCompare(a); // Descending order
                         });
 
                         return years.map((year, yearIndex) => (
