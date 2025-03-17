@@ -19,7 +19,7 @@ export const portfolioData = {
         description: "An exploration of digital painting techniques.",
         media: [
           { path: "testimage.png", type: "image" },
-          { path: "alternative-paint-2.png", type: "image" },
+          { path: "testimage.png", type: "image" },
         ],
       },
     },

@@ -3,6 +3,8 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { ChevronRight, ChevronLeft, Search, User, Menu, X } from "lucide-react";
 import { portfolioData } from "./portfolioData";
+import ImageGallery from "react-image-gallery";
+import "react-image-gallery/styles/css/image-gallery.css";
 
 // Define interfaces for our data structures
 interface MediaFile {
@@ -60,7 +62,6 @@ const PortfolioApp: React.FC = () => {
   const [selectedItemId, setSelectedItemId] = useState<string>("");
   const [searchQuery, setSearchQuery] = useState<string>("");
   const [searchResults, setSearchResults] = useState<SearchResult[]>([]);
-  const [currentMediaIndex, setCurrentMediaIndex] = useState<number>(0);
 
   // Mobile-specific states
   const [mobileMenuOpen, setMobileMenuOpen] = useState<boolean>(false);
@@ -129,7 +130,6 @@ const PortfolioApp: React.FC = () => {
   const handleItemSelect = useCallback(
     (itemId: string, folderName?: string) => {
       setSelectedItemId(itemId);
-      setCurrentMediaIndex(0); // Reset to first media when selecting new item
 
       // On mobile, switch to file detail view
       if (window.innerWidth < 768) {
@@ -200,23 +200,6 @@ const PortfolioApp: React.FC = () => {
     if (selectedFolder) {
       updateUrl(selectedFolder, selectedItemId);
       setViewingFileDetail(false); // Return to file list on mobile when search is cleared
-    }
-  };
-
-  // Navigate between media files
-  const handleNextMedia = () => {
-    const item = getSelectedItem();
-    if (item && item.details.media.length > 0) {
-      setCurrentMediaIndex((prev) => (prev + 1) % item.details.media.length);
-    }
-  };
-
-  const handlePrevMedia = () => {
-    const item = getSelectedItem();
-    if (item && item.details.media.length > 0) {
-      setCurrentMediaIndex((prev) =>
-        prev === 0 ? item.details.media.length - 1 : prev - 1
-      );
     }
   };
 
@@ -387,66 +370,107 @@ const PortfolioApp: React.FC = () => {
   // Get the current selected item
   const selectedItem = getSelectedItem();
 
-  // Get the current media file
-  const currentMedia = selectedItem?.details.media[currentMediaIndex];
+  // Format media files for react-image-gallery
+  const getGalleryItems = useCallback(() => {
+    if (!selectedItem || !selectedItem.details.media.length) return [];
 
-  // Function to render media
-  const renderMedia = (media: MediaFile) => {
-    if (!media) return null;
+    return selectedItem.details.media.map((media) => {
+      const basePath = `/images/${media.path}`;
 
-    const imagePath = `/images/${media.path}`;
-
-    switch (media.type) {
-      case "image":
-        return (
-          <img
-            src={imagePath}
-            alt={selectedItem?.name || "Image"}
-            className="max-w-full max-h-full object-contain rounded-md"
-          />
-        );
-      case "video":
-        return (
-          <video
-            src={imagePath}
-            controls
-            className="max-w-full max-h-full object-contain rounded-md"
-            poster={media.thumbnail ? `/images/${media.thumbnail}` : undefined}
-          />
-        );
-      case "pdf":
-        return (
-          <div className="flex flex-col items-center">
-            {media.thumbnail && (
+      // Format based on media type
+      if (media.type === "image") {
+        return {
+          original: basePath,
+          thumbnail: basePath,
+          originalAlt: selectedItem.name,
+          thumbnailAlt: selectedItem.name,
+          renderItem: () => (
+            <div className="h-full flex items-center justify-center">
               <img
-                src={`/images/${media.thumbnail}`}
-                alt="PDF preview"
-                className="max-w-full object-contain rounded-md mb-2"
+                src={basePath}
+                alt={selectedItem.name}
+                className="max-w-full max-h-full object-contain"
+                style={{ maxHeight: "60vh" }}
               />
-            )}
-            <a
-              href={imagePath}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="px-4 py-2 bg-white/10 hover:bg-white/20 rounded-md text-white transition-colors"
+            </div>
+          ),
+        };
+      } else if (media.type === "video") {
+        // For videos, use custom rendering
+        return {
+          original: basePath,
+          thumbnail: media.thumbnail ? `/images/${media.thumbnail}` : basePath,
+          originalAlt: `${selectedItem.name} (video)`,
+          thumbnailAlt: `${selectedItem.name} (video)`,
+          renderItem: () => (
+            <div
+              className="video-wrapper flex justify-center items-center h-full"
+              style={{ height: "60vh" }}
             >
-              View PDF
-            </a>
-          </div>
-        );
-      default:
-        return (
-          <div className="text-white text-center">Unsupported media type</div>
-        );
-    }
-  };
+              <video
+                src={basePath}
+                controls
+                className="max-w-full max-h-full object-contain rounded-md"
+                style={{ maxHeight: "100%" }}
+                poster={
+                  media.thumbnail ? `/images/${media.thumbnail}` : undefined
+                }
+              />
+            </div>
+          ),
+        };
+      } else if (media.type === "pdf") {
+        // For PDFs, use custom rendering
+        return {
+          original: basePath,
+          thumbnail: media.thumbnail ? `/images/${media.thumbnail}` : basePath,
+          originalAlt: `${selectedItem.name} (PDF)`,
+          thumbnailAlt: `${selectedItem.name} (PDF)`,
+          renderItem: () => (
+            <div
+              className="pdf-wrapper flex flex-col items-center justify-center"
+              style={{ height: "60vh" }}
+            >
+              {media.thumbnail && (
+                <div className="h-4/5 flex items-center justify-center">
+                  <img
+                    src={`/images/${media.thumbnail}`}
+                    alt="PDF preview"
+                    className="max-w-full max-h-full object-contain rounded-md mb-4"
+                  />
+                </div>
+              )}
+              <a
+                href={basePath}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-4 py-2 bg-white/10 hover:bg-white/20 rounded-md text-white transition-colors mt-4"
+              >
+                View PDF
+              </a>
+            </div>
+          ),
+        };
+      }
+
+      // Default case (shouldn't reach here)
+      return {
+        original: basePath,
+        thumbnail: basePath,
+      };
+    });
+  }, [selectedItem]);
 
   return (
     <div
-      className="flex px-0 md:px-4 lg:px-8 lg:py-20 xl:px-16 2xl:px-40 flex-col h-screen bg-[url('/images/background.png')] relative"
+      className="flex px-0 md:px-4 lg:px-8 lg:py-20 xl:px-16 2xl:px-40 flex-col h-screen relative"
       style={{
         fontFamily:
           "system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif",
+        backgroundImage: "url('/images/background.jpg')",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
       }}
     >
       {/* Glass-like card that contains the entire UI */}
@@ -631,7 +655,7 @@ const PortfolioApp: React.FC = () => {
                 </div>
 
                 {/* Folder list anchored to bottom */}
-                <div className="mt-auto p-4">
+                <div className="mt-auto p-6">
                   <div className="space-y-1">
                     {folders.map((folder) => (
                       <div
@@ -651,7 +675,7 @@ const PortfolioApp: React.FC = () => {
                           >
                             {folder.icon}
                           </span>
-                          <span className="text-white text-base">
+                          <span className="text-white text-base font-semibold">
                             {folder.name}
                           </span>
                         </div>
@@ -675,7 +699,7 @@ const PortfolioApp: React.FC = () => {
                   viewingFileDetail ? "hidden md:block" : "block"
                 }`}
               >
-                <div className="p-3">
+                <div className="p-6">
                   {currentItems.length > 0 ? (
                     <div className="space-y-1">
                       {currentItems.map((item) => (
@@ -693,7 +717,7 @@ const PortfolioApp: React.FC = () => {
                             >
                               <span className="text-base">{item.icon}</span>
                             </div>
-                            <span className="text-white text-base truncate">
+                            <span className="text-white text-base truncate font-semibold">
                               {item.name}
                             </span>
                           </div>
@@ -725,31 +749,31 @@ const PortfolioApp: React.FC = () => {
                 {selectedItem && (
                   <>
                     <div className="flex-1 p-4 flex flex-col items-center justify-center">
-                      {/* Media carousel controls */}
-                      {selectedItem.details.media.length > 1 && (
-                        <div className="w-full flex justify-between items-center mb-4">
-                          <button
-                            onClick={handlePrevMedia}
-                            className="p-2 bg-black/30 rounded-full text-white hover:bg-black/50 transition-colors"
+                      {/* Using react-image-gallery for media display */}
+                      <div className="w-full max-w-full md:max-w-lg lg:max-w-xl xl:max-w-2xl mx-auto">
+                        {selectedItem.details.media.length > 0 && (
+                          <div
+                            className="image-gallery-container"
+                            style={{ maxHeight: "70vh" }}
                           >
-                            <ChevronLeft size={22} />
-                          </button>
-                          <div className="text-white text-base">
-                            {currentMediaIndex + 1} /{" "}
-                            {selectedItem.details.media.length}
+                            <ImageGallery
+                              items={getGalleryItems()}
+                              showPlayButton={false}
+                              showBullets={
+                                selectedItem.details.media.length > 1
+                              }
+                              showThumbnails={
+                                selectedItem.details.media.length > 1
+                              }
+                              showFullscreenButton={true}
+                              useBrowserFullscreen={true}
+                              slideInterval={3000}
+                              slideDuration={450}
+                              additionalClass="portfolio-gallery fit-content"
+                              thumbnailPosition="left"
+                            />
                           </div>
-                          <button
-                            onClick={handleNextMedia}
-                            className="p-2 bg-black/30 rounded-full text-white hover:bg-black/50 transition-colors"
-                          >
-                            <ChevronRight size={22} />
-                          </button>
-                        </div>
-                      )}
-
-                      {/* Media content */}
-                      <div className="w-full max-w-full md:max-w-lg lg:max-w-xl xl:max-w-2xl mx-auto flex items-center justify-center">
-                        {currentMedia && renderMedia(currentMedia)}
+                        )}
                       </div>
                     </div>
 
@@ -852,31 +876,30 @@ const PortfolioApp: React.FC = () => {
                 {selectedItem && (
                   <>
                     <div className="flex-1 p-4 flex flex-col items-center justify-center">
-                      {/* Media carousel controls */}
-                      {selectedItem.details.media.length > 1 && (
-                        <div className="w-full flex justify-between items-center mb-4">
-                          <button
-                            onClick={handlePrevMedia}
-                            className="p-2 bg-black/30 rounded-full text-white hover:bg-black/50 transition-colors"
+                      {/* Using react-image-gallery for media display */}
+                      <div className="w-full max-w-full md:max-w-lg lg:max-w-xl xl:max-w-2xl mx-auto">
+                        {selectedItem.details.media.length > 0 && (
+                          <div
+                            className="image-gallery-container"
+                            style={{ maxHeight: "70vh" }}
                           >
-                            <ChevronLeft size={22} />
-                          </button>
-                          <div className="text-white text-base">
-                            {currentMediaIndex + 1} /{" "}
-                            {selectedItem.details.media.length}
+                            <ImageGallery
+                              items={getGalleryItems()}
+                              showPlayButton={false}
+                              showBullets={
+                                selectedItem.details.media.length > 1
+                              }
+                              showThumbnails={
+                                selectedItem.details.media.length > 1
+                              }
+                              showFullscreenButton={true}
+                              useBrowserFullscreen={true}
+                              slideInterval={3000}
+                              slideDuration={450}
+                              additionalClass="portfolio-gallery fit-content"
+                            />
                           </div>
-                          <button
-                            onClick={handleNextMedia}
-                            className="p-2 bg-black/30 rounded-full text-white hover:bg-black/50 transition-colors"
-                          >
-                            <ChevronRight size={22} />
-                          </button>
-                        </div>
-                      )}
-
-                      {/* Media content */}
-                      <div className="w-full max-w-full md:max-w-lg lg:max-w-xl xl:max-w-2xl mx-auto flex items-center justify-center">
-                        {currentMedia && renderMedia(currentMedia)}
+                        )}
                       </div>
                     </div>
 
