@@ -18,6 +18,7 @@ import { portfolioData } from "./portfolioData";
 import ImageGallery from "react-image-gallery";
 import { renderLeftNav, renderRightNav } from "./GalleryNavigation";
 import "react-image-gallery/styles/css/image-gallery.css";
+import "../css/macScrollbar.css";
 
 // Define interfaces for our data structures
 interface MediaFile {
@@ -41,6 +42,7 @@ interface PortfolioItem {
   id: string; // Unique identifier for each item
   name: string;
   icon: string;
+  image?: string;
   color: string;
   year?: string;
   details: ItemDetails;
@@ -402,7 +404,7 @@ const PortfolioApp: React.FC = () => {
     if (!selectedItem || !selectedItem.details.media.length) return [];
 
     return selectedItem.details.media.map((media) => {
-      const basePath = `/images/${media.path}`;
+      const basePath = `${media.path}`;
 
       // Format based on media type
       if (media.type === "image") {
@@ -716,7 +718,7 @@ const PortfolioApp: React.FC = () => {
             // Normal layout - responsive with conditional display on mobile
             <>
               {/* Left Sidebar - Hidden on mobile */}
-              <div className="hidden md:w-1/4 lg:w-1/5 xl:w-1/5 2xl:w-1/6 md:flex md:flex-col bg-white/5 backdrop-blur-md overflow-y-auto border-r border-white/20 h-full max-w-sm">
+              <div className="hidden md:w-1/4 lg:w-1/5 xl:w-1/5 2xl:w-1/6 md:flex md:flex-col bg-white/5 backdrop-blur-md overflow-y-auto border-r border-white/20 h-full max-w-sm mac-scrollbar">
                 <div className="p-7">
                   <div className="mb-6">
                     <h1
@@ -726,9 +728,9 @@ const PortfolioApp: React.FC = () => {
                         lineHeight: 1.2,
                       }}
                     >
-                      Tate McCormick is a designer & engineer based in
+                      Tate McCormick is a designer & engineer based in Redmond,
+                      WA.
                     </h1>
-                    <p className="text-white/80 text-base">Redmond, WA.</p>
                   </div>
                 </div>
 
@@ -773,7 +775,7 @@ const PortfolioApp: React.FC = () => {
 
               {/* Middle - File List - Conditionally shown/hidden on mobile */}
               <div
-                className={`w-full md:w-1/3 lg:w-1/4 xl:w-1/5 2xl:w-1/6 bg-white/7 backdrop-blur-md border-r border-white/20 overflow-y-auto md:max-w-sm ${
+                className={`w-full md:w-1/3 lg:w-1/4 xl:w-1/5 2xl:w-1/6 bg-white/7 backdrop-blur-md border-r border-white/20 overflow-y-auto md:max-w-sm mac-scrollbar ${
                   viewingFileDetail ? "hidden md:block" : "block"
                 }`}
               >
@@ -825,12 +827,20 @@ const PortfolioApp: React.FC = () => {
                                 >
                                   <div className="flex items-center">
                                     <div
-                                      className="w-10 h-10 md:w-8 md:h-8 mr-3 md:mr-2 flex items-center justify-center rounded-md border-2 border-white"
+                                      className="w-10 h-10 md:w-8 md:h-8 mr-3 md:mr-2 flex items-center justify-center rounded-md border-2 border-white overflow-hidden"
                                       style={{ backgroundColor: item.color }}
                                     >
-                                      <span className="text-base">
-                                        {item.icon}
-                                      </span>
+                                      {item.image ? (
+                                        <img
+                                          src={`${item.image}`}
+                                          alt={item.name}
+                                          className="w-full h-full object-cover"
+                                        />
+                                      ) : (
+                                        <span className="text-base">
+                                          {item.icon}
+                                        </span>
+                                      )}
                                     </div>
                                     <span className="text-white text-base truncate font-semibold">
                                       {item.name}
@@ -861,7 +871,7 @@ const PortfolioApp: React.FC = () => {
 
               {/* Right - Preview - Conditionally shown/hidden on mobile */}
               <div
-                className={`w-full md:w-5/12 lg:w-7/12 xl:w-3/5 2xl:w-2/3 bg-white/7 backdrop-blur-md overflow-y-auto flex flex-col h-full ${
+                className={`w-full md:w-5/12 lg:w-7/12 xl:w-3/5 2xl:w-2/3 bg-white/7 backdrop-blur-md overflow-y-auto flex flex-col h-full mac-scrollbar ${
                   viewingFileDetail ? "block" : "hidden md:flex"
                 }`}
               >
@@ -871,9 +881,9 @@ const PortfolioApp: React.FC = () => {
                       {/* Two column layout for media content and description */}
                       <div className="flex-1 p-4 flex flex-col h-full overflow-hidden">
                         {selectedItem.details.media.length > 0 && (
-                          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:divide-x md:divide-white/20 h-full">
-                            {/* Left Column - Image Gallery */}
-                            <div className="image-gallery-container h-full">
+                          <div className="grid grid-cols-1 md:grid-cols-10 gap-6 md:divide-x md:divide-white/20 h-full">
+                            {/* Left Column - Image Gallery (70%) */}
+                            <div className="image-gallery-container h-full md:col-span-7">
                               <div className="h-full">
                                 <ImageGallery
                                   items={getGalleryItems()}
@@ -887,9 +897,10 @@ const PortfolioApp: React.FC = () => {
                                   showFullscreenButton={true}
                                   useBrowserFullscreen={true}
                                   slideInterval={3000}
+                                  lazyLoad={true}
                                   slideDuration={450}
-                                  additionalClass="portfolio-gallery fit-content h-full"
-                                  thumbnailPosition="bottom"
+                                  additionalClass="portfolio-gallery fit-content h-full items-center justify-center"
+                                  thumbnailPosition="left"
                                   onSlide={handleSlideChange}
                                   renderLeftNav={renderLeftNav}
                                   renderRightNav={renderRightNav}
@@ -897,8 +908,8 @@ const PortfolioApp: React.FC = () => {
                               </div>
                             </div>
 
-                            {/* Right Column - Media Description */}
-                            <div className="rounded-lg p-6 flex flex-col justify-start h-full overflow-y-auto">
+                            {/* Right Column - Media Description (30%) */}
+                            <div className="rounded-lg p-6 flex flex-col justify-start h-full overflow-y-auto mac-scrollbar md:col-span-3">
                               <h3 className="text-xl font-semibold text-white mb-4">
                                 {currentMedia && currentMedia.title
                                   ? currentMedia.title
@@ -958,7 +969,7 @@ const PortfolioApp: React.FC = () => {
             <>
               {/* Left - Search Results - Hidden on mobile when viewing detail */}
               <div
-                className={`w-full md:w-1/3 lg:w-1/4 xl:w-1/5 2xl:w-1/6 bg-white/5 backdrop-blur-md border-r border-white/20 overflow-y-auto md:max-w-sm ${
+                className={`w-full md:w-1/3 lg:w-1/4 xl:w-1/5 2xl:w-1/6 bg-white/5 backdrop-blur-md border-r border-white/20 overflow-y-auto md:max-w-sm mac-scrollbar ${
                   viewingFileDetail ? "hidden md:block" : "block"
                 }`}
               >
@@ -978,10 +989,18 @@ const PortfolioApp: React.FC = () => {
                         <div className="flex flex-col">
                           <div className="flex items-center">
                             <div
-                              className="w-10 h-10 md:w-8 md:h-8 mr-3 md:mr-2 flex items-center justify-center rounded-md"
+                              className="w-10 h-10 md:w-8 md:h-8 mr-3 md:mr-2 flex items-center justify-center rounded-md border-2 border-white overflow-hidden"
                               style={{ backgroundColor: item.color }}
                             >
-                              <span className="text-base">{item.icon}</span>
+                              {item.image ? (
+                                <img
+                                  src={`/images/${item.image}`}
+                                  alt={item.name}
+                                  className="w-full h-full object-cover"
+                                />
+                              ) : (
+                                <span className="text-base">{item.icon}</span>
+                              )}
                             </div>
                             <span className="text-white text-base truncate">
                               {item.name}
