@@ -443,16 +443,16 @@ const PortfolioApp: React.FC = () => {
 
   return (
     <div
-      className="flex flex-col h-screen bg-[url('/images/background.png')] relative"
+      className="flex px-0 md:px-4 lg:px-8 lg:py-20 xl:px-16 2xl:px-40 flex-col h-screen bg-[url('/images/background.png')] relative"
       style={{
         fontFamily:
           "system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif",
       }}
     >
       {/* Glass-like card that contains the entire UI */}
-      <div className="relative z-10 m-2 md:m-15 rounded-lg overflow-hidden border border-white/20 shadow-2xl backdrop-filter backdrop-blur-xl bg-black/70 flex flex-col h-full">
+      <div className="relative z-10 m-2 md:m-4 rounded-2xl overflow-hidden border border-white/30 shadow-2xl backdrop-filter backdrop-blur-xl bg-black/70 flex flex-col h-full">
         {/* Header - Updated for mobile with collapsible search */}
-        <header className="p-2 flex justify-between items-center border-b border-white/10 backdrop-blur-lg">
+        <header className="p-3 flex justify-between items-center border-b border-white/20 backdrop-blur-lg">
           <div
             className={`flex items-center space-x-2 ${
               searchExpanded ? "md:flex hidden" : "flex"
@@ -476,8 +476,8 @@ const PortfolioApp: React.FC = () => {
               </button>
             )}
 
-            <div className="hidden md:flex bg-black/20 p-1.5 rounded-full ml-1">
-              <User size={18} className="text-white" />
+            <div className="hidden md:flex bg-black/20 p-1.5 rounded-full ml-2">
+              <User size={26} className="text-white" />
             </div>
 
             {/* Current context for mobile - hidden when search is expanded */}
@@ -502,7 +502,7 @@ const PortfolioApp: React.FC = () => {
                   <input
                     type="text"
                     placeholder="Search"
-                    className="bg-black/20 backdrop-blur-lg rounded-lg py-2 pl-8 pr-8 w-full text-white text-base border border-white/10"
+                    className="bg-black/20 backdrop-blur-lg rounded-lg py-2 pl-8 pr-8 w-full text-white text-base border border-white/20"
                     value={searchQuery}
                     onChange={handleSearchChange}
                     onBlur={handleSearchBlur}
@@ -525,17 +525,17 @@ const PortfolioApp: React.FC = () => {
             ) : (
               <>
                 {/* Desktop search bar */}
-                <div className="hidden md:block relative">
+                <div className="hidden md:block relative pr-1">
                   <input
                     type="text"
                     placeholder="Search"
-                    className="bg-black/20 backdrop-blur-lg rounded-lg py-1.5 pl-8 pr-8 w-48 text-white text-base border border-white/10"
+                    className="bg-black/20 backdrop-blur-lg rounded-lg py-1.5 pl-8 pr-8 w-52 text-white text-base border border-white/20"
                     value={searchQuery}
                     onChange={handleSearchChange}
                   />
                   <Search
                     size={16}
-                    className="absolute left-2 top-2.5 text-white/70"
+                    className="absolute left-3 top-2.5 text-white/70"
                   />
                   {searchQuery.trim() !== "" && (
                     <button
@@ -614,11 +614,17 @@ const PortfolioApp: React.FC = () => {
             // Normal layout - responsive with conditional display on mobile
             <>
               {/* Left Sidebar - Hidden on mobile */}
-              <div className="hidden md:w-80 md:flex md:flex-col bg-white/10 backdrop-blur-md overflow-y-auto border-r border-white/10 h-full">
-                <div className="p-4">
+              <div className="hidden md:block md:w-1/4 lg:w-1/5 xl:w-1/5 2xl:w-1/6 md:flex md:flex-col bg-white/5 backdrop-blur-md overflow-y-auto border-r border-white/20 h-full max-w-sm">
+                <div className="p-7">
                   <div className="mb-6">
-                    <h1 className="text-xl font-bold mb-1 text-white">
-                      Tate McCormick
+                    <h1
+                      className="font-bold mb-1 text-white"
+                      style={{
+                        fontSize: "clamp(1.25rem, 3vw, 2.25rem)",
+                        lineHeight: 1.2,
+                      }}
+                    >
+                      Tate McCormick is a designer & engineer based in
                     </h1>
                     <p className="text-white/80 text-base">Redmond, WA.</p>
                   </div>
@@ -665,7 +671,7 @@ const PortfolioApp: React.FC = () => {
 
               {/* Middle - File List - Conditionally shown/hidden on mobile */}
               <div
-                className={`w-full md:w-88 bg-white/5 backdrop-blur-md border-r border-white/10 overflow-y-auto ${
+                className={`w-full md:w-1/3 lg:w-1/4 xl:w-1/5 2xl:w-1/6 bg-white/7 backdrop-blur-md border-r border-white/20 overflow-y-auto md:max-w-sm ${
                   viewingFileDetail ? "hidden md:block" : "block"
                 }`}
               >
@@ -682,7 +688,7 @@ const PortfolioApp: React.FC = () => {
                         >
                           <div className="flex items-center">
                             <div
-                              className="w-10 h-10 md:w-8 md:h-8 mr-3 md:mr-2 flex items-center justify-center rounded-md"
+                              className="w-10 h-10 md:w-8 md:h-8 mr-3 md:mr-2 flex items-center justify-center rounded-md border-2 border-white"
                               style={{ backgroundColor: item.color }}
                             >
                               <span className="text-base">{item.icon}</span>
@@ -712,7 +718,7 @@ const PortfolioApp: React.FC = () => {
 
               {/* Right - Preview - Conditionally shown/hidden on mobile */}
               <div
-                className={`w-full flex-1 md:flex-1 bg-white/5 backdrop-blur-md overflow-y-auto flex flex-col ${
+                className={`w-full md:w-5/12 lg:w-7/12 xl:w-3/5 2xl:w-2/3 bg-white/7 backdrop-blur-md overflow-y-auto flex flex-col ${
                   viewingFileDetail ? "block" : "hidden md:flex"
                 }`}
               >
@@ -742,12 +748,12 @@ const PortfolioApp: React.FC = () => {
                       )}
 
                       {/* Media content */}
-                      <div className="w-full max-w-md flex items-center justify-center">
+                      <div className="w-full max-w-full md:max-w-lg lg:max-w-xl xl:max-w-2xl mx-auto flex items-center justify-center">
                         {currentMedia && renderMedia(currentMedia)}
                       </div>
                     </div>
 
-                    <div className="p-4 border-t border-white/10">
+                    <div className="p-4 border-t border-white/20">
                       <div className="text-white">
                         <h2 className="text-lg font-semibold mb-1">
                           {selectedItem.name}
@@ -791,7 +797,7 @@ const PortfolioApp: React.FC = () => {
             <>
               {/* Left - Search Results - Hidden on mobile when viewing detail */}
               <div
-                className={`w-full md:w-72 bg-white/5 backdrop-blur-md border-r border-white/10 overflow-y-auto ${
+                className={`w-full md:w-1/3 lg:w-1/4 xl:w-1/5 2xl:w-1/6 bg-white/5 backdrop-blur-md border-r border-white/20 overflow-y-auto md:max-w-sm ${
                   viewingFileDetail ? "hidden md:block" : "block"
                 }`}
               >
@@ -837,10 +843,9 @@ const PortfolioApp: React.FC = () => {
                   </div>
                 </div>
               </div>
-
               {/* Right - Preview - Shown on mobile only when viewing detail */}
               <div
-                className={`w-full flex-1 md:flex-1 bg-white/5 backdrop-blur-md overflow-y-auto flex flex-col ${
+                className={`w-full md:w-2/3 lg:w-3/4 xl:w-4/5 2xl:w-5/6 bg-white/5 backdrop-blur-md overflow-y-auto flex flex-col ${
                   viewingFileDetail ? "block" : "hidden md:flex"
                 }`}
               >
@@ -870,12 +875,12 @@ const PortfolioApp: React.FC = () => {
                       )}
 
                       {/* Media content */}
-                      <div className="w-full max-w-md flex items-center justify-center">
+                      <div className="w-full max-w-full md:max-w-lg lg:max-w-xl xl:max-w-2xl mx-auto flex items-center justify-center">
                         {currentMedia && renderMedia(currentMedia)}
                       </div>
                     </div>
 
-                    <div className="p-4 border-t border-white/10">
+                    <div className="p-4 border-t border-white/20">
                       <div className="text-white">
                         <h2 className="text-lg font-semibold mb-1">
                           {selectedItem.name}

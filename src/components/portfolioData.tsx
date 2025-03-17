@@ -112,16 +112,16 @@ export const portfolioData = {
 
   // Folder metadata
   folderInfo: {
-    "Web Design": { icon: "📱", description: "Web interface designs" },
+    "Web Design": { icon: "📁", description: "Web interface designs" },
     "Product Design": {
-      icon: "📦",
+      icon: "📁",
       description: "Physical and digital product designs",
     },
     "Visual Design": {
-      icon: "👁️",
+      icon: "📁",
       description: "Visual experiments and studies",
     },
-    Experiments: { icon: "🧪", description: "Experimental works and concepts" },
-    Portfolio: { icon: "🗂️", description: "Complete portfolio collection" },
+    Experiments: { icon: "📁", description: "Experimental works and concepts" },
+    Portfolio: { icon: "📁", description: "Complete portfolio collection" },
   } as FolderInfoMap,
 };
