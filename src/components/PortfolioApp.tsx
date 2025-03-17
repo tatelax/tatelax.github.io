@@ -4,6 +4,7 @@ import React, { useState, useEffect, useCallback } from "react";
 import { ChevronRight, ChevronLeft, Search, User, Menu, X } from "lucide-react";
 import { portfolioData } from "./portfolioData";
 import ImageGallery from "react-image-gallery";
+import { renderLeftNav, renderRightNav } from "./GalleryNavigation";
 import "react-image-gallery/styles/css/image-gallery.css";
 
 // Define interfaces for our data structures
@@ -785,6 +786,8 @@ const PortfolioApp: React.FC = () => {
                                   additionalClass="portfolio-gallery fit-content h-full"
                                   thumbnailPosition="bottom"
                                   onSlide={handleSlideChange}
+                                  renderLeftNav={renderLeftNav}
+                                  renderRightNav={renderRightNav}
                                 />
                               </div>
                             </div>
@@ -934,6 +937,8 @@ const PortfolioApp: React.FC = () => {
                               additionalClass="portfolio-gallery fit-content"
                               thumbnailPosition="bottom"
                               onSlide={handleSlideChange}
+                              renderLeftNav={renderLeftNav}
+                              renderRightNav={renderRightNav}
                             />
                           </div>
 
