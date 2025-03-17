@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect, useCallback } from "react";
-import { ChevronRight, ChevronLeft, Search, User, Menu } from "lucide-react";
+import { ChevronRight, ChevronLeft, Search, User, Menu, X } from "lucide-react";
 import { portfolioData } from "./portfolioData";
 
 // Define interfaces for our data structures
@@ -191,6 +191,15 @@ const PortfolioApp: React.FC = () => {
   const handleSearchBlur = () => {
     if (searchQuery.trim() === "") {
       setSearchExpanded(false);
+    }
+  };
+
+  // Clear search input
+  const handleClearSearch = () => {
+    setSearchQuery("");
+    if (selectedFolder) {
+      updateUrl(selectedFolder, selectedItemId);
+      setViewingFileDetail(false); // Return to file list on mobile when search is cleared
     }
   };
 
@@ -493,7 +502,7 @@ const PortfolioApp: React.FC = () => {
                   <input
                     type="text"
                     placeholder="Search"
-                    className="bg-black/20 backdrop-blur-lg rounded-lg py-2 pl-8 pr-2 w-full text-white text-base border border-white/10"
+                    className="bg-black/20 backdrop-blur-lg rounded-lg py-2 pl-8 pr-8 w-full text-white text-base border border-white/10"
                     value={searchQuery}
                     onChange={handleSearchChange}
                     onBlur={handleSearchBlur}
@@ -503,6 +512,14 @@ const PortfolioApp: React.FC = () => {
                     size={16}
                     className="absolute left-2 top-3 text-white/70"
                   />
+                  {searchQuery.trim() !== "" && (
+                    <button
+                      className="absolute right-2 top-2.5 bg-white/20 hover:bg-white/30 rounded-full p-1 transition-colors"
+                      onClick={handleClearSearch}
+                    >
+                      <X size={14} className="text-white" />
+                    </button>
+                  )}
                 </div>
               </div>
             ) : (
@@ -512,7 +529,7 @@ const PortfolioApp: React.FC = () => {
                   <input
                     type="text"
                     placeholder="Search"
-                    className="bg-black/20 backdrop-blur-lg rounded-lg py-1.5 pl-8 pr-2 w-48 text-white text-base border border-white/10"
+                    className="bg-black/20 backdrop-blur-lg rounded-lg py-1.5 pl-8 pr-8 w-48 text-white text-base border border-white/10"
                     value={searchQuery}
                     onChange={handleSearchChange}
                   />
@@ -520,6 +537,14 @@ const PortfolioApp: React.FC = () => {
                     size={16}
                     className="absolute left-2 top-2.5 text-white/70"
                   />
+                  {searchQuery.trim() !== "" && (
+                    <button
+                      className="absolute right-2 top-2 bg-white/20 hover:bg-white/30 rounded-full p-1 transition-colors"
+                      onClick={handleClearSearch}
+                    >
+                      <X size={14} className="text-white" />
+                    </button>
+                  )}
                 </div>
 
                 {/* Mobile search icon */}
