@@ -755,96 +755,102 @@ const PortfolioApp: React.FC = () => {
 
               {/* Right - Preview - Conditionally shown/hidden on mobile */}
               <div
-                className={`w-full md:w-5/12 lg:w-7/12 xl:w-3/5 2xl:w-2/3 bg-white/7 backdrop-blur-md overflow-y-auto flex flex-col ${
+                className={`w-full md:w-5/12 lg:w-7/12 xl:w-3/5 2xl:w-2/3 bg-white/7 backdrop-blur-md overflow-y-auto flex flex-col h-full ${
                   viewingFileDetail ? "block" : "hidden md:flex"
                 }`}
               >
-                {selectedItem && (
-                  <>
-                    {/* Two column layout for media content and description */}
-                    <div className="flex-1 p-4">
-                      {selectedItem.details.media.length > 0 && (
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:divide-x md:divide-white/20">
-                          {/* Left Column - Image Gallery */}
-                          <div className="image-gallery-container">
-                            <ImageGallery
-                              items={getGalleryItems()}
-                              showPlayButton={false}
-                              showBullets={
-                                selectedItem.details.media.length > 1
-                              }
-                              showThumbnails={
-                                selectedItem.details.media.length > 1
-                              }
-                              showFullscreenButton={true}
-                              useBrowserFullscreen={true}
-                              slideInterval={3000}
-                              slideDuration={450}
-                              additionalClass="portfolio-gallery fit-content"
-                              thumbnailPosition="bottom"
-                              onSlide={handleSlideChange}
-                            />
+                <div className="h-full flex flex-col">
+                  {selectedItem && (
+                    <>
+                      {/* Two column layout for media content and description */}
+                      <div className="flex-1 p-4 flex flex-col h-full overflow-hidden">
+                        {selectedItem.details.media.length > 0 && (
+                          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:divide-x md:divide-white/20 h-full">
+                            {/* Left Column - Image Gallery */}
+                            <div className="image-gallery-container h-full">
+                              <div className="h-full">
+                                <ImageGallery
+                                  items={getGalleryItems()}
+                                  showPlayButton={false}
+                                  showBullets={
+                                    selectedItem.details.media.length > 1
+                                  }
+                                  showThumbnails={
+                                    selectedItem.details.media.length > 1
+                                  }
+                                  showFullscreenButton={true}
+                                  useBrowserFullscreen={true}
+                                  slideInterval={3000}
+                                  slideDuration={450}
+                                  additionalClass="portfolio-gallery fit-content h-full"
+                                  thumbnailPosition="bottom"
+                                  onSlide={handleSlideChange}
+                                />
+                              </div>
+                            </div>
+
+                            {/* Right Column - Media Description */}
+                            <div className="rounded-lg p-6 flex flex-col justify-start h-full overflow-y-auto">
+                              <h3 className="text-xl font-semibold text-white mb-4">
+                                Media Details
+                              </h3>
+
+                              {currentMedia && currentMedia.description ? (
+                                <div className="space-y-4">
+                                  <p className="text-white/90 text-base">
+                                    {currentMedia.description}
+                                  </p>
+                                </div>
+                              ) : (
+                                <p className="text-white/70 italic">
+                                  No description available for this media.
+                                </p>
+                              )}
+                            </div>
                           </div>
+                        )}
+                      </div>
 
-                          {/* Right Column - Media Description */}
-                          <div className="rounded-lg p-6 flex flex-col justify-start h-full">
-                            <h3 className="text-xl font-semibold text-white mb-4">
-                              Media Details
-                            </h3>
+                      <div className="p-4 border-t border-white/20">
+                        <div className="text-white">
+                          <h2 className="text-lg font-semibold mb-1">
+                            {selectedItem.name}
+                          </h2>
+                          <p className="text-white/70 text-base mb-4">
+                            {selectedItem.details.size}
+                          </p>
 
-                            {currentMedia && currentMedia.description ? (
-                              <div className="space-y-4">
-                                <p className="text-white/90 text-base">
-                                  {currentMedia.description}
+                          <div className="space-y-2 text-base">
+                            <div className="flex justify-between">
+                              <span className="text-white/70">Created</span>
+                              <span>{selectedItem.details.created}</span>
+                            </div>
+                            <div className="flex justify-between">
+                              <span className="text-white/70">Client</span>
+                              <span>{selectedItem.details.client}</span>
+                            </div>
+                            <div className="flex justify-between">
+                              <span className="text-white/70">Tags</span>
+                              <span>
+                                {selectedItem.details.tags.join(", ")}
+                              </span>
+                            </div>
+                            {selectedItem.details.description && (
+                              <div className="pt-2">
+                                <span className="text-white/70 block mb-1">
+                                  Description
+                                </span>
+                                <p className="text-white/90">
+                                  {selectedItem.details.description}
                                 </p>
                               </div>
-                            ) : (
-                              <p className="text-white/70 italic">
-                                No description available for this media.
-                              </p>
                             )}
                           </div>
                         </div>
-                      )}
-                    </div>
-
-                    <div className="p-4 border-t border-white/20">
-                      <div className="text-white">
-                        <h2 className="text-lg font-semibold mb-1">
-                          {selectedItem.name}
-                        </h2>
-                        <p className="text-white/70 text-base mb-4">
-                          {selectedItem.details.size}
-                        </p>
-
-                        <div className="space-y-2 text-base">
-                          <div className="flex justify-between">
-                            <span className="text-white/70">Created</span>
-                            <span>{selectedItem.details.created}</span>
-                          </div>
-                          <div className="flex justify-between">
-                            <span className="text-white/70">Client</span>
-                            <span>{selectedItem.details.client}</span>
-                          </div>
-                          <div className="flex justify-between">
-                            <span className="text-white/70">Tags</span>
-                            <span>{selectedItem.details.tags.join(", ")}</span>
-                          </div>
-                          {selectedItem.details.description && (
-                            <div className="pt-2">
-                              <span className="text-white/70 block mb-1">
-                                Description
-                              </span>
-                              <p className="text-white/90">
-                                {selectedItem.details.description}
-                              </p>
-                            </div>
-                          )}
-                        </div>
                       </div>
-                    </div>
-                  </>
-                )}
+                    </>
+                  )}
+                </div>
               </div>
             </>
           ) : searchResults.length > 0 ? (
