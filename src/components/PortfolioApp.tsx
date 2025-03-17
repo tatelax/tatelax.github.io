@@ -11,6 +11,7 @@ interface MediaFile {
   path: string;
   type: "image" | "video" | "pdf";
   thumbnail?: string; // Optional thumbnail for videos/pdfs
+  description?: string; // Added description field for each media item
 }
 
 interface ItemDetails {
@@ -62,6 +63,7 @@ const PortfolioApp: React.FC = () => {
   const [selectedItemId, setSelectedItemId] = useState<string>("");
   const [searchQuery, setSearchQuery] = useState<string>("");
   const [searchResults, setSearchResults] = useState<SearchResult[]>([]);
+  const [currentMediaIndex, setCurrentMediaIndex] = useState<number>(0); // Added to track current media index
 
   // Mobile-specific states
   const [mobileMenuOpen, setMobileMenuOpen] = useState<boolean>(false);
@@ -130,6 +132,7 @@ const PortfolioApp: React.FC = () => {
   const handleItemSelect = useCallback(
     (itemId: string, folderName?: string) => {
       setSelectedItemId(itemId);
+      setCurrentMediaIndex(0); // Reset media index when selecting a new item
 
       // On mobile, switch to file detail view
       if (window.innerWidth < 768) {
@@ -151,6 +154,7 @@ const PortfolioApp: React.FC = () => {
       setSelectedFolder(folderName);
       setMobileMenuOpen(false); // Close mobile menu after selection
       setViewingFileDetail(false); // Return to file list view on mobile
+      setCurrentMediaIndex(0); // Reset media index when selecting a new folder
 
       const folderItems = getItemsInFolder(folderName);
 
@@ -166,6 +170,11 @@ const PortfolioApp: React.FC = () => {
     },
     [getItemsInFolder, updateUrl]
   );
+
+  // Handle slide change in the image gallery
+  const handleSlideChange = (index: number) => {
+    setCurrentMediaIndex(index);
+  };
 
   // Handle search input change
   const handleSearchChange = useCallback(
@@ -229,6 +238,7 @@ const PortfolioApp: React.FC = () => {
 
         if (itemParam && portfolioData.items[itemParam]) {
           setSelectedItemId(itemParam);
+          setCurrentMediaIndex(0); // Reset media index when navigating
           if (window.innerWidth < 768) {
             setViewingFileDetail(true);
           }
@@ -369,6 +379,9 @@ const PortfolioApp: React.FC = () => {
 
   // Get the current selected item
   const selectedItem = getSelectedItem();
+
+  // Get the current media item being viewed
+  const currentMedia = selectedItem?.details.media[currentMediaIndex] || null;
 
   // Format media files for react-image-gallery
   const getGalleryItems = useCallback(() => {
@@ -748,14 +761,12 @@ const PortfolioApp: React.FC = () => {
               >
                 {selectedItem && (
                   <>
-                    <div className="flex-1 p-4 flex flex-col items-center justify-center">
-                      {/* Using react-image-gallery for media display */}
-                      <div className="w-full max-w-full md:max-w-lg lg:max-w-xl xl:max-w-2xl mx-auto">
-                        {selectedItem.details.media.length > 0 && (
-                          <div
-                            className="image-gallery-container"
-                            style={{ maxHeight: "70vh" }}
-                          >
+                    {/* Two column layout for media content and description */}
+                    <div className="flex-1 p-4">
+                      {selectedItem.details.media.length > 0 && (
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:divide-x md:divide-white/20">
+                          {/* Left Column - Image Gallery */}
+                          <div className="image-gallery-container">
                             <ImageGallery
                               items={getGalleryItems()}
                               showPlayButton={false}
@@ -770,11 +781,31 @@ const PortfolioApp: React.FC = () => {
                               slideInterval={3000}
                               slideDuration={450}
                               additionalClass="portfolio-gallery fit-content"
-                              thumbnailPosition="left"
+                              thumbnailPosition="bottom"
+                              onSlide={handleSlideChange}
                             />
                           </div>
-                        )}
-                      </div>
+
+                          {/* Right Column - Media Description */}
+                          <div className="rounded-lg p-6 flex flex-col justify-start h-full">
+                            <h3 className="text-xl font-semibold text-white mb-4">
+                              Media Details
+                            </h3>
+
+                            {currentMedia && currentMedia.description ? (
+                              <div className="space-y-4">
+                                <p className="text-white/90 text-base">
+                                  {currentMedia.description}
+                                </p>
+                              </div>
+                            ) : (
+                              <p className="text-white/70 italic">
+                                No description available for this media.
+                              </p>
+                            )}
+                          </div>
+                        </div>
+                      )}
                     </div>
 
                     <div className="p-4 border-t border-white/20">
@@ -875,14 +906,12 @@ const PortfolioApp: React.FC = () => {
               >
                 {selectedItem && (
                   <>
-                    <div className="flex-1 p-4 flex flex-col items-center justify-center">
-                      {/* Using react-image-gallery for media display */}
-                      <div className="w-full max-w-full md:max-w-lg lg:max-w-xl xl:max-w-2xl mx-auto">
-                        {selectedItem.details.media.length > 0 && (
-                          <div
-                            className="image-gallery-container"
-                            style={{ maxHeight: "70vh" }}
-                          >
+                    {/* Two column layout for media content and description */}
+                    <div className="flex-1 p-4">
+                      {selectedItem.details.media.length > 0 && (
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:divide-x md:divide-white/20">
+                          {/* Left Column - Image Gallery */}
+                          <div className="image-gallery-container">
                             <ImageGallery
                               items={getGalleryItems()}
                               showPlayButton={false}
@@ -897,10 +926,31 @@ const PortfolioApp: React.FC = () => {
                               slideInterval={3000}
                               slideDuration={450}
                               additionalClass="portfolio-gallery fit-content"
+                              thumbnailPosition="bottom"
+                              onSlide={handleSlideChange}
                             />
                           </div>
-                        )}
-                      </div>
+
+                          {/* Right Column - Media Description */}
+                          <div className="rounded-lg p-6 flex flex-col justify-start h-full">
+                            <h3 className="text-xl font-semibold text-white mb-4">
+                              Media Details
+                            </h3>
+
+                            {currentMedia && currentMedia.description ? (
+                              <div className="space-y-4">
+                                <p className="text-white/90 text-base">
+                                  {currentMedia.description}
+                                </p>
+                              </div>
+                            ) : (
+                              <p className="text-white/70 italic">
+                                No description available for this media.
+                              </p>
+                            )}
+                          </div>
+                        </div>
+                      )}
                     </div>
 
                     <div className="p-4 border-t border-white/20">
