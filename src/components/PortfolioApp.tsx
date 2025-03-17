@@ -906,6 +906,7 @@ const PortfolioApp: React.FC = () => {
                                   onSlide={handleSlideChange}
                                   renderLeftNav={renderLeftNav}
                                   renderRightNav={renderRightNav}
+                                  startIndex={currentMediaIndex}
                                 />
                               </div>
                             </div>
@@ -1058,6 +1059,7 @@ const PortfolioApp: React.FC = () => {
                                 onSlide={handleSlideChange}
                                 renderLeftNav={renderLeftNav}
                                 renderRightNav={renderRightNav}
+                                startIndex={currentMediaIndex}
                               />
                             </div>
                           </div>
