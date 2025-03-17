@@ -37,49 +37,6 @@ const PortfolioApp: React.FC = () => {
   const [searchQuery, setSearchQuery] = useState<string>("");
   const [searchResults, setSearchResults] = useState<FileItem[]>([]);
 
-  // Parse the URL when the component mounts
-  useEffect(() => {
-    const params = new URLSearchParams(window.location.search);
-    const folderParam = params.get("folder");
-    const fileParam = params.get("file");
-
-    // If folder is in URL and exists in our structure
-    if (folderParam && folderStructure[folderParam]) {
-      setSelectedFolder(folderParam);
-
-      // If file is in URL and exists in the folder
-      if (fileParam) {
-        const fileExists = folderStructure[folderParam].some(
-          (file) => file.name === fileParam
-        );
-        if (fileExists) {
-          setSelectedFile(fileParam);
-        } else if (folderStructure[folderParam].length > 0) {
-          // If file doesn't exist, select first file in folder
-          setSelectedFile(folderStructure[folderParam][0].name);
-          updateUrl(folderParam, folderStructure[folderParam][0].name);
-        }
-      } else if (folderStructure[folderParam].length > 0) {
-        // If no file in URL, select first file in folder
-        setSelectedFile(folderStructure[folderParam][0].name);
-        updateUrl(folderParam, folderStructure[folderParam][0].name);
-      }
-    } else if (fileParam) {
-      // If only file is in URL, find which folder contains it
-      for (const folderName in folderStructure) {
-        const fileExists = folderStructure[folderName].some(
-          (file) => file.name === fileParam
-        );
-        if (fileExists) {
-          setSelectedFolder(folderName);
-          setSelectedFile(fileParam);
-          updateUrl(folderName, fileParam);
-          break;
-        }
-      }
-    }
-  }, []);
-
   const folderStructure: FolderStructure = {
     "Web Design": [
       { name: "Alternative Paint.png", icon: "🎨", color: "#5A8DEE" },
@@ -125,6 +82,105 @@ const PortfolioApp: React.FC = () => {
     client: "Self-initiated",
     tags: "Bold, Experimental",
   };
+
+  // Update URL when a file or folder is selected
+  const updateUrl = (foldername: string, filename?: string) => {
+    const url = new URL(window.location.href);
+    url.searchParams.set("folder", foldername);
+
+    if (filename) {
+      url.searchParams.set("file", filename);
+    } else {
+      url.searchParams.delete("file");
+    }
+
+    window.history.pushState({}, "", url);
+  };
+
+  // Reset URL to root (no parameters)
+  const resetUrlToRoot = () => {
+    const url = new URL(window.location.href);
+    url.search = "";
+    window.history.pushState({}, "", url);
+  };
+
+  // Handle file selection with URL update
+  const handleFileSelect = (filename: string, folderName?: string) => {
+    setSelectedFile(filename);
+
+    // If folder is provided, use it, otherwise use currently selected folder
+    const folder = folderName || selectedFolder;
+    updateUrl(folder, filename);
+  };
+
+  // Handle folder selection with URL update
+  const handleFolderSelect = (folderName: string) => {
+    setSelectedFolder(folderName);
+
+    // Update URL with new folder
+    if (folderStructure[folderName]?.length > 0) {
+      const firstFile = folderStructure[folderName][0].name;
+      setSelectedFile(firstFile);
+      updateUrl(folderName, firstFile);
+    } else {
+      // If folder is empty, just update folder in URL
+      updateUrl(folderName);
+    }
+  };
+
+  // Handle search input change
+  const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const newQuery = e.target.value;
+    setSearchQuery(newQuery);
+
+    // If search is cleared, restore the normal URL with current selection
+    if (newQuery.trim() === "" && selectedFolder) {
+      updateUrl(selectedFolder, selectedFile);
+    }
+  };
+
+  // Parse the URL when the component mounts
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const folderParam = params.get("folder");
+    const fileParam = params.get("file");
+
+    // If folder is in URL and exists in our structure
+    if (folderParam && folderStructure[folderParam]) {
+      setSelectedFolder(folderParam);
+
+      // If file is in URL and exists in the folder
+      if (fileParam) {
+        const fileExists = folderStructure[folderParam].some(
+          (file) => file.name === fileParam
+        );
+        if (fileExists) {
+          setSelectedFile(fileParam);
+        } else if (folderStructure[folderParam].length > 0) {
+          // If file doesn't exist, select first file in folder
+          setSelectedFile(folderStructure[folderParam][0].name);
+          updateUrl(folderParam, folderStructure[folderParam][0].name);
+        }
+      } else if (folderStructure[folderParam].length > 0) {
+        // If no file in URL, select first file in folder
+        setSelectedFile(folderStructure[folderParam][0].name);
+        updateUrl(folderParam, folderStructure[folderParam][0].name);
+      }
+    } else if (fileParam) {
+      // If only file is in URL, find which folder contains it
+      for (const folderName in folderStructure) {
+        const fileExists = folderStructure[folderName].some(
+          (file) => file.name === fileParam
+        );
+        if (fileExists) {
+          setSelectedFolder(folderName);
+          setSelectedFile(fileParam);
+          updateUrl(folderName, fileParam);
+          break;
+        }
+      }
+    }
+  }, []);
 
   // Perform search when query changes
   useEffect(() => {
@@ -176,164 +232,124 @@ const PortfolioApp: React.FC = () => {
     return currentFiles[0];
   };
 
-  // Update URL when a file or folder is selected
-  const updateUrl = (foldername: string, filename?: string) => {
-    const url = new URL(window.location.href);
-    url.searchParams.set("folder", foldername);
-
-    if (filename) {
-      url.searchParams.set("file", filename);
-    } else {
-      url.searchParams.delete("file");
-    }
-
-    window.history.pushState({}, "", url);
-  };
-
-  // Reset URL to root (no parameters)
-  const resetUrlToRoot = () => {
-    const url = new URL(window.location.href);
-    url.search = "";
-    window.history.pushState({}, "", url);
-  };
-
-  // Handle file selection with URL update
-  const handleFileSelect = (filename: string, folderName?: string) => {
-    setSelectedFile(filename);
-
-    // If folder is provided, use it, otherwise use currently selected folder
-    const folder = folderName || selectedFolder;
-    updateUrl(folder, filename);
-  };
-
-  // Handle folder selection with URL update
-  const handleFolderSelect = (folderName: string) => {
-    setSelectedFolder(folderName);
-
-    // Update URL with new folder
-    if (folderStructure[folderName]?.length > 0) {
-      const firstFile = folderStructure[folderName][0].name;
-      setSelectedFile(firstFile);
-      updateUrl(folderName, firstFile);
-    } else {
-      // If folder is empty, just update folder in URL
-      updateUrl(folderName);
-    }
-  };
-  // Handle search input change
-  const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const newQuery = e.target.value;
-    setSearchQuery(newQuery);
-
-    // If search is cleared, restore the normal URL with current selection
-    if (newQuery.trim() === "" && selectedFolder) {
-      updateUrl(selectedFolder, selectedFile);
-    }
-  };
-
   return (
-    <div className="flex flex-col h-screen bg-gradient-to-br from-blue-800 via-teal-700 to-blue-800 p-4">
-      <div className="bg-gray-900 rounded-lg overflow-hidden flex flex-col h-full text-white">
+    <div className="flex flex-col h-screen bg-[url('/images/background.png')] relative">
+      {/* Apply a glass-like background overlay */}
+      {/* <div className="absolute inset-0 bg-gradient-to-b from-purple-500/30 to-blue-700/30 backdrop-blur-sm"></div> */}
+
+      {/* Glass-like card that contains the entire UI */}
+      <div className="relative z-10 m-15 rounded-lg overflow-hidden border border-white/20 shadow-2xl backdrop-filter backdrop-blur-xl bg-black/70 flex flex-col h-full">
         {/* Header */}
-        <header className="p-4 flex justify-between items-center border-b border-gray-800">
+        <header className="p-2 flex justify-between items-center border-b border-white/10 backdrop-blur-lg">
           <div className="flex items-center space-x-2">
-            <div className="bg-gray-800 p-2 rounded-full">
-              <User size={24} className="text-white" />
+            <div className="bg-black/20 p-1.5 rounded-full ml-1">
+              <User size={16} className="text-white" />
             </div>
           </div>
           <div className="relative">
             <input
               type="text"
               placeholder="Search"
-              className="bg-gray-800 rounded-lg py-2 pl-10 pr-4 w-64 text-white"
+              className="bg-black/20 backdrop-blur-lg rounded-lg py-1 pl-8 pr-2 w-48 text-white text-sm border border-white/10"
               value={searchQuery}
               onChange={handleSearchChange}
             />
-            <Search size={18} className="absolute left-3 top-3 text-gray-400" />
+            <Search size={14} className="absolute left-2 top-2 text-white/70" />
           </div>
         </header>
 
         {/* Main Content */}
         <div className="flex flex-1 overflow-hidden">
           {searchQuery.trim() === "" ? (
-            // Normal 3-column layout
+            // Normal layout - folders on left, files in middle, preview on right
             <>
               {/* Left Sidebar - Profile & Folders */}
-              <div className="w-64 bg-gray-900 p-4 overflow-y-auto border-r border-gray-800">
-                <div className="mb-8">
-                  <h1 className="text-2xl font-bold mb-1">
-                    Fons Mans is a designer
-                  </h1>
-                  <p className="text-xl">based in Rotterdam, The Netherlands</p>
+              <div className="w-64 bg-white/10 backdrop-blur-md overflow-y-auto border-r border-white/10 flex flex-col h-full">
+                <div className="p-4">
+                  <div className="mb-6">
+                    <h1 className="text-lg font-bold mb-1 text-white">
+                      Tate McCormick
+                    </h1>
+                    <p className="text-white/80 text-sm">Redmond, WA.</p>
+                  </div>
                 </div>
 
-                <div className="space-y-2">
-                  {folders.map((folder) => (
-                    <div
-                      key={folder.name}
-                      className={`flex items-center justify-between p-2 hover:bg-gray-800 rounded cursor-pointer ${
-                        selectedFolder === folder.name ? "bg-gray-800" : ""
-                      }`}
-                      onClick={() => handleFolderSelect(folder.name)}
-                    >
-                      <div className="flex items-center">
-                        <span
-                          className={`mr-2 ${
-                            selectedFolder === folder.name
-                              ? "text-blue-400"
-                              : "text-blue-300"
-                          }`}
-                        >
-                          {folder.icon}
-                        </span>
-                        <span>{folder.name}</span>
-                      </div>
-                      <ChevronRight
-                        size={18}
-                        className={`${
-                          selectedFolder === folder.name
-                            ? "text-blue-400"
-                            : "text-gray-500"
+                {/* Folder list now anchored to bottom */}
+                <div className="mt-auto p-4">
+                  <div className="space-y-1">
+                    {folders.map((folder) => (
+                      <div
+                        key={folder.name}
+                        className={`flex items-center justify-between p-2 hover:bg-white/5 rounded-md cursor-pointer transition-all ${
+                          selectedFolder === folder.name ? "bg-white/10" : ""
                         }`}
-                      />
-                    </div>
-                  ))}
+                        onClick={() => handleFolderSelect(folder.name)}
+                      >
+                        <div className="flex items-center">
+                          <span
+                            className={`mr-2 text-base ${
+                              selectedFolder === folder.name
+                                ? "text-white"
+                                : "text-white/80"
+                            }`}
+                          >
+                            {folder.icon}
+                          </span>
+                          <span className="text-white text-sm">
+                            {folder.name}
+                          </span>
+                        </div>
+                        <ChevronRight
+                          size={16}
+                          className={`${
+                            selectedFolder === folder.name
+                              ? "text-white"
+                              : "text-white/50"
+                          }`}
+                        />
+                      </div>
+                    ))}
+                  </div>
                 </div>
               </div>
 
               {/* Middle - File List */}
-              <div className="w-80 bg-gray-900 border-r border-gray-800 overflow-y-auto">
-                <div className="p-2">
+              <div className="w-72 bg-white/5 backdrop-blur-md border-r border-white/10 overflow-y-auto">
+                <div className="p-3">
                   {currentFiles.length > 0 ? (
-                    currentFiles.map((file) => (
-                      <div
-                        key={file.name}
-                        className={`flex items-center justify-between p-2 hover:bg-gray-800 rounded cursor-pointer ${
-                          selectedFile === file.name ? "bg-gray-800" : ""
-                        }`}
-                        onClick={() => handleFileSelect(file.name, file.folder)}
-                      >
-                        <div className="flex items-center">
-                          <div
-                            className="w-6 h-6 mr-2 flex items-center justify-center rounded"
-                            style={{ backgroundColor: file.color }}
-                          >
-                            <span className="text-xs">{file.icon}</span>
-                          </div>
-                          <span>{file.name}</span>
-                        </div>
-                        <ChevronRight
-                          size={18}
-                          className={`${
-                            selectedFile === file.name
-                              ? "text-blue-400"
-                              : "text-gray-500"
+                    <div className="space-y-1">
+                      {currentFiles.map((file) => (
+                        <div
+                          key={file.name}
+                          className={`flex items-center justify-between p-2 hover:bg-white/5 rounded-md cursor-pointer transition-all ${
+                            selectedFile === file.name ? "bg-white/10" : ""
                           }`}
-                        />
-                      </div>
-                    ))
+                          onClick={() => handleFileSelect(file.name)}
+                        >
+                          <div className="flex items-center">
+                            <div
+                              className="w-8 h-8 mr-2 flex items-center justify-center rounded-md"
+                              style={{ backgroundColor: file.color }}
+                            >
+                              <span className="text-sm">{file.icon}</span>
+                            </div>
+                            <span className="text-white text-sm truncate">
+                              {file.name}
+                            </span>
+                          </div>
+                          <ChevronRight
+                            size={16}
+                            className={`${
+                              selectedFile === file.name
+                                ? "text-white"
+                                : "text-white/50"
+                            }`}
+                          />
+                        </div>
+                      ))}
+                    </div>
                   ) : (
-                    <div className="text-gray-500 p-4 text-center">
+                    <div className="text-white/70 p-4 text-center text-sm">
                       No files in this folder
                     </div>
                   )}
@@ -341,52 +357,56 @@ const PortfolioApp: React.FC = () => {
               </div>
 
               {/* Right - Preview */}
-              <div className="flex-1 bg-gray-900 p-4 overflow-y-auto">
-                <div className="bg-green-200 rounded-lg p-4 mb-4">
-                  <div className="flex justify-center">
-                    <div className="relative w-64">
-                      {selectedFile === "Inner Creativity.png" && (
-                        <div className="aspect-w-3 aspect-h-4">
-                          <div className="bg-gradient-to-br from-yellow-400 via-pink-500 to-red-500 p-2 rounded">
-                            <div className="grid grid-cols-4 gap-1">
-                              {[...Array(16)].map((_, i) => (
-                                <div
-                                  key={i}
-                                  className={`h-6 ${
-                                    i % 2 === 0
-                                      ? "bg-yellow-300/50"
-                                      : "bg-pink-400/50"
-                                  } ${i > 7 ? "rounded-sm" : ""}`}
-                                ></div>
-                              ))}
-                            </div>
-                            <div className="mt-2 flex justify-center">
-                              <div className="h-24 w-20 bg-orange-300/70 rounded-t-full"></div>
-                            </div>
-                            <div className="text-center mt-2 text-xs">MANS</div>
+              <div className="flex-1 bg-white/5 backdrop-blur-md overflow-y-auto flex flex-col">
+                <div className="flex-1 p-4 flex items-center justify-center">
+                  <div className="w-full max-w-xs">
+                    {selectedFile === "Inner Creativity.png" && (
+                      <div className="aspect-w-3 aspect-h-4">
+                        <div className="bg-gradient-to-br from-yellow-400 via-pink-500 to-red-500 p-2 rounded-md">
+                          <div className="grid grid-cols-4 gap-1">
+                            {[...Array(16)].map((_, i) => (
+                              <div
+                                key={i}
+                                className={`h-6 ${
+                                  i % 2 === 0
+                                    ? "bg-yellow-300/50"
+                                    : "bg-pink-400/50"
+                                } ${i > 7 ? "rounded-sm" : ""}`}
+                              ></div>
+                            ))}
                           </div>
+                          <div className="mt-2 flex justify-center">
+                            <div className="h-24 w-20 bg-orange-300/70 rounded-t-full"></div>
+                          </div>
+                          <div className="text-center mt-2 text-xs">MANS</div>
                         </div>
-                      )}
-                    </div>
+                      </div>
+                    )}
                   </div>
                 </div>
 
-                <div>
-                  <h2 className="text-xl font-semibold">{fileDetails.name}</h2>
-                  <p className="text-gray-400">{fileDetails.size}</p>
+                <div className="p-4 border-t border-white/10">
+                  <div className="text-white">
+                    <h2 className="text-base font-semibold mb-1">
+                      {fileDetails.name}
+                    </h2>
+                    <p className="text-white/70 text-sm mb-4">
+                      {fileDetails.size}
+                    </p>
 
-                  <div className="mt-6 space-y-2">
-                    <div className="flex justify-between">
-                      <span className="text-gray-400">Created</span>
-                      <span>{fileDetails.created}</span>
-                    </div>
-                    <div className="flex justify-between">
-                      <span className="text-gray-400">Client</span>
-                      <span>{fileDetails.client}</span>
-                    </div>
-                    <div className="flex justify-between">
-                      <span className="text-gray-400">Tags</span>
-                      <span>{fileDetails.tags}</span>
+                    <div className="space-y-2 text-sm">
+                      <div className="flex justify-between">
+                        <span className="text-white/70">Created</span>
+                        <span>{fileDetails.created}</span>
+                      </div>
+                      <div className="flex justify-between">
+                        <span className="text-white/70">Client</span>
+                        <span>{fileDetails.client}</span>
+                      </div>
+                      <div className="flex justify-between">
+                        <span className="text-white/70">Tags</span>
+                        <span>{fileDetails.tags}</span>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -396,90 +416,101 @@ const PortfolioApp: React.FC = () => {
             // Search mode - 2-column layout
             <>
               {/* Left - Search Results */}
-              <div className="w-80 bg-gray-900 border-r border-gray-800 overflow-y-auto">
-                <div className="p-2">
-                  {searchResults.map((file) => (
-                    <div
-                      key={file.name}
-                      className={`flex items-center justify-between p-2 hover:bg-gray-800 rounded cursor-pointer ${
-                        selectedFile === file.name ? "bg-gray-800" : ""
-                      }`}
-                      onClick={() => handleFileSelect(file.name)}
-                    >
-                      <div className="flex flex-col">
-                        <div className="flex items-center">
-                          <div
-                            className="w-6 h-6 mr-2 flex items-center justify-center rounded"
-                            style={{ backgroundColor: file.color }}
-                          >
-                            <span className="text-xs">{file.icon}</span>
-                          </div>
-                          <span>{file.name}</span>
-                        </div>
-                        <span className="text-xs text-gray-400 ml-8">
-                          {file.folder}
-                        </span>
-                      </div>
-                      <ChevronRight
-                        size={18}
-                        className={`${
-                          selectedFile === file.name
-                            ? "text-blue-400"
-                            : "text-gray-500"
+              <div className="w-72 bg-white/5 backdrop-blur-md border-r border-white/10 overflow-y-auto">
+                <div className="p-3">
+                  <h2 className="text-sm font-medium mb-2 text-white/70 uppercase tracking-wider px-2">
+                    Search Results
+                  </h2>
+                  <div className="space-y-1">
+                    {searchResults.map((file) => (
+                      <div
+                        key={file.name}
+                        className={`flex items-center justify-between p-2 hover:bg-white/5 rounded-md cursor-pointer transition-all ${
+                          selectedFile === file.name ? "bg-white/10" : ""
                         }`}
-                      />
-                    </div>
-                  ))}
+                        onClick={() => handleFileSelect(file.name, file.folder)}
+                      >
+                        <div className="flex flex-col">
+                          <div className="flex items-center">
+                            <div
+                              className="w-8 h-8 mr-2 flex items-center justify-center rounded-md"
+                              style={{ backgroundColor: file.color }}
+                            >
+                              <span className="text-sm">{file.icon}</span>
+                            </div>
+                            <span className="text-white text-sm truncate">
+                              {file.name}
+                            </span>
+                          </div>
+                          <span className="text-xs text-white/60 ml-10 mt-0.5">
+                            {file.folder}
+                          </span>
+                        </div>
+                        <ChevronRight
+                          size={16}
+                          className={`${
+                            selectedFile === file.name
+                              ? "text-white"
+                              : "text-white/50"
+                          }`}
+                        />
+                      </div>
+                    ))}
+                  </div>
                 </div>
               </div>
 
               {/* Right - Preview */}
-              <div className="flex-1 bg-gray-900 p-4 overflow-y-auto">
-                <div className="bg-green-200 rounded-lg p-4 mb-4">
-                  <div className="flex justify-center">
-                    <div className="relative w-64">
-                      {selectedFile === "Inner Creativity.png" && (
-                        <div className="aspect-w-3 aspect-h-4">
-                          <div className="bg-gradient-to-br from-yellow-400 via-pink-500 to-red-500 p-2 rounded">
-                            <div className="grid grid-cols-4 gap-1">
-                              {[...Array(16)].map((_, i) => (
-                                <div
-                                  key={i}
-                                  className={`h-6 ${
-                                    i % 2 === 0
-                                      ? "bg-yellow-300/50"
-                                      : "bg-pink-400/50"
-                                  } ${i > 7 ? "rounded-sm" : ""}`}
-                                ></div>
-                              ))}
-                            </div>
-                            <div className="mt-2 flex justify-center">
-                              <div className="h-24 w-20 bg-orange-300/70 rounded-t-full"></div>
-                            </div>
-                            <div className="text-center mt-2 text-xs">MANS</div>
+              <div className="flex-1 bg-white/5 backdrop-blur-md overflow-y-auto flex flex-col">
+                <div className="flex-1 p-4 flex items-center justify-center">
+                  <div className="w-full max-w-xs">
+                    {selectedFile === "Inner Creativity.png" && (
+                      <div className="aspect-w-3 aspect-h-4">
+                        <div className="bg-gradient-to-br from-yellow-400 via-pink-500 to-red-500 p-2 rounded-md">
+                          <div className="grid grid-cols-4 gap-1">
+                            {[...Array(16)].map((_, i) => (
+                              <div
+                                key={i}
+                                className={`h-6 ${
+                                  i % 2 === 0
+                                    ? "bg-yellow-300/50"
+                                    : "bg-pink-400/50"
+                                } ${i > 7 ? "rounded-sm" : ""}`}
+                              ></div>
+                            ))}
                           </div>
+                          <div className="mt-2 flex justify-center">
+                            <div className="h-24 w-20 bg-orange-300/70 rounded-t-full"></div>
+                          </div>
+                          <div className="text-center mt-2 text-xs">MANS</div>
                         </div>
-                      )}
-                    </div>
+                      </div>
+                    )}
                   </div>
                 </div>
 
-                <div>
-                  <h2 className="text-xl font-semibold">{fileDetails.name}</h2>
-                  <p className="text-gray-400">{fileDetails.size}</p>
+                <div className="p-4 border-t border-white/10">
+                  <div className="text-white">
+                    <h2 className="text-base font-semibold mb-1">
+                      {fileDetails.name}
+                    </h2>
+                    <p className="text-white/70 text-sm mb-4">
+                      {fileDetails.size}
+                    </p>
 
-                  <div className="mt-6 space-y-2">
-                    <div className="flex justify-between">
-                      <span className="text-gray-400">Created</span>
-                      <span>{fileDetails.created}</span>
-                    </div>
-                    <div className="flex justify-between">
-                      <span className="text-gray-400">Client</span>
-                      <span>{fileDetails.client}</span>
-                    </div>
-                    <div className="flex justify-between">
-                      <span className="text-gray-400">Tags</span>
-                      <span>{fileDetails.tags}</span>
+                    <div className="space-y-2 text-sm">
+                      <div className="flex justify-between">
+                        <span className="text-white/70">Created</span>
+                        <span>{fileDetails.created}</span>
+                      </div>
+                      <div className="flex justify-between">
+                        <span className="text-white/70">Client</span>
+                        <span>{fileDetails.client}</span>
+                      </div>
+                      <div className="flex justify-between">
+                        <span className="text-white/70">Tags</span>
+                        <span>{fileDetails.tags}</span>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -488,7 +519,7 @@ const PortfolioApp: React.FC = () => {
           ) : (
             // No search results
             <div className="flex-1 flex items-center justify-center">
-              <div className="text-gray-400 text-xl">No results :(</div>
+              <div className="text-white text-xl">No results :(</div>
             </div>
           )}
         </div>
