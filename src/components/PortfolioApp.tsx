@@ -74,8 +74,17 @@ export interface FoldersMap {
   [key: string]: string[];
 }
 
+interface ItemDetailsPanelProps {
+  selectedItem: PortfolioItem | undefined;
+  currentMedia: MediaFile | null;
+  currentMediaIndex: number;
+  handleSlideChange: (index: number) => void;
+  getGalleryItems: () => any[]; // This should ideally match the ImageGallery items type
+  variant?: "normal" | "search"; // Default is 'normal'
+}
+
 // Create a reusable component for the item details panel
-const ItemDetailsPanel = ({
+const ItemDetailsPanel: React.FC<ItemDetailsPanelProps> = ({
   selectedItem,
   currentMedia,
   currentMediaIndex,
