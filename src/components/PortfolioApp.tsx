@@ -330,7 +330,8 @@ const PortfolioApp: React.FC = () => {
         setSelectedItemId(newestItem.id);
         updateUrl(folderName, newestItem.id);
       } else {
-        // If folder is empty, just update folder in URL
+        // If folder is empty, clear the selected item ID and just update folder in URL
+        setSelectedItemId("");
         updateUrl(folderName);
       }
     },
@@ -939,10 +940,14 @@ const PortfolioApp: React.FC = () => {
                 </div>
               </div>
 
-              {/* Middle - File List - Conditionally shown/hidden on mobile */}
+              {/* Middle - File List - Conditionally shown/hidden on mobile and adjusted width when no item is selected */}
               <div
-                className={`w-full md:w-1/3 lg:w-1/4 xl:w-1/5 2xl:w-1/6 bg-white/7 backdrop-blur-md border-r border-white/20 overflow-y-auto md:max-w-sm mac-scrollbar ${
-                  viewingFileDetail ? "hidden md:block" : "block"
+                className={`${
+                  selectedItem
+                    ? `w-full md:w-1/3 lg:w-1/4 xl:w-1/5 2xl:w-1/6 bg-white/7 backdrop-blur-md border-r border-white/20 overflow-y-auto md:max-w-sm mac-scrollbar ${
+                        viewingFileDetail ? "hidden md:block" : "block"
+                      }`
+                    : "w-full flex-1 bg-white/7 backdrop-blur-md overflow-y-auto mac-scrollbar"
                 }`}
               >
                 <div className="p-6">
@@ -1035,22 +1040,28 @@ const PortfolioApp: React.FC = () => {
                 </div>
               </div>
 
-              {/* Right - Preview - Using the ItemDetailsPanel component */}
-              <ItemDetailsPanel
-                selectedItem={selectedItem}
-                currentMedia={currentMedia}
-                currentMediaIndex={currentMediaIndex}
-                handleSlideChange={handleSlideChange}
-                getGalleryItems={getGalleryItems}
-              />
+              {/* Right - Preview - Only show when an item is selected */}
+              {selectedItem && (
+                <ItemDetailsPanel
+                  selectedItem={selectedItem}
+                  currentMedia={currentMedia}
+                  currentMediaIndex={currentMediaIndex}
+                  handleSlideChange={handleSlideChange}
+                  getGalleryItems={getGalleryItems}
+                />
+              )}
             </>
           ) : searchResults.length > 0 ? (
             // Search mode - responsive with conditional display on mobile
             <>
-              {/* Left - Search Results - Hidden on mobile when viewing detail */}
+              {/* Left - Search Results - Hidden on mobile when viewing detail and adjusted width when no item is selected */}
               <div
-                className={`w-full md:w-1/3 lg:w-1/4 xl:w-1/5 2xl:w-1/6 bg-white/5 backdrop-blur-md border-r border-white/20 overflow-y-auto md:max-w-sm mac-scrollbar ${
-                  viewingFileDetail ? "hidden md:block" : "block"
+                className={`${
+                  selectedItem
+                    ? `w-full md:w-1/3 lg:w-1/4 xl:w-1/5 2xl:w-1/6 bg-white/5 backdrop-blur-md border-r border-white/20 overflow-y-auto md:max-w-sm mac-scrollbar ${
+                        viewingFileDetail ? "hidden md:block" : "block"
+                      }`
+                    : "w-full flex-1 bg-white/5 backdrop-blur-md overflow-y-auto mac-scrollbar"
                 }`}
               >
                 <div className="p-3">
@@ -1104,14 +1115,16 @@ const PortfolioApp: React.FC = () => {
                 </div>
               </div>
 
-              {/* Right - Preview - Using the ItemDetailsPanel component */}
-              <ItemDetailsPanel
-                selectedItem={selectedItem}
-                currentMedia={currentMedia}
-                currentMediaIndex={currentMediaIndex}
-                handleSlideChange={handleSlideChange}
-                getGalleryItems={getGalleryItems}
-              />
+              {/* Right - Preview - Only show when an item is selected */}
+              {selectedItem && (
+                <ItemDetailsPanel
+                  selectedItem={selectedItem}
+                  currentMedia={currentMedia}
+                  currentMediaIndex={currentMediaIndex}
+                  handleSlideChange={handleSlideChange}
+                  getGalleryItems={getGalleryItems}
+                />
+              )}
             </>
           ) : (
             // No search results
