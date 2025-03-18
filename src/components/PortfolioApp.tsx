@@ -16,95 +16,23 @@ import {
   Calendar,
   Clock,
 } from "lucide-react";
-import { portfolioData, LayoutType } from "./portfolioData";
+import { portfolioData } from "../data/data";
+import {
+  BlogPostDetailsPanelProps,
+  BlogPostItem,
+  FolderItem,
+  ItemDetailsPanelProps,
+  LayoutType,
+  PortfolioItem,
+  SearchResult,
+} from "@/types";
 import ImageGallery from "react-image-gallery";
+import ReactMarkdown from "react-markdown";
 import { renderLeftNav, renderRightNav } from "./GalleryNavigation";
 import "react-image-gallery/styles/css/image-gallery.css";
 import "../css/macScrollbar.css";
 
 // Define interfaces for our data structures
-interface MediaFile {
-  path: string;
-  type: "image" | "video" | "pdf";
-  thumbnail?: string; // Optional thumbnail for videos/pdfs
-  title?: string;
-  description?: string; // Added description field for each media item
-}
-
-interface ItemDetails {
-  name: string;
-  date: string;
-  client: string;
-  tags: string[];
-  description?: string;
-  media: MediaFile[];
-}
-
-interface PortfolioItem {
-  id: string; // Unique identifier for each item
-  name: string;
-  icon: string;
-  image?: string;
-  color: string;
-  year?: string;
-  details: ItemDetails;
-}
-
-// New interface for blog posts
-interface BlogPostItem {
-  id: string;
-  title: string;
-  date: string;
-  content: string;
-  excerpt?: string;
-  author?: string;
-  tags?: string[];
-  image?: string;
-  color?: string;
-  icon?: string;
-  year?: string;
-}
-
-interface SearchResult extends PortfolioItem {
-  folderId: string;
-}
-
-interface FolderInfo {
-  icon: string;
-  description: string;
-  layoutType: LayoutType;
-  items: string[];
-}
-
-export interface FolderStructure {
-  [key: string]: FolderInfo;
-}
-
-interface FolderItem {
-  name: string;
-  icon: string;
-}
-
-export interface PortfolioItemsMap {
-  [key: string]: PortfolioItem;
-}
-
-export interface BlogPostItemsMap {
-  [key: string]: BlogPostItem;
-}
-
-interface ItemDetailsPanelProps {
-  selectedItem: PortfolioItem | undefined;
-  currentMedia: MediaFile | null;
-  currentMediaIndex: number;
-  handleSlideChange: (index: number) => void;
-  getGalleryItems: () => any[]; // This should ideally match the ImageGallery items type
-}
-
-// Blog post detail panel props
-interface BlogPostDetailsPanelProps {
-  selectedBlogPost: BlogPostItem | undefined;
-}
 
 // Create a reusable component for the item details panel
 const ItemDetailsPanel: React.FC<ItemDetailsPanelProps> = ({
@@ -288,10 +216,8 @@ const BlogPostDetailsPanel: React.FC<BlogPostDetailsPanelProps> = ({
               </div>
 
               {/* Blog post content */}
-              <div
-                className="prose prose-invert prose-lg max-w-none"
-                dangerouslySetInnerHTML={{ __html: selectedBlogPost.content }}
-              />
+              <div className="prose prose-invert prose-lg max-w-none" />
+              <ReactMarkdown>{selectedBlogPost.content}</ReactMarkdown>
             </div>
 
             {/* Tags footer */}

@@ -3,12 +3,8 @@ import {
   PortfolioItemsMap,
   FolderStructure,
   BlogPostItemsMap,
-} from "./PortfolioApp";
-
-export enum LayoutType {
-  Portfolio,
-  Blog,
-}
+  LayoutType,
+} from "@/types";
 
 // Define content structure
 export const portfolioData = {
