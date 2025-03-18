@@ -6,9 +6,9 @@ import { unityCICD } from "./posts/unityCiCd";
 import { arAnotherLook } from "./posts/arAnotherLook";
 
 export const blogPosts: BlogPostItemsMap = {
+  [unityToUnreal.id]: unityToUnreal,
   [markdownEverywhere.id]: markdownEverywhere,
   [unityCICD.id]: unityCICD,
   [ecs.id]: ecs,
   [arAnotherLook.id]: arAnotherLook,
-  [unityToUnreal.id]: unityToUnreal,
 };

@@ -95,15 +95,24 @@ const PortfolioApp: React.FC = () => {
       // For Blog layout type, if items array is not specified,
       // return all available blog posts from the BlogPostItemsMap
       if (folder.layoutType === LayoutType.Blog) {
+        let blogPosts: BlogPostItem[] = [];
+
         // If items is specified, use those specific blog posts
         if (folder.items && folder.items.length > 0) {
-          return folder.items
+          blogPosts = folder.items
             .map((id) => folderData.blogPosts?.[id])
-            .filter(Boolean);
+            .filter(Boolean) as BlogPostItem[];
         } else {
           // If items is not specified, return all blog posts
-          return Object.values(folderData.blogPosts ?? {});
+          blogPosts = Object.values(folderData.blogPosts ?? {});
         }
+
+        // Sort blog posts by date (newest first)
+        return blogPosts.sort((a, b) => {
+          const dateA = new Date(a.date);
+          const dateB = new Date(b.date);
+          return dateB.getTime() - dateA.getTime(); // Descending order (newest first)
+        });
       }
       // For Portfolio layout type
       else if (folder.layoutType === LayoutType.Portfolio) {
