@@ -1,7 +1,0 @@
-# For documentation on this file, see:
-# https://github.com/riggraz/no-style-please#customize-the-menu
-
-entries:
-  - title: <font size="+2"><b>About</b></font>
-    emoji: 📖
-    url: pages/about
