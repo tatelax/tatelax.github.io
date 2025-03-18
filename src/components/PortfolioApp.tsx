@@ -80,7 +80,6 @@ interface ItemDetailsPanelProps {
   currentMediaIndex: number;
   handleSlideChange: (index: number) => void;
   getGalleryItems: () => any[]; // This should ideally match the ImageGallery items type
-  variant?: "normal" | "search"; // Default is 'normal'
 }
 
 // Create a reusable component for the item details panel
@@ -90,23 +89,9 @@ const ItemDetailsPanel: React.FC<ItemDetailsPanelProps> = ({
   currentMediaIndex,
   handleSlideChange,
   getGalleryItems,
-  variant = "normal", // 'normal' or 'search'
 }) => {
-  // Determine styling based on variant
-  const containerClasses =
-    variant === "normal"
-      ? "w-full md:w-5/12 lg:w-7/12 xl:w-3/5 2xl:w-2/3 bg-white/7"
-      : "w-full md:w-2/3 lg:w-3/4 xl:w-4/5 2xl:w-5/6 bg-white/5";
-
-  const headingClass = variant === "normal" ? "text-2xl" : "text-lg";
-  const dateLabel = variant === "normal" ? "Date" : "Created";
-
-  const lazyLoad = variant === "normal" ? true : false;
-
   return (
-    <div
-      className={`${containerClasses} backdrop-blur-md overflow-y-auto flex flex-col h-full mac-scrollbar`}
-    >
+    <div className="w-full md:w-5/12 lg:w-7/12 xl:w-3/5 2xl:w-2/3 bg-white/7 backdrop-blur-md overflow-y-auto flex flex-col h-full mac-scrollbar">
       <div className="h-full flex flex-col">
         {selectedItem && (
           <>
@@ -122,10 +107,10 @@ const ItemDetailsPanel: React.FC<ItemDetailsPanelProps> = ({
                         showPlayButton={false}
                         showBullets={selectedItem.details.media.length > 1}
                         showThumbnails={selectedItem.details.media.length > 1}
-                        showFullscreenButton={true}
+                        showFullscreenButton={false}
                         useBrowserFullscreen={true}
                         slideInterval={3000}
-                        lazyLoad={lazyLoad}
+                        lazyLoad={true}
                         slideDuration={450}
                         additionalClass="portfolio-gallery fit-content h-full items-center justify-center"
                         thumbnailPosition="left"
@@ -163,7 +148,7 @@ const ItemDetailsPanel: React.FC<ItemDetailsPanelProps> = ({
 
             <div className="p-4 border-t border-white/20">
               <div className="text-white">
-                <h2 className={`${headingClass} font-semibold mb-1`}>
+                <h2 className="text-2xl font-semibold mb-1">
                   {selectedItem.details.name}
                 </h2>
                 <p className="text-white/70 text-base mb-4">
@@ -172,7 +157,7 @@ const ItemDetailsPanel: React.FC<ItemDetailsPanelProps> = ({
 
                 <div className="space-y-2 text-base">
                   <div className="flex justify-between">
-                    <span className="text-white/70">{dateLabel}</span>
+                    <span className="text-white/70">Date</span>
                     <span>{selectedItem.details.date}</span>
                   </div>
                   <div className="flex justify-between">
@@ -997,7 +982,6 @@ const PortfolioApp: React.FC = () => {
                 currentMediaIndex={currentMediaIndex}
                 handleSlideChange={handleSlideChange}
                 getGalleryItems={getGalleryItems}
-                variant="normal"
               />
             </>
           ) : searchResults.length > 0 ? (
@@ -1067,7 +1051,6 @@ const PortfolioApp: React.FC = () => {
                 currentMediaIndex={currentMediaIndex}
                 handleSlideChange={handleSlideChange}
                 getGalleryItems={getGalleryItems}
-                variant="search"
               />
             </>
           ) : (
