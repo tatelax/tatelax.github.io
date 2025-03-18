@@ -591,7 +591,7 @@ const PortfolioApp: React.FC = () => {
         // For videos, use custom rendering
         return {
           original: basePath,
-          thumbnail: media.thumbnail ? `/images/${media.thumbnail}` : basePath,
+          thumbnail: media.thumbnail ? `${media.thumbnail}` : basePath,
           originalAlt: `${selectedPortfolioItem.name} (video)`,
           thumbnailAlt: `${selectedPortfolioItem.name} (video)`,
           renderItem: () => (
@@ -604,9 +604,7 @@ const PortfolioApp: React.FC = () => {
                 controls
                 className="max-w-full max-h-full object-contain rounded-md"
                 style={{ maxHeight: "100%" }}
-                poster={
-                  media.thumbnail ? `/images/${media.thumbnail}` : undefined
-                }
+                poster={media.thumbnail ? `${media.thumbnail}` : undefined}
               />
             </div>
           ),
@@ -615,7 +613,7 @@ const PortfolioApp: React.FC = () => {
         // For PDFs, use custom rendering
         return {
           original: basePath,
-          thumbnail: media.thumbnail ? `/images/${media.thumbnail}` : basePath,
+          thumbnail: media.thumbnail ? `${media.thumbnail}` : basePath,
           originalAlt: `${selectedPortfolioItem.name} (PDF)`,
           thumbnailAlt: `${selectedPortfolioItem.name} (PDF)`,
           renderItem: () => (
@@ -626,7 +624,7 @@ const PortfolioApp: React.FC = () => {
               {media.thumbnail && (
                 <div className="h-4/5 flex items-center justify-center">
                   <img
-                    src={`/images/${media.thumbnail}`}
+                    src={`${media.thumbnail}`}
                     alt="PDF preview"
                     className="max-w-full max-h-full object-contain rounded-md mb-4"
                   />
@@ -781,7 +779,7 @@ const PortfolioApp: React.FC = () => {
         fontFamily:
           "system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif",
         backgroundImage:
-          "url('/images/pexels-adrien-olichon-1257089-2387793.jpg')",
+          "url('nextjs-github-pages/images/pexels-adrien-olichon-1257089-2387793.jpg')",
         backgroundSize: "cover",
         backgroundPosition: "center",
         backgroundRepeat: "no-repeat",
@@ -816,7 +814,7 @@ const PortfolioApp: React.FC = () => {
 
             <div className="hidden md:flex ml-4 overflow-hidden">
               <img
-                src="/images/tate.jpg"
+                src="nextjs-github-pages/images/tate.jpg"
                 alt="Tate McCormick"
                 className="w-10 h-10 rounded-full object-cover border border-white/30"
               />
