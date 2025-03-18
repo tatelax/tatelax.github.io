@@ -1,11 +1,13 @@
----
-layout: post
-category: code
-title: Why You Should Give AR Another Look
-source: https://github.com/tatelax/tatelax.github.io/blob/master/_posts/2021-11-05-why-you-should-give-ar-another-look.md
---- 
+import { BlogPostItem } from "@/types";
 
-*Recently, I released a simple game on the App Store called Tiny Drive. Other developers have asked me how it was done because they did not realize such accurate and realistic AR was possible. This post is for anyone who was like me and had not developed for AR in many years.*
+export const arAnotherLook: BlogPostItem = {
+  id: "ar-another-look",
+  title: "Why You Should Give AR Another Look",
+  date: "November 5, 2021",
+  author: "Tate McCormick",
+  excerpt:
+    "Augmented Reality technology has evolved dramatically in recent years. With advancements like AR Foundation, object tracking, occlusion, and LiDAR integration, AR can now deliver surprisingly realistic experiences worth exploring again.",
+  content: `*Recently, I released a simple game on the App Store called Tiny Drive. Other developers have asked me how it was done because they did not realize such accurate and realistic AR was possible. This post is for anyone who was like me and had not developed for AR in many years.*
 
 ---
 
@@ -45,4 +47,18 @@ These are only some of the features that I've experimented with. There are many 
 
 ## Why I Think Any of This Matters
 
-In my opinion, holding up our devices to see into the AR world is just a temporary gimmick to allow developers to become more experienced with working in AR. Mixed Reality (MR) will likely replace AR entirely once the hardware is perfected and becomes available for mass market. For the uninitiated, MR is essentially just AR but with a wearable device over your eyes to alter the reality that you percieve.
+In my opinion, holding up our devices to see into the AR world is just a temporary gimmick to allow developers to become more experienced with working in AR. Mixed Reality (MR) will likely replace AR entirely once the hardware is perfected and becomes available for mass market. For the uninitiated, MR is essentially just AR but with a wearable device over your eyes to alter the reality that you percieve.`,
+  tags: [
+    "Augmented Reality",
+    "AR",
+    "AR Foundation",
+    "Unity",
+    "iOS Development",
+    "Mobile Development",
+    "LiDAR",
+    "Mixed Reality",
+  ],
+  image: "/images/blog/ar-technology.jpg", // Update with your image path
+  color: "#7B36E3", // Purple color often associated with AR/VR
+  icon: "👓",
+};

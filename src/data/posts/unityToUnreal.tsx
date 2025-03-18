@@ -1,12 +1,13 @@
----
-layout: post
-category: code
-title: Helpful Resources for Unity Developers to Switch to Unreal Quickly
-date-updated: 08-20-2024
-source: https://github.com/tatelax/tatelax.github.io/blob/master/_posts/2024-08-20-helpful-resouces-to-learn-unreal.md
----
+import { BlogPostItem } from "@/types";
 
-## 💡 Overview
+export const unityToUnreal: BlogPostItem = {
+  id: "unity-to-unreal",
+  title: "Helpful Resources for Unity Developers to Switch to Unreal Quickly",
+  date: "August 20, 2024",
+  author: "Tate McCormick",
+  excerpt:
+    "Switching from Unity to Unreal Engine? Here's a comprehensive collection of resources to help you make the transition smoothly, covering everything from C++ basics to multiplayer implementation.",
+  content: `## 💡 Overview
 
 I recently made the switch from Unity to UE5 since it was better suited to the type of game I was making. Along the way, I collected a bunch of helpful resources that I wanted to make available to other people that also want to pick up Unreal.
 
@@ -66,4 +67,17 @@ This list is provided in no particular order and I'll be updating it from time t
 - How collision filtering works: <https://www.unrealengine.com/en-US/blog/collision-filtering>
 - Long list of helpful UE features that are good to know about: <https://www.youtube.com/watch?v=_BIZ3FOcLNs>
 - Level instancing: <https://dev.epicgames.com/documentation/en-us/unreal-engine/level-instancing-in-unreal-engine>
-- How to reduce package size: <https://cobracode.notion.site/How-to-reduce-Package-Size-for-Unreal-Engine-Game-Builds-7993544e050041f9800512acd3500cfc>
+- How to reduce package size: <https://cobracode.notion.site/How-to-reduce-Package-Size-for-Unreal-Engine-Game-Builds-7993544e050041f9800512acd3500cfc>`,
+  tags: [
+    "Game Development",
+    "Unity",
+    "Unreal Engine",
+    "C++",
+    "Blueprints",
+    "Multiplayer",
+    "Programming",
+  ],
+  image: "/images/blog/unity-to-unreal.jpg", // Update with your image path
+  color: "#0E73CC", // Unreal blue color
+  icon: "🎮",
+};

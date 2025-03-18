@@ -92,14 +92,26 @@ const PortfolioApp: React.FC = () => {
       const folder = folderData.folders[folderName];
       if (!folder) return [];
 
-      const itemIds = folder.items || []; // Access items array directly
-
-      if (folder.layoutType === LayoutType.Portfolio) {
+      // For Blog layout type, if items array is not specified,
+      // return all available blog posts from the BlogPostItemsMap
+      if (folder.layoutType === LayoutType.Blog) {
+        // If items is specified, use those specific blog posts
+        if (folder.items && folder.items.length > 0) {
+          return folder.items
+            .map((id) => folderData.blogPosts?.[id])
+            .filter(Boolean);
+        } else {
+          // If items is not specified, return all blog posts
+          return Object.values(folderData.blogPosts ?? {});
+        }
+      }
+      // For Portfolio layout type
+      else if (folder.layoutType === LayoutType.Portfolio) {
+        // Use optional chaining and provide a default empty array
+        const itemIds = folder.items ?? [];
         return itemIds
           .map((id) => folderData.portfolioItems[id])
           .filter(Boolean);
-      } else if (folder.layoutType === LayoutType.Blog) {
-        return itemIds.map((id) => folderData.blogPosts?.[id]).filter(Boolean);
       }
 
       return [];
@@ -371,9 +383,10 @@ const PortfolioApp: React.FC = () => {
           itemExists = true;
         }
 
+        // Check if folder has items array and if it includes the itemParam
         if (
           itemExists &&
-          folderData.folders[folderName].items.includes(itemParam)
+          folderData.folders[folderName].items?.includes(itemParam)
         ) {
           setSelectedFolder(folderName);
           folderSet = true;
@@ -437,7 +450,7 @@ const PortfolioApp: React.FC = () => {
           if (
             folderData.folders[folderName].layoutType ===
               LayoutType.Portfolio &&
-            folderData.folders[folderName].items.includes(itemId)
+            folderData.folders[folderName].items?.includes(itemId)
           ) {
             results.push({
               ...item,
@@ -466,7 +479,7 @@ const PortfolioApp: React.FC = () => {
           for (const folderName in folderData.folders) {
             if (
               folderData.folders[folderName].layoutType === LayoutType.Blog &&
-              folderData.folders[folderName].items.includes(postId)
+              folderData.folders[folderName].items?.includes(postId)
             ) {
               // Convert blog post to portfolio item format for search results
               results.push({

@@ -1,11 +1,13 @@
----
-layout: post
-category: code
-title: How to setup CI/CD for a Unity project
-source: https://github.com/tatelax/tatelax.github.io/blob/master/_posts/2021-10-12-ci-cd-in-unity.md
----
+import { BlogPostItem } from "@/types";
 
-## What?
+export const unityCICD: BlogPostItem = {
+  id: "unity-cicd",
+  title: "How to setup CI/CD for a Unity project",
+  date: "October 12, 2021",
+  author: "Tate McCormick",
+  excerpt:
+    "Learn how to implement Continuous Integration and Continuous Deployment for your Unity projects using Jenkins. This guide covers setup, configuration, and best practices to automate your build process.",
+  content: `## What?
 
 CI/CD stands for Continuous Integration/Continuous Deployment.
 
@@ -87,4 +89,17 @@ I'm also using 7zip to zip up the archive which gets sent back to the Jenkins ho
 
 Jenkinsfiles have their own syntax that you can use to do a lot of neat things. [Here's a link to the documentation](https://www.jenkins.io/doc/book/pipeline/syntax/).
 
-At this point, everything should be configured. When you commit to your branch, Jenkins should detect the change and notify the agent to start building from the latest commit on that branch. The agent will clone the repo and execute all of the steps specified in your Jenkinsfile.
+At this point, everything should be configured. When you commit to your branch, Jenkins should detect the change and notify the agent to start building from the latest commit on that branch. The agent will clone the repo and execute all of the steps specified in your Jenkinsfile.`,
+  tags: [
+    "Game Development",
+    "Unity",
+    "CI/CD",
+    "Jenkins",
+    "DevOps",
+    "Automation",
+    "Programming",
+  ],
+  image: "/images/blog/unity-cicd.jpg", // Update with your image path
+  color: "#F05032", // Git/Jenkins reddish color
+  icon: "🔄",
+};

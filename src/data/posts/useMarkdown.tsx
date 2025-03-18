@@ -1,11 +1,13 @@
----
-layout: post
-category: code
-title: Why You Should Use Markdown Everywhere
-source: https://github.com/tatelax/tatelax.github.io/blob/master/_posts/2021-10-11-markdown-everything.md
----
+import { BlogPostItem } from "@/types";
 
-Markdown is a markup language that allows you to quickly and easily create beautiful documents that are *portable*. In fact, this entire website was made using Markdown and [Jekyll](https://jekyllrb.com/).
+export const markdownEverywhere: BlogPostItem = {
+  id: "markdown-everywhere",
+  title: "Why You Should Use Markdown Everywhere",
+  date: "October 11, 2021",
+  author: "Tate McCormick",
+  excerpt:
+    "Markdown is a versatile markup language that offers portability, consistency, and simplicity. Learn why you should consider using Markdown for all your documentation needs beyond just README files.",
+  content: `Markdown is a markup language that allows you to quickly and easily create beautiful documents that are *portable*. In fact, this entire website was made using Markdown and [Jekyll](https://jekyllrb.com/).
 
 It's commonly used today for source code documentation or README files in your git repositories but I recommend taking it a step further than that and using it everywhere you can. Not only in your professional projects, but your personal life as well.
 
@@ -61,7 +63,7 @@ Ordered List
 
 ---
 
-```csharp
+\`\`\`csharp
 // This is an example of a codeblock with syntax highlighting
 namespace helloworld
 {
@@ -73,4 +75,17 @@ namespace helloworld
         }
     }
 }
-```
+\`\`\``,
+  tags: [
+    "Markdown",
+    "Documentation",
+    "Productivity",
+    "Writing",
+    "Jekyll",
+    "Web Development",
+    "Portability",
+  ],
+  image: "/images/blog/markdown-everywhere.jpg", // Update with your image path
+  color: "#3884FF", // Blue color associated with many markdown editors
+  icon: "📝",
+};
