@@ -779,7 +779,7 @@ const PortfolioApp: React.FC = () => {
         fontFamily:
           "system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif",
         backgroundImage:
-          "url('nextjs-github-pages/images/pexels-adrien-olichon-1257089-2387793.jpg')",
+          "url('images/pexels-adrien-olichon-1257089-2387793.jpg')",
         backgroundSize: "cover",
         backgroundPosition: "center",
         backgroundRepeat: "no-repeat",
@@ -814,7 +814,7 @@ const PortfolioApp: React.FC = () => {
 
             <div className="hidden md:flex ml-4 overflow-hidden">
               <img
-                src="nextjs-github-pages/images/tate.jpg"
+                src="images/tate.jpg"
                 alt="Tate McCormick"
                 className="w-10 h-10 rounded-full object-cover border border-white/30"
               />
