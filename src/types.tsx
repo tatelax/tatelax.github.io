@@ -53,7 +53,7 @@ export interface FolderInfo {
   icon: string;
   description: string;
   layoutType: LayoutType;
-  items: string[];
+  items?: string[];
 }
 
 export interface FolderStructure {

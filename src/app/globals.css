@@ -25,6 +25,10 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
+.markdown > * {
+  all: revert;
+}
+
 .image-gallery-content {
   align-items: center;
   justify-content: center;
