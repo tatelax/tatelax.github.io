@@ -1,5 +1,5 @@
 "use client";
-import { ItemsMap, FoldersMap, FolderInfoMap } from "./PortfolioApp";
+import { ItemsMap, FolderStructure } from "./PortfolioApp";
 
 // Define content structure
 export const portfolioData = {
@@ -921,47 +921,58 @@ export const portfolioData = {
     },
   } as ItemsMap,
 
-  // Folders with references to items
   folders: {
-    Projects: [
-      "sandboxr",
-      "cavecrusade",
-      "processoptimization",
-      "emergenyc",
-      "volygon",
-      "magellan",
-      "herorescuers",
-      "tinydrive",
-      "walmartauc",
-      "walmartvideocapture",
-      "walmartaixr",
-      "walmartspectatorview",
-      "rso",
-      "aimarketresearch",
-      "melo",
-      "pace",
-    ],
-    Experiments: ["tinydrive", "melo", "aimarketresearch"],
-    "Open-Source": ["item3", "item4", "item5"],
-    Educational: ["item2", "item4"],
-    Photography: [],
-    About: ["item5"],
-  } as FoldersMap,
-
-  // Folder metadata
-  folderInfo: {
-    Projects: { icon: "📁", description: "Projects" },
-    Experiments: { icon: "📁", description: "Experiments" },
+    Projects: {
+      icon: "📁",
+      description: "Projects",
+      items: [
+        "sandboxr",
+        "cavecrusade",
+        "processoptimization",
+        "emergenyc",
+        "volygon",
+        "magellan",
+        "herorescuers",
+        "tinydrive",
+        "walmartauc",
+        "walmartvideocapture",
+        "walmartaixr",
+        "walmartspectatorview",
+        "rso",
+        "aimarketresearch",
+        "melo",
+        "pace",
+      ],
+    },
+    Experiments: {
+      icon: "📁",
+      description: "Experiments",
+      items: ["tinydrive", "melo", "aimarketresearch"],
+    },
     "Open-Source": {
       icon: "📁",
       description: "Open-source stuff I've contributed to",
+      items: ["item3", "item4", "item5"],
     },
     Educational: {
       icon: "📁",
       description: "Educational projects",
+      items: ["item2", "item4"],
     },
-    About: { icon: "📁", description: "About me" },
-    Posts: { icon: "📁", description: "Posts" },
-    Photography: { icon: "📁", description: "Photography" },
-  } as FolderInfoMap,
+    Photography: {
+      icon: "📁",
+      description: "Photography",
+      items: [],
+    },
+    About: {
+      icon: "📁",
+      description: "About me",
+      items: ["item5"],
+    },
+    Posts: {
+      icon: "📁",
+      description: "Posts",
+      items: [],
+    },
+  } as FolderStructure,
 };

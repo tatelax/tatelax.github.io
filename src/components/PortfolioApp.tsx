@@ -55,9 +55,10 @@ interface SearchResult extends PortfolioItem {
 interface FolderInfo {
   icon: string;
   description: string;
+  items: string[];
 }
 
-export interface FolderInfoMap {
+export interface FolderStructure {
   [key: string]: FolderInfo;
 }
 
@@ -68,10 +69,6 @@ interface FolderItem {
 
 export interface ItemsMap {
   [key: string]: PortfolioItem;
-}
-
-export interface FoldersMap {
-  [key: string]: string[];
 }
 
 interface ItemDetailsPanelProps {
@@ -239,7 +236,7 @@ const PortfolioApp: React.FC = () => {
   const folders: FolderItem[] = Object.keys(portfolioData.folders).map(
     (folderName) => ({
       name: folderName,
-      icon: portfolioData.folderInfo[folderName]?.icon || "📁",
+      icon: portfolioData.folders[folderName]?.icon || "📁",
     })
   );
 
@@ -256,7 +253,10 @@ const PortfolioApp: React.FC = () => {
   // Helper function to get items in a folder - memoized
   const getItemsInFolder = useCallback(
     (folderName: string): PortfolioItem[] => {
-      const itemIds = portfolioData.folders[folderName] || [];
+      const folder = portfolioData.folders[folderName];
+      if (!folder) return [];
+
+      const itemIds = folder.items || []; // Access items array directly
       return itemIds.map((id) => portfolioData.items[id]).filter(Boolean);
     },
     []
@@ -463,7 +463,7 @@ const PortfolioApp: React.FC = () => {
     } else if (itemParam && portfolioData.items[itemParam]) {
       // If only item is in URL, find which folder contains it
       for (const folderName in portfolioData.folders) {
-        if (portfolioData.folders[folderName].includes(itemParam)) {
+        if (portfolioData.folders[folderName].items.includes(itemParam)) {
           setSelectedFolder(folderName);
           folderSet = true;
           setSelectedItemId(itemParam);
@@ -503,7 +503,6 @@ const PortfolioApp: React.FC = () => {
   useEffect(() => {
     if (searchQuery.trim() === "") {
       setSearchResults([]);
-      // Don't reset URL when search is cleared if we're in normal browsing mode
       return;
     }
 
@@ -522,9 +521,9 @@ const PortfolioApp: React.FC = () => {
         itemTags.includes(query) ||
         itemDesc.includes(query)
       ) {
-        // Find which folders contain this item
+        // Find which folders contain this item - updated for new structure
         for (const folderName in portfolioData.folders) {
-          if (portfolioData.folders[folderName].includes(itemId)) {
+          if (portfolioData.folders[folderName].items.includes(itemId)) {
             results.push({
               ...item,
               folderId: folderName,
