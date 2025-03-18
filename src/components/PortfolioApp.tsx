@@ -13,6 +13,8 @@ import {
   Instagram,
   Twitter,
   Linkedin,
+  Calendar,
+  Clock,
 } from "lucide-react";
 import { portfolioData, LayoutType } from "./portfolioData";
 import ImageGallery from "react-image-gallery";
@@ -48,6 +50,21 @@ interface PortfolioItem {
   details: ItemDetails;
 }
 
+// New interface for blog posts
+interface BlogPostItem {
+  id: string;
+  title: string;
+  date: string;
+  content: string;
+  excerpt?: string;
+  author?: string;
+  tags?: string[];
+  image?: string;
+  color?: string;
+  icon?: string;
+  year?: string;
+}
+
 interface SearchResult extends PortfolioItem {
   folderId: string;
 }
@@ -72,12 +89,21 @@ export interface PortfolioItemsMap {
   [key: string]: PortfolioItem;
 }
 
+export interface BlogPostItemsMap {
+  [key: string]: BlogPostItem;
+}
+
 interface ItemDetailsPanelProps {
   selectedItem: PortfolioItem | undefined;
   currentMedia: MediaFile | null;
   currentMediaIndex: number;
   handleSlideChange: (index: number) => void;
   getGalleryItems: () => any[]; // This should ideally match the ImageGallery items type
+}
+
+// Blog post detail panel props
+interface BlogPostDetailsPanelProps {
+  selectedBlogPost: BlogPostItem | undefined;
 }
 
 // Create a reusable component for the item details panel
@@ -218,6 +244,99 @@ const ItemDetailsPanel: React.FC<ItemDetailsPanelProps> = ({
   );
 };
 
+// New component for blog post details
+const BlogPostDetailsPanel: React.FC<BlogPostDetailsPanelProps> = ({
+  selectedBlogPost,
+}) => {
+  return (
+    <div className="w-full md:w-5/12 lg:w-7/12 xl:w-3/5 2xl:w-2/3 bg-white/7 backdrop-blur-md overflow-y-auto flex flex-col h-full mac-scrollbar">
+      <div className="h-full flex flex-col">
+        {selectedBlogPost && (
+          <>
+            {/* Blog post content area */}
+            <div className="flex-1 p-8 flex flex-col h-full overflow-y-auto">
+              {/* Blog post header */}
+              <div className="mb-8">
+                <h1 className="text-3xl font-bold text-white mb-4">
+                  {selectedBlogPost.title}
+                </h1>
+
+                <div className="flex items-center text-white/70 space-x-4 mb-6">
+                  <div className="flex items-center space-x-1">
+                    <Calendar size={16} />
+                    <span>{selectedBlogPost.date}</span>
+                  </div>
+
+                  {selectedBlogPost.author && (
+                    <div className="flex items-center space-x-1">
+                      <User size={16} />
+                      <span>{selectedBlogPost.author}</span>
+                    </div>
+                  )}
+                </div>
+
+                {/* Featured image if available */}
+                {selectedBlogPost.image && (
+                  <div className="mb-8 rounded-lg overflow-hidden">
+                    <img
+                      src={selectedBlogPost.image}
+                      alt={selectedBlogPost.title}
+                      className="w-full object-cover h-64 md:h-96"
+                    />
+                  </div>
+                )}
+              </div>
+
+              {/* Blog post content */}
+              <div
+                className="prose prose-invert prose-lg max-w-none"
+                dangerouslySetInnerHTML={{ __html: selectedBlogPost.content }}
+              />
+            </div>
+
+            {/* Tags footer */}
+            {selectedBlogPost.tags && selectedBlogPost.tags.length > 0 && (
+              <div className="mt-auto bg-black/30 p-4 border-t border-white/10">
+                <div className="flex flex-wrap gap-2">
+                  {selectedBlogPost.tags.map((tag, index) => {
+                    const colors = [
+                      "bg-blue-400/30",
+                      "bg-purple-400/30",
+                      "bg-teal-400/30",
+                      "bg-indigo-400/30",
+                      "bg-cyan-400/30",
+                      "bg-emerald-400/30",
+                      "bg-sky-400/30",
+                      "bg-violet-400/30",
+                      "bg-green-400/30",
+                    ];
+
+                    const colorIndex =
+                      Math.abs(
+                        tag
+                          .split("")
+                          .reduce((acc, char) => acc + char.charCodeAt(0), 0)
+                      ) % colors.length;
+
+                    return (
+                      <span
+                        key={index}
+                        className={`${colors[colorIndex]} px-3 py-1 rounded-full text-white/85 font-medium text-xs`}
+                      >
+                        {tag}
+                      </span>
+                    );
+                  })}
+                </div>
+              </div>
+            )}
+          </>
+        )}
+      </div>
+    </div>
+  );
+};
+
 const PortfolioApp: React.FC = () => {
   const [selectedFolder, setSelectedFolder] = useState<string>("");
   const [selectedItemId, setSelectedItemId] = useState<string>("");
@@ -242,25 +361,58 @@ const PortfolioApp: React.FC = () => {
   );
 
   // Helper function to get item by ID - memoized to avoid dependency loops
-  const getItemById = useCallback((id: string): PortfolioItem | undefined => {
-    return portfolioData.portfolioItems[id];
-  }, []);
+  const getItemById = useCallback(
+    (id: string): PortfolioItem | BlogPostItem | undefined => {
+      if (selectedFolder) {
+        const folderType = portfolioData.folders[selectedFolder]?.layoutType;
+
+        if (folderType === LayoutType.Portfolio) {
+          return portfolioData.portfolioItems[id];
+        } else if (folderType === LayoutType.Blog) {
+          return portfolioData.blogPosts?.[id];
+        }
+      }
+
+      // Default fallback - try both collections
+      return portfolioData.portfolioItems[id] || portfolioData.blogPosts?.[id];
+    },
+    [selectedFolder]
+  );
 
   // Helper function to get current selected item - memoized
-  const getSelectedItem = useCallback((): PortfolioItem | undefined => {
+  const getSelectedItem = useCallback(():
+    | PortfolioItem
+    | BlogPostItem
+    | undefined => {
     return selectedItemId ? getItemById(selectedItemId) : undefined;
   }, [selectedItemId, getItemById]);
 
+  // Helper function to check if current folder is Blog type
+  const isBlogFolder = useCallback((): boolean => {
+    return selectedFolder
+      ? portfolioData.folders[selectedFolder]?.layoutType === LayoutType.Blog
+      : false;
+  }, [selectedFolder]);
+
   // Helper function to get items in a folder - memoized
   const getItemsInFolder = useCallback(
-    (folderName: string): PortfolioItem[] => {
+    (folderName: string): (PortfolioItem | BlogPostItem)[] => {
       const folder = portfolioData.folders[folderName];
       if (!folder) return [];
 
       const itemIds = folder.items || []; // Access items array directly
-      return itemIds
-        .map((id) => portfolioData.portfolioItems[id])
-        .filter(Boolean);
+
+      if (folder.layoutType === LayoutType.Portfolio) {
+        return itemIds
+          .map((id) => portfolioData.portfolioItems[id])
+          .filter(Boolean);
+      } else if (folder.layoutType === LayoutType.Blog) {
+        return itemIds
+          .map((id) => portfolioData.blogPosts?.[id])
+          .filter(Boolean);
+      }
+
+      return [];
     },
     []
   );
@@ -406,11 +558,33 @@ const PortfolioApp: React.FC = () => {
       if (folderParam && portfolioData.folders[folderParam]) {
         setSelectedFolder(folderParam);
 
-        if (itemParam && portfolioData.portfolioItems[itemParam]) {
-          setSelectedItemId(itemParam);
-          setCurrentMediaIndex(0); // Reset media index when navigating
-          if (window.innerWidth < 768) {
-            setViewingFileDetail(true);
+        if (itemParam) {
+          const folderType = portfolioData.folders[folderParam].layoutType;
+          let itemExists = false;
+
+          if (
+            folderType === LayoutType.Portfolio &&
+            portfolioData.portfolioItems[itemParam]
+          ) {
+            itemExists = true;
+          } else if (
+            folderType === LayoutType.Blog &&
+            portfolioData.blogPosts?.[itemParam]
+          ) {
+            itemExists = true;
+          }
+
+          if (itemExists) {
+            setSelectedItemId(itemParam);
+            setCurrentMediaIndex(0); // Reset media index when navigating
+            if (window.innerWidth < 768) {
+              setViewingFileDetail(true);
+            }
+          } else {
+            const folderItems = getItemsInFolder(folderParam);
+            if (folderItems.length > 0) {
+              setSelectedItemId(folderItems[0].id);
+            }
           }
         } else {
           const folderItems = getItemsInFolder(folderParam);
@@ -446,16 +620,42 @@ const PortfolioApp: React.FC = () => {
       setSelectedFolder(folderParam);
       folderSet = true;
 
+      const folderType = portfolioData.folders[folderParam].layoutType;
+
       // If item is in URL and exists
-      if (itemParam && portfolioData.portfolioItems[itemParam]) {
-        setSelectedItemId(itemParam);
-        itemSet = true;
-        // Set mobile view state based on screen size
-        if (window.innerWidth < 768) {
-          setViewingFileDetail(true);
+      if (itemParam) {
+        let itemExists = false;
+
+        if (
+          folderType === LayoutType.Portfolio &&
+          portfolioData.portfolioItems[itemParam]
+        ) {
+          itemExists = true;
+        } else if (
+          folderType === LayoutType.Blog &&
+          portfolioData.blogPosts?.[itemParam]
+        ) {
+          itemExists = true;
+        }
+
+        if (itemExists) {
+          setSelectedItemId(itemParam);
+          itemSet = true;
+          // Set mobile view state based on screen size
+          if (window.innerWidth < 768) {
+            setViewingFileDetail(true);
+          }
+        } else {
+          // If no item in URL or invalid item, select first item in folder
+          const folderItems = getItemsInFolder(folderParam);
+          if (folderItems.length > 0) {
+            setSelectedItemId(folderItems[0].id);
+            itemSet = true;
+            updateUrl(folderParam, folderItems[0].id);
+          }
         }
       } else {
-        // If no item in URL or invalid item, select first item in folder
+        // If no item in URL, select first item in folder
         const folderItems = getItemsInFolder(folderParam);
         if (folderItems.length > 0) {
           setSelectedItemId(folderItems[0].id);
@@ -463,10 +663,28 @@ const PortfolioApp: React.FC = () => {
           updateUrl(folderParam, folderItems[0].id);
         }
       }
-    } else if (itemParam && portfolioData.portfolioItems[itemParam]) {
+    } else if (itemParam) {
       // If only item is in URL, find which folder contains it
       for (const folderName in portfolioData.folders) {
-        if (portfolioData.folders[folderName].items.includes(itemParam)) {
+        const folderType = portfolioData.folders[folderName].layoutType;
+        let itemExists = false;
+
+        if (
+          folderType === LayoutType.Portfolio &&
+          portfolioData.portfolioItems[itemParam]
+        ) {
+          itemExists = true;
+        } else if (
+          folderType === LayoutType.Blog &&
+          portfolioData.blogPosts?.[itemParam]
+        ) {
+          itemExists = true;
+        }
+
+        if (
+          itemExists &&
+          portfolioData.folders[folderName].items.includes(itemParam)
+        ) {
           setSelectedFolder(folderName);
           folderSet = true;
           setSelectedItemId(itemParam);
@@ -512,7 +730,7 @@ const PortfolioApp: React.FC = () => {
     const results: SearchResult[] = [];
     const query = searchQuery.toLowerCase();
 
-    // Search through all items
+    // Search through all portfolio items
     for (const itemId in portfolioData.portfolioItems) {
       const item = portfolioData.portfolioItems[itemId];
       const itemName = item.name.toLowerCase();
@@ -526,12 +744,61 @@ const PortfolioApp: React.FC = () => {
       ) {
         // Find which folders contain this item - updated for new structure
         for (const folderName in portfolioData.folders) {
-          if (portfolioData.folders[folderName].items.includes(itemId)) {
+          if (
+            portfolioData.folders[folderName].layoutType ===
+              LayoutType.Portfolio &&
+            portfolioData.folders[folderName].items.includes(itemId)
+          ) {
             results.push({
               ...item,
               folderId: folderName,
             });
             break; // Just add the first folder match to avoid duplicates in results
+          }
+        }
+      }
+    }
+
+    // Search through all blog posts
+    if (portfolioData.blogPosts) {
+      for (const postId in portfolioData.blogPosts) {
+        const post = portfolioData.blogPosts[postId];
+        const postTitle = post.title.toLowerCase();
+        const postContent = post.content.toLowerCase();
+        const postTags = post.tags ? post.tags.join(" ").toLowerCase() : "";
+
+        if (
+          postTitle.includes(query) ||
+          postContent.includes(query) ||
+          postTags.includes(query)
+        ) {
+          // Find which folders contain this blog post
+          for (const folderName in portfolioData.folders) {
+            if (
+              portfolioData.folders[folderName].layoutType ===
+                LayoutType.Blog &&
+              portfolioData.folders[folderName].items.includes(postId)
+            ) {
+              // Convert blog post to portfolio item format for search results
+              results.push({
+                id: post.id,
+                name: post.title,
+                icon: post.icon || "📝", // Default icon for blog posts
+                color: post.color || "#6366F1", // Default color for blog posts
+                year: post.date.split(" ")[2], // Extract year from date string if possible
+                image: post.image,
+                details: {
+                  name: post.title,
+                  date: post.date,
+                  client: post.author || "Self",
+                  tags: post.tags || [],
+                  description: post.excerpt || "",
+                  media: [],
+                },
+                folderId: folderName,
+              });
+              break;
+            }
           }
         }
       }
@@ -562,14 +829,31 @@ const PortfolioApp: React.FC = () => {
   // Get the current selected item
   const selectedItem = getSelectedItem();
 
-  // Get the current media item being viewed
-  const currentMedia = selectedItem?.details.media[currentMediaIndex] || null;
+  // Check if selected item is a blog post
+  const isSelectedItemBlogPost = isBlogFolder();
+
+  // Get blog post if applicable
+  const selectedBlogPost =
+    isSelectedItemBlogPost && selectedItem
+      ? (selectedItem as BlogPostItem)
+      : undefined;
+
+  // Get portfolio item if applicable
+  const selectedPortfolioItem =
+    !isSelectedItemBlogPost && selectedItem
+      ? (selectedItem as PortfolioItem)
+      : undefined;
+
+  // Get the current media item being viewed (for portfolio items)
+  const currentMedia =
+    selectedPortfolioItem?.details.media[currentMediaIndex] || null;
 
   // Format media files for react-image-gallery
   const getGalleryItems = useCallback(() => {
-    if (!selectedItem || !selectedItem.details.media.length) return [];
+    if (!selectedPortfolioItem || !selectedPortfolioItem.details.media.length)
+      return [];
 
-    return selectedItem.details.media.map((media) => {
+    return selectedPortfolioItem.details.media.map((media) => {
       const basePath = `${media.path}`;
       const thumbPath = `${media.thumbnail ? media.thumbnail : media.path}`;
 
@@ -578,14 +862,14 @@ const PortfolioApp: React.FC = () => {
         return {
           original: basePath,
           thumbnail: thumbPath,
-          originalAlt: selectedItem.name,
-          thumbnailAlt: selectedItem.name,
+          originalAlt: selectedPortfolioItem.name,
+          thumbnailAlt: selectedPortfolioItem.name,
           thumbnailClass: "rounded-md white-thumbnail-border",
           renderItem: () => (
             <div className="h-full flex items-center justify-center">
               <img
                 src={basePath}
-                alt={selectedItem.name}
+                alt={selectedPortfolioItem.name}
                 className="max-w-full max-h-full object-contain rounded-md"
                 style={{ maxHeight: "60vh" }}
               />
@@ -597,8 +881,8 @@ const PortfolioApp: React.FC = () => {
         return {
           original: basePath,
           thumbnail: media.thumbnail ? `/images/${media.thumbnail}` : basePath,
-          originalAlt: `${selectedItem.name} (video)`,
-          thumbnailAlt: `${selectedItem.name} (video)`,
+          originalAlt: `${selectedPortfolioItem.name} (video)`,
+          thumbnailAlt: `${selectedPortfolioItem.name} (video)`,
           renderItem: () => (
             <div
               className="video-wrapper flex justify-center items-center h-full"
@@ -621,8 +905,8 @@ const PortfolioApp: React.FC = () => {
         return {
           original: basePath,
           thumbnail: media.thumbnail ? `/images/${media.thumbnail}` : basePath,
-          originalAlt: `${selectedItem.name} (PDF)`,
-          thumbnailAlt: `${selectedItem.name} (PDF)`,
+          originalAlt: `${selectedPortfolioItem.name} (PDF)`,
+          thumbnailAlt: `${selectedPortfolioItem.name} (PDF)`,
           renderItem: () => (
             <div
               className="pdf-wrapper flex flex-col items-center justify-center"
@@ -656,7 +940,128 @@ const PortfolioApp: React.FC = () => {
         thumbnail: basePath,
       };
     });
-  }, [selectedItem]);
+  }, [selectedPortfolioItem]);
+
+  // Render blog post item card
+  const renderBlogPostItem = (item: BlogPostItem) => {
+    const date = new Date(item.date);
+    const formattedDate =
+      date instanceof Date && !isNaN(date.getTime())
+        ? date.toLocaleDateString("en-US", {
+            year: "numeric",
+            month: "short",
+            day: "numeric",
+          })
+        : item.date;
+
+    return (
+      <div
+        key={item.id}
+        className={`p-4 mb-4 hover:bg-white/5 rounded-lg cursor-pointer transition-all ${
+          selectedItemId === item.id ? "bg-white/10" : ""
+        }`}
+        onClick={() => handleItemSelect(item.id)}
+      >
+        <div className="flex flex-col">
+          <h3 className="text-white text-xl font-semibold mb-2">
+            {item.title}
+          </h3>
+
+          <div className="flex items-center text-white/70 text-sm mb-3">
+            <Calendar size={14} className="mr-1" />
+            <span>{formattedDate}</span>
+
+            {item.author && (
+              <>
+                <span className="mx-2">•</span>
+                <User size={14} className="mr-1" />
+                <span>{item.author}</span>
+              </>
+            )}
+          </div>
+
+          {item.excerpt && (
+            <p className="text-white/80 mb-3 line-clamp-2">{item.excerpt}</p>
+          )}
+
+          {item.tags && item.tags.length > 0 && (
+            <div className="flex flex-wrap gap-1 mt-2">
+              {item.tags.slice(0, 3).map((tag, index) => {
+                const colors = [
+                  "bg-blue-400/30",
+                  "bg-purple-400/30",
+                  "bg-teal-400/30",
+                  "bg-indigo-400/30",
+                  "bg-cyan-400/30",
+                ];
+
+                const colorIndex =
+                  Math.abs(
+                    tag
+                      .split("")
+                      .reduce((acc, char) => acc + char.charCodeAt(0), 0)
+                  ) % colors.length;
+
+                return (
+                  <span
+                    key={index}
+                    className={`${colors[colorIndex]} px-2 py-0.5 rounded-full text-white/85 font-medium text-xs`}
+                  >
+                    {tag}
+                  </span>
+                );
+              })}
+
+              {item.tags.length > 3 && (
+                <span className="text-white/60 text-xs px-1">
+                  +{item.tags.length - 3} more
+                </span>
+              )}
+            </div>
+          )}
+        </div>
+      </div>
+    );
+  };
+
+  // Render portfolio item card (original behavior)
+  const renderPortfolioItem = (item: PortfolioItem) => {
+    return (
+      <div
+        key={item.id}
+        className={`flex items-center justify-between p-3 md:p-2 hover:bg-white/5 rounded-md cursor-pointer transition-all ${
+          selectedItemId === item.id ? "bg-white/10" : ""
+        }`}
+        onClick={() => handleItemSelect(item.id)}
+      >
+        <div className="flex items-center">
+          <div
+            className="w-10 h-10 md:w-8 md:h-8 mr-3 md:mr-2 flex items-center justify-center rounded-md border-2 border-white overflow-hidden"
+            style={{ backgroundColor: item.color }}
+          >
+            {item.image ? (
+              <img
+                src={`${item.image}`}
+                alt={item.name}
+                className="w-full h-full object-cover"
+              />
+            ) : (
+              <span className="text-base">{item.icon}</span>
+            )}
+          </div>
+          <span className="text-white text-base truncate font-semibold">
+            {item.name}
+          </span>
+        </div>
+        <ChevronRight
+          size={18}
+          className={`${
+            selectedItemId === item.id ? "text-white" : "text-white/50"
+          }`}
+        />
+      </div>
+    );
+  };
 
   return (
     <div
@@ -709,7 +1114,11 @@ const PortfolioApp: React.FC = () => {
             {/* Current context for mobile - hidden when search is expanded */}
             <div className={`md:hidden ${searchExpanded ? "hidden" : "block"}`}>
               <span className="text-white text-base font-medium">
-                {viewingFileDetail ? selectedItem?.name : selectedFolder}
+                {viewingFileDetail
+                  ? isSelectedItemBlogPost
+                    ? selectedBlogPost?.title
+                    : selectedPortfolioItem?.name
+                  : selectedFolder}
               </span>
             </div>
           </div>
@@ -953,15 +1362,32 @@ const PortfolioApp: React.FC = () => {
                 }`}
               >
                 <div className="p-6">
-                  {currentItems.length > 0 ? (
+                  {selectedFolder &&
+                  portfolioData.folders[selectedFolder]?.layoutType ===
+                    LayoutType.Blog ? (
+                    // Blog post list layout
+                    <div className="space-y-2">
+                      {currentItems.length > 0 ? (
+                        currentItems.map((item) =>
+                          renderBlogPostItem(item as BlogPostItem)
+                        )
+                      ) : (
+                        <div className="text-white/70 p-4 text-center text-base">
+                          No blog posts in this folder
+                        </div>
+                      )}
+                    </div>
+                  ) : // Default portfolio layout
+                  currentItems.length > 0 ? (
                     <div>
                       {(() => {
                         // Group items by year
                         const itemsByYear: { [year: string]: PortfolioItem[] } =
                           currentItems.reduce((acc, item) => {
-                            const year = item.year || "Undated";
+                            const year =
+                              (item as PortfolioItem).year || "Undated";
                             if (!acc[year]) acc[year] = [];
-                            acc[year].unshift(item);
+                            acc[year].unshift(item as PortfolioItem);
                             return acc;
                           }, {} as { [year: string]: PortfolioItem[] });
 
@@ -988,47 +1414,9 @@ const PortfolioApp: React.FC = () => {
 
                             {/* Items for this year */}
                             <div className="space-y-1">
-                              {itemsByYear[year].map((item) => (
-                                <div
-                                  key={item.id}
-                                  className={`flex items-center justify-between p-3 md:p-2 hover:bg-white/5 rounded-md cursor-pointer transition-all ${
-                                    selectedItemId === item.id
-                                      ? "bg-white/10"
-                                      : ""
-                                  }`}
-                                  onClick={() => handleItemSelect(item.id)}
-                                >
-                                  <div className="flex items-center">
-                                    <div
-                                      className="w-10 h-10 md:w-8 md:h-8 mr-3 md:mr-2 flex items-center justify-center rounded-md border-2 border-white overflow-hidden"
-                                      style={{ backgroundColor: item.color }}
-                                    >
-                                      {item.image ? (
-                                        <img
-                                          src={`${item.image}`}
-                                          alt={item.name}
-                                          className="w-full h-full object-cover"
-                                        />
-                                      ) : (
-                                        <span className="text-base">
-                                          {item.icon}
-                                        </span>
-                                      )}
-                                    </div>
-                                    <span className="text-white text-base truncate font-semibold">
-                                      {item.name}
-                                    </span>
-                                  </div>
-                                  <ChevronRight
-                                    size={18}
-                                    className={`${
-                                      selectedItemId === item.id
-                                        ? "text-white"
-                                        : "text-white/50"
-                                    }`}
-                                  />
-                                </div>
-                              ))}
+                              {itemsByYear[year].map((item) =>
+                                renderPortfolioItem(item)
+                              )}
                             </div>
                           </div>
                         ));
@@ -1043,15 +1431,20 @@ const PortfolioApp: React.FC = () => {
               </div>
 
               {/* Right - Preview - Only show when an item is selected */}
-              {selectedItem && (
-                <ItemDetailsPanel
-                  selectedItem={selectedItem}
-                  currentMedia={currentMedia}
-                  currentMediaIndex={currentMediaIndex}
-                  handleSlideChange={handleSlideChange}
-                  getGalleryItems={getGalleryItems}
-                />
-              )}
+              {selectedItem &&
+                (isBlogFolder() ? (
+                  // Blog post details view
+                  <BlogPostDetailsPanel selectedBlogPost={selectedBlogPost} />
+                ) : (
+                  // Portfolio item details view
+                  <ItemDetailsPanel
+                    selectedItem={selectedPortfolioItem}
+                    currentMedia={currentMedia}
+                    currentMediaIndex={currentMediaIndex}
+                    handleSlideChange={handleSlideChange}
+                    getGalleryItems={getGalleryItems}
+                  />
+                ))}
             </>
           ) : searchResults.length > 0 ? (
             // Search mode - responsive with conditional display on mobile
@@ -1118,15 +1511,18 @@ const PortfolioApp: React.FC = () => {
               </div>
 
               {/* Right - Preview - Only show when an item is selected */}
-              {selectedItem && (
-                <ItemDetailsPanel
-                  selectedItem={selectedItem}
-                  currentMedia={currentMedia}
-                  currentMediaIndex={currentMediaIndex}
-                  handleSlideChange={handleSlideChange}
-                  getGalleryItems={getGalleryItems}
-                />
-              )}
+              {selectedItem &&
+                (isBlogFolder() ? (
+                  <BlogPostDetailsPanel selectedBlogPost={selectedBlogPost} />
+                ) : (
+                  <ItemDetailsPanel
+                    selectedItem={selectedPortfolioItem}
+                    currentMedia={currentMedia}
+                    currentMediaIndex={currentMediaIndex}
+                    handleSlideChange={handleSlideChange}
+                    getGalleryItems={getGalleryItems}
+                  />
+                ))}
             </>
           ) : (
             // No search results
