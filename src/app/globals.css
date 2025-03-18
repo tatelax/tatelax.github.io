@@ -61,8 +61,16 @@ body {
 }
 
 .image-gallery-thumbnails-container {
-  align-items: center;
-  justify-content: center;
+  align-items: baseline;
+  justify-content: baseline;
   height: 100%;
   width: 100%;
+}
+
+.white-thumbnail-border.active {
+  border: 3px solid white !important;
+}
+
+.image-gallery-thumbnail.white-thumbnail-border.active {
+  border: 3px solid white !important;
 }

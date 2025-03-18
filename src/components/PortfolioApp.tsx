@@ -107,7 +107,7 @@ const ItemDetailsPanel: React.FC<ItemDetailsPanelProps> = ({
                         showPlayButton={false}
                         showBullets={selectedItem.details.media.length > 1}
                         showThumbnails={selectedItem.details.media.length > 1}
-                        showFullscreenButton={false}
+                        showFullscreenButton={true}
                         useBrowserFullscreen={true}
                         slideInterval={3000}
                         lazyLoad={true}
@@ -146,27 +146,69 @@ const ItemDetailsPanel: React.FC<ItemDetailsPanelProps> = ({
               )}
             </div>
 
-            <div className="p-4 border-t border-white/20">
+            <div className="p-6 border-t border-white/20">
               <div className="text-white">
-                <h2 className="text-2xl font-semibold mb-1">
+                <h2 className="text-2xl font-semibold mb-3">
                   {selectedItem.details.name}
                 </h2>
-                <p className="text-white/70 text-base mb-4">
+
+                <p className="text-white/70 text-base mb-6">
                   {selectedItem.details.description}
                 </p>
+              </div>
+            </div>
 
-                <div className="space-y-2 text-base">
-                  <div className="flex justify-between">
-                    <span className="text-white/70">Date</span>
-                    <span>{selectedItem.details.date}</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span className="text-white/70">Client</span>
-                    <span>{selectedItem.details.client}</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span className="text-white/70">Tags</span>
-                    <span>{selectedItem.details.tags.join(", ")}</span>
+            {/* Full-width metadata footer */}
+            <div className="mt-auto bg-black/30 p-4 border-t border-white/10">
+              <div className="flex flex-wrap items-center gap-x-6 gap-y-3 text-sm">
+                <div className="flex items-center">
+                  <span className="text-white/60 mr-2">Date:</span>
+                  <span className="font-medium">
+                    {selectedItem.details.date}
+                  </span>
+                </div>
+
+                <div className="flex items-center">
+                  <span className="text-white/60 mr-2">Company:</span>
+                  <span className="font-medium">
+                    {selectedItem.details.client}
+                  </span>
+                </div>
+
+                <div className="flex items-center">
+                  <span className="text-white/60 mr-2">Tags:</span>
+                  <div className="flex flex-wrap gap-2">
+                    {selectedItem.details.tags.map((tag, index) => {
+                      // Generate different subtle colors based on tag content
+                      const colors = [
+                        "bg-blue-400/30",
+                        "bg-purple-400/30",
+                        "bg-teal-400/30",
+                        "bg-indigo-400/30",
+                        "bg-cyan-400/30",
+                        "bg-emerald-400/30",
+                        "bg-sky-400/30",
+                        "bg-violet-400/30",
+                        "bg-green-400/30",
+                      ];
+
+                      // Use the tag's hash to determine color (ensures same tag always gets same color)
+                      const colorIndex =
+                        Math.abs(
+                          tag
+                            .split("")
+                            .reduce((acc, char) => acc + char.charCodeAt(0), 0)
+                        ) % colors.length;
+
+                      return (
+                        <span
+                          key={index}
+                          className={`${colors[colorIndex]} px-3 py-1 rounded-full text-white/85 font-medium text-xs`}
+                        >
+                          {tag}
+                        </span>
+                      );
+                    })}
                   </div>
                 </div>
               </div>
@@ -518,12 +560,13 @@ const PortfolioApp: React.FC = () => {
           thumbnail: thumbPath,
           originalAlt: selectedItem.name,
           thumbnailAlt: selectedItem.name,
+          thumbnailClass: "rounded-md white-thumbnail-border",
           renderItem: () => (
             <div className="h-full flex items-center justify-center">
               <img
                 src={basePath}
                 alt={selectedItem.name}
-                className="max-w-full max-h-full object-contain"
+                className="max-w-full max-h-full object-contain rounded-md"
                 style={{ maxHeight: "60vh" }}
               />
             </div>
