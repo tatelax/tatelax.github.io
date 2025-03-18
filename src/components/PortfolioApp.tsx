@@ -14,7 +14,7 @@ import {
   Twitter,
   Linkedin,
 } from "lucide-react";
-import { portfolioData } from "./portfolioData";
+import { portfolioData, LayoutType } from "./portfolioData";
 import ImageGallery from "react-image-gallery";
 import { renderLeftNav, renderRightNav } from "./GalleryNavigation";
 import "react-image-gallery/styles/css/image-gallery.css";
@@ -55,6 +55,7 @@ interface SearchResult extends PortfolioItem {
 interface FolderInfo {
   icon: string;
   description: string;
+  layoutType: LayoutType;
   items: string[];
 }
 
@@ -67,7 +68,7 @@ interface FolderItem {
   icon: string;
 }
 
-export interface ItemsMap {
+export interface PortfolioItemsMap {
   [key: string]: PortfolioItem;
 }
 
@@ -242,7 +243,7 @@ const PortfolioApp: React.FC = () => {
 
   // Helper function to get item by ID - memoized to avoid dependency loops
   const getItemById = useCallback((id: string): PortfolioItem | undefined => {
-    return portfolioData.items[id];
+    return portfolioData.portfolioItems[id];
   }, []);
 
   // Helper function to get current selected item - memoized
@@ -257,7 +258,9 @@ const PortfolioApp: React.FC = () => {
       if (!folder) return [];
 
       const itemIds = folder.items || []; // Access items array directly
-      return itemIds.map((id) => portfolioData.items[id]).filter(Boolean);
+      return itemIds
+        .map((id) => portfolioData.portfolioItems[id])
+        .filter(Boolean);
     },
     []
   );
@@ -403,7 +406,7 @@ const PortfolioApp: React.FC = () => {
       if (folderParam && portfolioData.folders[folderParam]) {
         setSelectedFolder(folderParam);
 
-        if (itemParam && portfolioData.items[itemParam]) {
+        if (itemParam && portfolioData.portfolioItems[itemParam]) {
           setSelectedItemId(itemParam);
           setCurrentMediaIndex(0); // Reset media index when navigating
           if (window.innerWidth < 768) {
@@ -444,7 +447,7 @@ const PortfolioApp: React.FC = () => {
       folderSet = true;
 
       // If item is in URL and exists
-      if (itemParam && portfolioData.items[itemParam]) {
+      if (itemParam && portfolioData.portfolioItems[itemParam]) {
         setSelectedItemId(itemParam);
         itemSet = true;
         // Set mobile view state based on screen size
@@ -460,7 +463,7 @@ const PortfolioApp: React.FC = () => {
           updateUrl(folderParam, folderItems[0].id);
         }
       }
-    } else if (itemParam && portfolioData.items[itemParam]) {
+    } else if (itemParam && portfolioData.portfolioItems[itemParam]) {
       // If only item is in URL, find which folder contains it
       for (const folderName in portfolioData.folders) {
         if (portfolioData.folders[folderName].items.includes(itemParam)) {
@@ -510,8 +513,8 @@ const PortfolioApp: React.FC = () => {
     const query = searchQuery.toLowerCase();
 
     // Search through all items
-    for (const itemId in portfolioData.items) {
-      const item = portfolioData.items[itemId];
+    for (const itemId in portfolioData.portfolioItems) {
+      const item = portfolioData.portfolioItems[itemId];
       const itemName = item.name.toLowerCase();
       const itemTags = item.details.tags.join(" ").toLowerCase();
       const itemDesc = (item.details.description || "").toLowerCase();

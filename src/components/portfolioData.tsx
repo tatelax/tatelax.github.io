@@ -1,10 +1,15 @@
 "use client";
-import { ItemsMap, FolderStructure } from "./PortfolioApp";
+import { PortfolioItemsMap, FolderStructure } from "./PortfolioApp";
+
+export enum LayoutType {
+  Portfolio,
+  Blog,
+}
 
 // Define content structure
 export const portfolioData = {
   // All items with their details
-  items: {
+  portfolioItems: {
     sandboxr: {
       id: "sandboxr",
       name: "Sandboxr",
@@ -919,12 +924,13 @@ export const portfolioData = {
         ],
       },
     },
-  } as ItemsMap,
+  } as PortfolioItemsMap,
 
   folders: {
     Projects: {
       icon: "📁",
       description: "Projects",
+      layoutType: LayoutType.Portfolio,
       items: [
         "sandboxr",
         "cavecrusade",
@@ -947,31 +953,37 @@ export const portfolioData = {
     Experiments: {
       icon: "📁",
       description: "Experiments",
+      layoutType: LayoutType.Portfolio,
       items: ["tinydrive", "melo", "aimarketresearch"],
     },
     "Open-Source": {
       icon: "📁",
       description: "Open-source stuff I've contributed to",
+      layoutType: LayoutType.Portfolio,
       items: ["item3", "item4", "item5"],
     },
     Educational: {
       icon: "📁",
       description: "Educational projects",
+      layoutType: LayoutType.Portfolio,
       items: ["item2", "item4"],
     },
     Photography: {
       icon: "📁",
       description: "Photography",
+      layoutType: LayoutType.Portfolio,
       items: [],
     },
     About: {
       icon: "📁",
       description: "About me",
+      layoutType: LayoutType.Portfolio,
       items: ["item5"],
     },
     Posts: {
       icon: "📁",
       description: "Posts",
+      layoutType: LayoutType.Portfolio,
       items: [],
     },
   } as FolderStructure,
