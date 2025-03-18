@@ -131,7 +131,7 @@ const ItemDetailsPanel: React.FC<ItemDetailsPanelProps> = ({
                     </h3>
 
                     {currentMedia && currentMedia.description ? (
-                      <div className="space-y-4">
+                      <div className="space-y-4 justify-center">
                         <p className="text-white/90 text-base">
                           {currentMedia.description}
                         </p>
