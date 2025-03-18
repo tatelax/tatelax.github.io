@@ -47,6 +47,8 @@ export interface SearchResult extends PortfolioItem {
 export enum LayoutType {
   Portfolio,
   Blog,
+  Photography,
+  Text,
 }
 
 export interface FolderInfo {
