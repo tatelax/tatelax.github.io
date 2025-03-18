@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect, useCallback, useRef } from "react";
 import {
   ChevronRight,
   ChevronLeft,
@@ -227,6 +227,9 @@ const PortfolioApp: React.FC = () => {
   const [searchResults, setSearchResults] = useState<SearchResult[]>([]);
   const [currentMediaIndex, setCurrentMediaIndex] = useState<number>(0); // Added to track current media index
 
+  // Add this ref to track initialization state
+  const initialized = useRef<boolean>(false);
+
   // Mobile-specific states
   const [mobileMenuOpen, setMobileMenuOpen] = useState<boolean>(false);
   const [viewingFileDetail, setViewingFileDetail] = useState<boolean>(false);
@@ -421,36 +424,27 @@ const PortfolioApp: React.FC = () => {
     return () => window.removeEventListener("popstate", handlePopState);
   }, [getItemsInFolder]);
 
-  // Initialize the default folder and item when component mounts
+  // Combined effect for initialization and URL parameter handling
   useEffect(() => {
-    // If no folder is already selected, select the first one
-    if (!selectedFolder && folders.length > 0) {
-      const firstFolder = folders[0].name;
-      setSelectedFolder(firstFolder);
+    // Skip if already initialized to prevent overriding URL-specified selections
+    if (initialized.current) return;
 
-      // Select the first item in that folder
-      const folderItems = getItemsInFolder(firstFolder);
-      if (folderItems.length > 0) {
-        const firstItem = folderItems[folderItems.length - 1];
-        setSelectedItemId(firstItem.id);
-        updateUrl(firstFolder, firstItem.id);
-      }
-    }
-  }, [folders, selectedFolder, getItemsInFolder, updateUrl]);
-
-  // Parse the URL when the component mounts
-  useEffect(() => {
     const params = new URLSearchParams(window.location.search);
     const folderParam = params.get("folder");
     const itemParam = params.get("item");
 
-    // If folder is in URL and exists in our structure
+    let folderSet = false;
+    let itemSet = false;
+
+    // First priority: Process URL parameters completely
     if (folderParam && portfolioData.folders[folderParam]) {
       setSelectedFolder(folderParam);
+      folderSet = true;
 
       // If item is in URL and exists
       if (itemParam && portfolioData.items[itemParam]) {
         setSelectedItemId(itemParam);
+        itemSet = true;
         // Set mobile view state based on screen size
         if (window.innerWidth < 768) {
           setViewingFileDetail(true);
@@ -460,6 +454,7 @@ const PortfolioApp: React.FC = () => {
         const folderItems = getItemsInFolder(folderParam);
         if (folderItems.length > 0) {
           setSelectedItemId(folderItems[0].id);
+          itemSet = true;
           updateUrl(folderParam, folderItems[0].id);
         }
       }
@@ -468,7 +463,9 @@ const PortfolioApp: React.FC = () => {
       for (const folderName in portfolioData.folders) {
         if (portfolioData.folders[folderName].includes(itemParam)) {
           setSelectedFolder(folderName);
+          folderSet = true;
           setSelectedItemId(itemParam);
+          itemSet = true;
           updateUrl(folderName, itemParam);
 
           // Set mobile view state based on screen size
@@ -479,7 +476,26 @@ const PortfolioApp: React.FC = () => {
         }
       }
     }
-  }, [getItemsInFolder, updateUrl]);
+
+    // Second priority: Default initialization only if URL didn't provide values
+    if (!folderSet && folders.length > 0) {
+      const firstFolder = folders[0].name;
+      setSelectedFolder(firstFolder);
+
+      // If URL processing didn't set an item, select the first item in the folder
+      if (!itemSet) {
+        const folderItems = getItemsInFolder(firstFolder);
+        if (folderItems.length > 0) {
+          const firstItem = folderItems[folderItems.length - 1];
+          setSelectedItemId(firstItem.id);
+          updateUrl(firstFolder, firstItem.id);
+        }
+      }
+    }
+
+    // Mark as initialized so this logic only runs once
+    initialized.current = true;
+  }, [folders, getItemsInFolder, updateUrl]);
 
   // Perform search when query changes
   useEffect(() => {
@@ -640,7 +656,7 @@ const PortfolioApp: React.FC = () => {
 
   return (
     <div
-      className="flex px-0 md:px-4 lg:px-8 lg:py-20 xl:px-16 2xl:px-40 flex-col h-screen relative"
+      className="flex px-0 md:px-4 lg:px-8 lg:py-20 xl:px-16 2xl:px-35 flex-col h-screen relative"
       style={{
         fontFamily:
           "system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif",

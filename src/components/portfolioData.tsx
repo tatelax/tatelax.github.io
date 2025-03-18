@@ -739,8 +739,8 @@ export const portfolioData = {
     melo: {
       id: "melo",
       name: "melo",
-      icon: "🧠",
-      color: "#F39C74",
+      icon: "🍋",
+      color: "#f244bb",
       year: "2024",
       details: {
         name: "melo",
