@@ -325,9 +325,10 @@ const PortfolioApp: React.FC = () => {
 
       // Update URL with new folder
       if (folderItems.length > 0) {
-        const firstItem = folderItems[0];
-        setSelectedItemId(firstItem.id);
-        updateUrl(folderName, firstItem.id);
+        // Select the newest item (last item in the array)
+        const newestItem = folderItems[folderItems.length - 1];
+        setSelectedItemId(newestItem.id);
+        updateUrl(folderName, newestItem.id);
       } else {
         // If folder is empty, just update folder in URL
         updateUrl(folderName);
