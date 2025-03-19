@@ -1022,14 +1022,18 @@ const PortfolioApp: React.FC = () => {
                 <div className="p-7">
                   <div className="mb-6">
                     <h1
-                      className="font-bold mb-1 text-white"
+                      className="font-bold mb-1 text-white whitespace-nowrap"
                       style={{
                         fontSize: "clamp(1.25rem, 3vw, 2.25rem)",
                         lineHeight: 1.2,
+                        display: "flex",
+                        flexDirection: "column",
                       }}
                     >
-                      Tate McCormick is a designer & engineer based in Redmond,
-                      WA.
+                      <span>Tate McCormick is a </span>
+                      <span>designer & engineer</span>
+                      <span>based in </span>
+                      <span>Redmond, WA.</span>
                     </h1>
                   </div>
                 </div>
