@@ -785,8 +785,7 @@ const PortfolioApp: React.FC = () => {
       style={{
         fontFamily:
           "system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif",
-        backgroundImage:
-          "url('images/pexels-adrien-olichon-1257089-2387793.jpg')",
+        backgroundImage: "url('images/pexels-jplenio-1103970.jpg')",
         backgroundSize: "cover",
         backgroundPosition: "center",
         backgroundRepeat: "no-repeat",
