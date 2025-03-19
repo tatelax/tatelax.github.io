@@ -9,7 +9,7 @@ export const renderLeftNav = (
   disabled: boolean
 ): React.ReactNode => (
   <button
-    className="image-gallery-left-nav"
+    className="image-gallery-left-nav shadow"
     disabled={disabled}
     onClick={onClick}
     aria-label="Previous Slide"
