@@ -2,7 +2,6 @@ export interface MediaFile {
   path: string;
   type: "image" | "video" | "pdf";
   thumbnail?: string; // Optional thumbnail for videos/pdfs
-  title?: string;
   description?: string; // Added description field for each media item
 }
 

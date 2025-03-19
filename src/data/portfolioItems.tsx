@@ -18,7 +18,6 @@ export const portfolioItems: PortfolioItemsMap = {
         {
           path: "images/portfolio/sandboxr/1.jpg",
           type: "image",
-          title: "Hello, World!",
           description: `
 ## 💡 About
 
@@ -118,7 +117,8 @@ Hello, World!
       description: "A collection of toggle switch designs for web interfaces.",
       media: [
         {
-          path: "images/portfolio/pro/video.mp4",
+          path: "https://www.youtube.com/embed/Jz4BOTSk03Q?si=KbSCC5t7Buo8ZA4l",
+          thumbnail: "https://img.youtube.com/vi/Jz4BOTSk03Q/default.jpg",
           type: "video",
           description: `
 ## 💡 About
@@ -707,6 +707,7 @@ Hello, World!
       media: [
         {
           path: "https://www.youtube.com/embed/Qz_MBIVbuKE?si=ANNJDjcdXEsbJ3QE",
+          thumbnail: "https://img.youtube.com/vi/Qz_MBIVbuKE/default.jpg",
           type: "video",
           description: `
 ## 💡 About
@@ -763,6 +764,7 @@ Hello, World!
       media: [
         {
           path: "https://www.youtube.com/embed/FxhluGA9mWg?si=ONdWlwUD4Hl7hG1n",
+          thumbnail: "https://img.youtube.com/vi/FxhluGA9mWg/default.jpg",
           type: "video",
           description: `
 ## 💡 About
@@ -778,6 +780,7 @@ This is our first rough prototype where we demonstrated the ability to navigate 
         },
         {
           path: "https://www.youtube.com/embed/9lY1Q9y4Iyg?si=zmiti-Fp_ma0GJoY",
+          thumbnail: "https://img.youtube.com/vi/9lY1Q9y4Iyg/default.jpg",
           type: "video",
           description: `
 Here we demonstrate our custom 3D UI library that allows the user to look up an order using hand tracking. We also demonstrate our ability to recognize products on the shelf.`,
@@ -849,6 +852,7 @@ The completed setup.
         },
         {
           path: "https://www.youtube.com/embed/IoptQFnqbAM?si=Wn5PsLrpwj7MZJ3h",
+          thumbnail: "https://img.youtube.com/vi/IoptQFnqbAM/default.jpg",
           type: "video",
           description: `
 I want to note that this video has some AR tracking issues! This is because the Magic Leap 2 was having thermal issues and we did not have time to reshoot, sadly.
@@ -877,6 +881,7 @@ Unfortunately, Walmart shut down their research division and everyone got laid o
       media: [
         {
           path: "https://www.youtube.com/embed/slJjxv2FG_g?si=2Uzia49nybeZPkBI",
+          thumbnail: "https://img.youtube.com/vi/slJjxv2FG_g/default.jpg",
           type: "video",
           description: `
 ## 💡 About
@@ -912,7 +917,7 @@ Object-tracked AR UI
       media: [
         {
           path: "https://www.youtube.com/embed/mNKAoGwfXGs?si=AK0VgLMKgigzaWCU",
-          thumbnail: "images/portfolio/spectatorview/1.png",
+          thumbnail: "https://img.youtube.com/vi/mNKAoGwfXGs/default.jpg",
           type: "video",
           description: `
 ## 💡 About
@@ -988,6 +993,7 @@ For 3rd person view, we do the same thing, but with a 2nd camera inside the XR a
       media: [
         {
           path: "https://www.youtube.com/embed/SwWQUCWYN94?si=IAcGPIp-phUfvE8Y",
+          thumbnail: "https://img.youtube.com/vi/SwWQUCWYN94/default.jpg",
           type: "video",
           description: `
 ## 💡 About
@@ -1162,7 +1168,6 @@ I created a rough mockup in an hour for what the UI could look like.
         {
           path: "images/portfolio/pace/1.png",
           type: "image",
-          title: "Dashboard",
           description: `
 ## 💡 About
 
@@ -1180,7 +1185,6 @@ Check-ins can be postponed by a day by spending vacation days. Every 10 check-in
         {
           path: "images/portfolio/pace/2.png",
           type: "image",
-          title: "Dashboard",
           description: `
 Hello, World!
 `,
@@ -1188,7 +1192,6 @@ Hello, World!
         {
           path: "images/portfolio/pace/3.png",
           type: "image",
-          title: "Dashboard",
           description: `
 Hello, World!
 `,
@@ -1196,7 +1199,6 @@ Hello, World!
         {
           path: "images/portfolio/pace/4.png",
           type: "image",
-          title: "Dashboard",
           description: `
 Hello, World!
 `,

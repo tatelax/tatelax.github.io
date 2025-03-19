@@ -44,12 +44,6 @@ export const PortfolioItemDetailsPanel: React.FC<ItemDetailsPanelProps> = ({
 
                   {/* Right Column - Media Description (30%) */}
                   <div className="rounded-lg p-6 flex flex-col justify-start h-full overflow-y-auto mac-scrollbar md:col-span-3">
-                    <h3 className="text-xl font-semibold text-white mb-4">
-                      {currentMedia && currentMedia.title
-                        ? currentMedia.title
-                        : ""}
-                    </h3>
-
                     {currentMedia && currentMedia.description ? (
                       <div className="markdown space-y-4 justify-center">
                         <ReactMarkdown>
