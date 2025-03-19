@@ -286,14 +286,14 @@ Hello, World!
 `,
         },
         {
-          path: "images/portfolio/volygon/5.png",
+          path: "images/portfolio/volygon/5.PNG",
           type: "image",
           description: `
 Hello, World!
 `,
         },
         {
-          path: "images/portfolio/volygon/6.png",
+          path: "images/portfolio/volygon/6.PNG",
           type: "image",
           description: `
 Hello, World!
