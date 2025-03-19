@@ -14,7 +14,6 @@ import {
   Twitter,
   Linkedin,
   Calendar,
-  Clock,
 } from "lucide-react";
 import { folderData } from "../data/folders";
 import {
@@ -26,7 +25,7 @@ import {
 } from "@/types";
 import "react-image-gallery/styles/css/image-gallery.css";
 import "../css/macScrollbar.css";
-import { ItemDetailsPanel } from "./ItemDetailsPanel";
+import { PortfolioItemDetailsPanel } from "./PortfolioItemDetailsPanel";
 import { BlogPostDetailsPanel } from "./BlogPostDetailsPanel";
 
 const PortfolioApp: React.FC = () => {
@@ -599,13 +598,21 @@ const PortfolioApp: React.FC = () => {
               className="video-wrapper flex justify-center items-center h-full"
               style={{ height: "60vh" }}
             >
-              <video
-                src={basePath}
-                controls
-                className="max-w-full max-h-full object-contain rounded-md"
-                style={{ maxHeight: "100%" }}
-                poster={media.thumbnail ? `${media.thumbnail}` : undefined}
-              />
+              {
+                <div
+                  className="relative w-full h-0"
+                  style={{ paddingBottom: "56.25%" }}
+                >
+                  <iframe
+                    className="absolute top-0 left-0 w-full h-full"
+                    src={basePath}
+                    title="YouTube video player"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    referrerPolicy="strict-origin-when-cross-origin"
+                    allowFullScreen
+                  ></iframe>
+                </div>
+              }
             </div>
           ),
         };
@@ -1146,7 +1153,7 @@ const PortfolioApp: React.FC = () => {
                   <BlogPostDetailsPanel selectedBlogPost={selectedBlogPost} />
                 ) : (
                   // Portfolio item details view
-                  <ItemDetailsPanel
+                  <PortfolioItemDetailsPanel
                     selectedItem={selectedPortfolioItem}
                     currentMedia={currentMedia}
                     currentMediaIndex={currentMediaIndex}
@@ -1224,7 +1231,7 @@ const PortfolioApp: React.FC = () => {
                 (isBlogFolder() ? (
                   <BlogPostDetailsPanel selectedBlogPost={selectedBlogPost} />
                 ) : (
-                  <ItemDetailsPanel
+                  <PortfolioItemDetailsPanel
                     selectedItem={selectedPortfolioItem}
                     currentMedia={currentMedia}
                     currentMediaIndex={currentMediaIndex}

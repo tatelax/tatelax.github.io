@@ -1,8 +1,9 @@
 import { ItemDetailsPanelProps } from "@/types";
 import ImageGallery from "react-image-gallery";
 import { renderLeftNav, renderRightNav } from "./GalleryNavigation";
+import ReactMarkdown from "react-markdown";
 
-export const ItemDetailsPanel: React.FC<ItemDetailsPanelProps> = ({
+export const PortfolioItemDetailsPanel: React.FC<ItemDetailsPanelProps> = ({
   selectedItem,
   currentMedia,
   currentMediaIndex,
@@ -50,10 +51,10 @@ export const ItemDetailsPanel: React.FC<ItemDetailsPanelProps> = ({
                     </h3>
 
                     {currentMedia && currentMedia.description ? (
-                      <div className="space-y-4 justify-center">
-                        <p className="text-white/90 text-base">
+                      <div className="markdown space-y-4 justify-center">
+                        <ReactMarkdown>
                           {currentMedia.description}
-                        </p>
+                        </ReactMarkdown>
                       </div>
                     ) : (
                       <p className="text-white/70 italic">
