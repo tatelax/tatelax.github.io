@@ -34,6 +34,7 @@ const PortfolioApp: React.FC = () => {
   const [searchQuery, setSearchQuery] = useState<string>("");
   const [searchResults, setSearchResults] = useState<SearchResult[]>([]);
   const [currentMediaIndex, setCurrentMediaIndex] = useState<number>(0); // Added to track current media index
+  const [isMobile, setIsMobile] = useState<boolean>(false); // Added to track mobile state
 
   // Add this ref to track initialization state
   const initialized = useRef<boolean>(false);
@@ -165,7 +166,7 @@ const PortfolioApp: React.FC = () => {
       setCurrentMediaIndex(0); // Reset media index when selecting a new item
 
       // On mobile, switch to file detail view
-      if (window.innerWidth < 768) {
+      if (isMobile) {
         setViewingFileDetail(true);
       }
 
@@ -175,7 +176,7 @@ const PortfolioApp: React.FC = () => {
         updateUrl(folder, itemId);
       }
     },
-    [selectedFolder, updateUrl]
+    [selectedFolder, updateUrl, isMobile]
   );
 
   // Handle folder selection with URL update
@@ -247,12 +248,18 @@ const PortfolioApp: React.FC = () => {
   // Check screen size and adjust view accordingly
   useEffect(() => {
     const handleResize = () => {
-      if (window.innerWidth >= 768) {
+      const mobile = window.innerWidth < 768;
+      setIsMobile(mobile);
+
+      if (!mobile) {
         // Reset mobile-specific states when on desktop
         setViewingFileDetail(false);
         setMobileMenuOpen(false);
       }
     };
+
+    // Set initial state on mount
+    handleResize();
 
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
@@ -287,7 +294,7 @@ const PortfolioApp: React.FC = () => {
           if (itemExists) {
             setSelectedItemId(itemParam);
             setCurrentMediaIndex(0); // Reset media index when navigating
-            if (window.innerWidth < 768) {
+            if (isMobile) {
               setViewingFileDetail(true);
             }
           } else {
@@ -311,7 +318,7 @@ const PortfolioApp: React.FC = () => {
 
     window.addEventListener("popstate", handlePopState);
     return () => window.removeEventListener("popstate", handlePopState);
-  }, [getItemsInFolder]);
+  }, [getItemsInFolder, isMobile]);
 
   // Combined effect for initialization and URL parameter handling
   useEffect(() => {
@@ -352,7 +359,7 @@ const PortfolioApp: React.FC = () => {
           setSelectedItemId(itemParam);
           itemSet = true;
           // Set mobile view state based on screen size
-          if (window.innerWidth < 768) {
+          if (isMobile) {
             setViewingFileDetail(true);
           }
         } else {
@@ -403,7 +410,7 @@ const PortfolioApp: React.FC = () => {
           updateUrl(folderName, itemParam);
 
           // Set mobile view state based on screen size
-          if (window.innerWidth < 768) {
+          if (isMobile) {
             setViewingFileDetail(true);
           }
           break;
@@ -429,7 +436,7 @@ const PortfolioApp: React.FC = () => {
 
     // Mark as initialized so this logic only runs once
     initialized.current = true;
-  }, [folders, getItemsInFolder, updateUrl]);
+  }, [folders, getItemsInFolder, updateUrl, isMobile]);
 
   // Perform search when query changes
   useEffect(() => {
@@ -523,7 +530,7 @@ const PortfolioApp: React.FC = () => {
       updateUrl(item.folderId, item.id);
 
       // On mobile, don't automatically go to detail view for search results
-      if (window.innerWidth < 768) {
+      if (isMobile) {
         setViewingFileDetail(false);
       }
     } else if (searchQuery.trim() !== "") {
@@ -531,7 +538,7 @@ const PortfolioApp: React.FC = () => {
       // Don't reset URL completely, just show "no results" state
       setSelectedItemId("");
     }
-  }, [searchQuery, updateUrl]);
+  }, [searchQuery, updateUrl, isMobile]);
 
   // Get current items in the selected folder
   const currentItems = selectedFolder ? getItemsInFolder(selectedFolder) : [];
@@ -1145,13 +1152,26 @@ const PortfolioApp: React.FC = () => {
                 </div>
               </div>
 
-              {/* Right - Preview - Only show when an item is selected */}
+              {/* Right - Preview - Only show when an item is selected and conditions are met */}
               {selectedItem &&
-                (isBlogFolder() ? (
-                  // Blog post details view
+                (isMobile ? (
+                  // On mobile, only show if viewingFileDetail is true
+                  viewingFileDetail &&
+                  (isBlogFolder() ? (
+                    <BlogPostDetailsPanel selectedBlogPost={selectedBlogPost} />
+                  ) : (
+                    <PortfolioItemDetailsPanel
+                      selectedItem={selectedPortfolioItem}
+                      currentMedia={currentMedia}
+                      currentMediaIndex={currentMediaIndex}
+                      handleSlideChange={handleSlideChange}
+                      getGalleryItems={getGalleryItems}
+                    />
+                  ))
+                ) : // On desktop, always show if selectedItem exists
+                isBlogFolder() ? (
                   <BlogPostDetailsPanel selectedBlogPost={selectedBlogPost} />
                 ) : (
-                  // Portfolio item details view
                   <PortfolioItemDetailsPanel
                     selectedItem={selectedPortfolioItem}
                     currentMedia={currentMedia}
@@ -1227,7 +1247,22 @@ const PortfolioApp: React.FC = () => {
 
               {/* Right - Preview - Only show when an item is selected */}
               {selectedItem &&
-                (isBlogFolder() ? (
+                (isMobile ? (
+                  // On mobile, only show if viewingFileDetail is true
+                  viewingFileDetail &&
+                  (isBlogFolder() ? (
+                    <BlogPostDetailsPanel selectedBlogPost={selectedBlogPost} />
+                  ) : (
+                    <PortfolioItemDetailsPanel
+                      selectedItem={selectedPortfolioItem}
+                      currentMedia={currentMedia}
+                      currentMediaIndex={currentMediaIndex}
+                      handleSlideChange={handleSlideChange}
+                      getGalleryItems={getGalleryItems}
+                    />
+                  ))
+                ) : // On desktop, always show if selectedItem exists
+                isBlogFolder() ? (
                   <BlogPostDetailsPanel selectedBlogPost={selectedBlogPost} />
                 ) : (
                   <PortfolioItemDetailsPanel
