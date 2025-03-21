@@ -759,7 +759,7 @@ Hello, World!
       name: "Walmart Associate Use Case",
       date: "2022",
       client: "Walmart, Inc.",
-      tags: ["Unity", "Enterprise", "XR"],
+      tags: ["Unity", "Enterprise", "XR", "Design"],
       description: "An abstract representation of the creative process.",
       media: [
         {
@@ -799,7 +799,7 @@ Here we demonstrate our custom 3D UI library that allows the user to look up an 
       name: "Walmart XR Video",
       date: "2023",
       client: "Walmart, Inc.",
-      tags: ["Abstract", "Conceptual", "Mind"],
+      tags: ["Unity", "Enterprise", "XR", "Design"],
       description: "An abstract representation of the creative process.",
       media: [
         {
@@ -876,7 +876,7 @@ Unfortunately, Walmart shut down their research division and everyone got laid o
       name: "Walmart AI + XR",
       date: "2023",
       client: "Walmart, Inc.",
-      tags: ["Abstract", "Conceptual", "Mind"],
+      tags: ["Unity", "Enterprise", "XR", "AI", "Design"],
       description: "An abstract representation of the creative process.",
       media: [
         {
@@ -912,7 +912,7 @@ Object-tracked AR UI
       name: "Walmart Spectator View",
       date: "2024",
       client: "Walmart, Inc.",
-      tags: ["Abstract", "Conceptual", "Mind"],
+      tags: ["Unity", "Enterprise", "XR", "Design"],
       description: "An abstract representation of the creative process.",
       media: [
         {
@@ -988,7 +988,7 @@ For 3rd person view, we do the same thing, but with a 2nd camera inside the XR a
       name: "melo",
       date: "2024",
       client: "self",
-      tags: ["Abstract", "Conceptual", "Mind"],
+      tags: ["Unity", "XR", "Design"],
       description: "An abstract representation of the creative process.",
       media: [
         {
@@ -1016,7 +1016,7 @@ We took some inspiration from work done at my past job at Walmart to see how a u
       name: "wine",
       date: "2024",
       client: "self",
-      tags: ["Abstract", "Conceptual", "Mind"],
+      tags: ["Crypto", "Design", "Engineering", "React"],
       description: "An abstract representation of the creative process.",
       media: [
         {
@@ -1047,7 +1047,7 @@ Hello, World!
       name: "Rescue Simulator: Online",
       date: "2024",
       client: "self",
-      tags: ["Abstract", "Conceptual", "Mind"],
+      tags: ["Unity", "Design", "Video Game"],
       description: "An abstract representation of the creative process.",
       media: [
         {
@@ -1125,7 +1125,7 @@ Hello, World!
       name: "AI Market Research",
       date: "2025",
       client: "self",
-      tags: ["Abstract", "Conceptual", "Mind"],
+      tags: ["Design", "Experiment", "Figma"],
       description: "An abstract representation of the creative process.",
       media: [
         {
@@ -1162,7 +1162,7 @@ I created a rough mockup in an hour for what the UI could look like.
       name: "pace",
       date: "2025",
       client: "self",
-      tags: ["Swift", "Design", "Engineering"],
+      tags: ["Swift", "Design", "Engineering", "Mobile"],
       description: "A social habit building app for iOS.",
       media: [
         {
