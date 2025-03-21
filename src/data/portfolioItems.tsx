@@ -12,7 +12,7 @@ export const portfolioItems: PortfolioItemsMap = {
       name: "Sandboxr - a 3D printing service.",
       date: "2011",
       client: "Self-initiated",
-      tags: ["Bold", "Experimental", "Digital"],
+      tags: ["3D Printing", "Unity", "Engineering"],
       description: "An exploration of digital painting techniques.",
       media: [
         {
@@ -69,7 +69,7 @@ I met with the original co-founders of Sandboxr who were interested in developin
       name: "Cave Crusade",
       date: "2013",
       client: "Agency X",
-      tags: ["Minimal", "Clean", "Abstract"],
+      tags: ["Mobile", "Unity", "Video Game"],
       description: "A series of abstract compositions with blurred ovals.",
       media: [
         {
@@ -113,7 +113,7 @@ Hello, World!
       name: "Process Optimization",
       date: "2016",
       client: "Process, Research, & Optimization, LLC",
-      tags: ["UI", "Components", "Interactive"],
+      tags: ["Unity", "Engineering", "Design", "Enterprise"],
       description: "A collection of toggle switch designs for web interfaces.",
       media: [
         {
@@ -184,7 +184,7 @@ Hello, World!
       name: "EmergeNYC",
       date: "2016",
       client: "Self-initiated",
-      tags: ["Lighting", "Natural", "Atmospheric"],
+      tags: ["Video Game", "Unity", "Engineering", "Multiplayer"],
       description: "A study of light rays through different atmospheres.",
       media: [
         {
@@ -245,7 +245,7 @@ Hello, World!
       name: "Volygon",
       date: "2018",
       client: "Creative Mind Inc.",
-      tags: ["Abstract", "Conceptual", "Mind"],
+      tags: ["Design", "Engineering", "Video Game"],
       description: "An abstract representation of the creative process.",
       media: [
         {
@@ -318,8 +318,8 @@ Hello, World!
     details: {
       name: "Magellan",
       date: "2020",
-      client: "Creative Mind Inc.",
-      tags: ["Abstract", "Conceptual", "Mind"],
+      client: "Comcast, Charter & Rainbow Design Services",
+      tags: ["Enterprise", "Engineering", "Unity"],
       description: "An abstract representation of the creative process.",
       media: [
         {
@@ -759,7 +759,7 @@ Hello, World!
       name: "Walmart Associate Use Case",
       date: "2022",
       client: "Walmart, Inc.",
-      tags: ["Abstract", "Conceptual", "Mind"],
+      tags: ["Unity", "Enterprise", "XR"],
       description: "An abstract representation of the creative process.",
       media: [
         {
