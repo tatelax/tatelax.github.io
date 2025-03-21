@@ -83,21 +83,21 @@ Cave Crusade was one of my earliest freelance mobile game projects. It was a fun
           path: "images/portfolio/cavecrusade/2.png",
           type: "image",
           description: `
-Hello, World!
+
             `,
         },
         {
           path: "images/portfolio/cavecrusade/3.png",
           type: "image",
           description: `
-Hello, World!
+
             `,
         },
         {
           path: "images/portfolio/cavecrusade/4.png",
           type: "image",
           description: `
-Hello, World!
+
             `,
         },
       ],
@@ -140,35 +140,35 @@ I created a tool in Unity which allowed our consultants to model a business proc
           path: "images/portfolio/pro/2.png",
           type: "image",
           description: `
-Hello, World!
+
 `,
         },
         {
           path: "images/portfolio/pro/3.png",
           type: "image",
           description: `
-Hello, World!
+
 `,
         },
         {
           path: "images/portfolio/pro/4.png",
           type: "image",
           description: `
-Hello, World!
+
 `,
         },
         {
           path: "images/portfolio/pro/5.png",
           type: "image",
           description: `
-Hello, World!
+
 `,
         },
         {
           path: "images/portfolio/pro/6.png",
           type: "image",
           description: `
-Hello, World!
+
 `,
         },
       ],
@@ -208,28 +208,28 @@ I joined the team to assist with adding new gameplay features as well as optimiz
           path: "images/portfolio/emergenyc/2.jpg",
           type: "image",
           description: `
-Hello, World!
+
 `,
         },
         {
           path: "images/portfolio/emergenyc/3.jpg",
           type: "image",
           description: `
-Hello, World!
+
 `,
         },
         {
           path: "images/portfolio/emergenyc/4.jpg",
           type: "image",
           description: `
-Hello, World!
+
 `,
         },
         {
           path: "images/portfolio/emergenyc/5.jpg",
           type: "image",
           description: `
-Hello, World!
+
 `,
         },
       ],
@@ -268,42 +268,42 @@ Volygon is a side project of mine that I have been working on and off for many y
           path: "images/portfolio/volygon/2.png",
           type: "image",
           description: `
-Hello, World!
+
 `,
         },
         {
           path: "images/portfolio/volygon/3.png",
           type: "image",
           description: `
-Hello, World!
+
 `,
         },
         {
           path: "images/portfolio/volygon/4.png",
           type: "image",
           description: `
-Hello, World!
+
 `,
         },
         {
           path: "images/portfolio/volygon/5.PNG",
           type: "image",
           description: `
-Hello, World!
+
 `,
         },
         {
           path: "images/portfolio/volygon/6.PNG",
           type: "image",
           description: `
-Hello, World!
+
 `,
         },
         {
           path: "images/portfolio/volygon/7.png",
           type: "image",
           description: `
-Hello, World!
+
 `,
         },
       ],
@@ -358,7 +358,7 @@ I started working on this project in 2019 as a Senior Developer and was promoted
           thumbnail: "images/portfolio/magellan/thumbnails/2.png",
           type: "image",
           description: `
-Hello, World!
+
 `,
         },
         {
@@ -366,7 +366,7 @@ Hello, World!
           thumbnail: "images/portfolio/magellan/thumbnails/3.png",
           type: "image",
           description: `
-Hello, World!
+
 `,
         },
         {
@@ -374,7 +374,7 @@ Hello, World!
           thumbnail: "images/portfolio/magellan/thumbnails/4.png",
           type: "image",
           description: `
-Hello, World!
+
 `,
         },
         {
@@ -382,7 +382,7 @@ Hello, World!
           thumbnail: "images/portfolio/magellan/thumbnails/5.png",
           type: "image",
           description: `
-Hello, World!
+
 `,
         },
         {
@@ -390,7 +390,7 @@ Hello, World!
           thumbnail: "images/portfolio/magellan/thumbnails/6.png",
           type: "image",
           description: `
-Hello, World!
+
 `,
         },
         {
@@ -398,7 +398,7 @@ Hello, World!
           thumbnail: "images/portfolio/magellan/thumbnails/7.png",
           type: "image",
           description: `
-Hello, World!
+
 `,
         },
         {
@@ -406,7 +406,7 @@ Hello, World!
           thumbnail: "images/portfolio/magellan/thumbnails/8.png",
           type: "image",
           description: `
-Hello, World!
+
 `,
         },
         {
@@ -414,7 +414,7 @@ Hello, World!
           thumbnail: "images/portfolio/magellan/thumbnails/9.png",
           type: "image",
           description: `
-Hello, World!
+
 `,
         },
         {
@@ -422,7 +422,7 @@ Hello, World!
           thumbnail: "images/portfolio/magellan/thumbnails/10.png",
           type: "image",
           description: `
-Hello, World!
+
 `,
         },
         {
@@ -430,7 +430,7 @@ Hello, World!
           thumbnail: "images/portfolio/magellan/thumbnails/11.png",
           type: "image",
           description: `
-Hello, World!
+
 `,
         },
         {
@@ -438,7 +438,7 @@ Hello, World!
           thumbnail: "images/portfolio/magellan/thumbnails/12.png",
           type: "image",
           description: `
-Hello, World!
+
 `,
         },
         {
@@ -446,7 +446,7 @@ Hello, World!
           thumbnail: "images/portfolio/magellan/thumbnails/13.png",
           type: "image",
           description: `
-Hello, World!
+
 `,
         },
         {
@@ -454,7 +454,7 @@ Hello, World!
           thumbnail: "images/portfolio/magellan/thumbnails/14.png",
           type: "image",
           description: `
-Hello, World!
+
 `,
         },
         {
@@ -462,7 +462,7 @@ Hello, World!
           thumbnail: "images/portfolio/magellan/thumbnails/15.png",
           type: "image",
           description: `
-Hello, World!
+
 `,
         },
         {
@@ -470,7 +470,7 @@ Hello, World!
           thumbnail: "images/portfolio/magellan/thumbnails/16.png",
           type: "image",
           description: `
-Hello, World!
+
 `,
         },
         {
@@ -478,7 +478,7 @@ Hello, World!
           thumbnail: "images/portfolio/magellan/thumbnails/17.png",
           type: "image",
           description: `
-Hello, World!
+
 `,
         },
         {
@@ -486,7 +486,7 @@ Hello, World!
           thumbnail: "images/portfolio/magellan/thumbnails/18.png",
           type: "image",
           description: `
-Hello, World!
+
 `,
         },
         {
@@ -494,7 +494,7 @@ Hello, World!
           thumbnail: "images/portfolio/magellan/thumbnails/19.png",
           type: "image",
           description: `
-Hello, World!
+
 `,
         },
         {
@@ -502,7 +502,7 @@ Hello, World!
           thumbnail: "images/portfolio/magellan/thumbnails/20.png",
           type: "image",
           description: `
-Hello, World!
+
 `,
         },
         {
@@ -510,7 +510,7 @@ Hello, World!
           thumbnail: "images/portfolio/magellan/thumbnails/21.png",
           type: "image",
           description: `
-Hello, World!
+
 `,
         },
         {
@@ -518,7 +518,7 @@ Hello, World!
           thumbnail: "images/portfolio/magellan/thumbnails/22.png",
           type: "image",
           description: `
-Hello, World!
+
 `,
         },
         {
@@ -526,7 +526,7 @@ Hello, World!
           thumbnail: "images/portfolio/magellan/thumbnails/23.png",
           type: "image",
           description: `
-Hello, World!
+
 `,
         },
         {
@@ -534,7 +534,7 @@ Hello, World!
           thumbnail: "images/portfolio/magellan/thumbnails/24.png",
           type: "image",
           description: `
-Hello, World!
+
 `,
         },
         {
@@ -542,7 +542,7 @@ Hello, World!
           thumbnail: "images/portfolio/magellan/thumbnails/25.png",
           type: "image",
           description: `
-Hello, World!
+
 `,
         },
         {
@@ -550,7 +550,7 @@ Hello, World!
           thumbnail: "images/portfolio/magellan/thumbnails/26.png",
           type: "image",
           description: `
-Hello, World!
+
 `,
         },
         {
@@ -558,7 +558,7 @@ Hello, World!
           thumbnail: "images/portfolio/magellan/thumbnails/27.png",
           type: "image",
           description: `
-Hello, World!
+
 `,
         },
         {
@@ -566,7 +566,7 @@ Hello, World!
           thumbnail: "images/portfolio/magellan/thumbnails/28.png",
           type: "image",
           description: `
-Hello, World!
+
 `,
         },
         {
@@ -574,7 +574,7 @@ Hello, World!
           thumbnail: "images/portfolio/magellan/thumbnails/29.png",
           type: "image",
           description: `
-Hello, World!
+
 `,
         },
         {
@@ -582,7 +582,7 @@ Hello, World!
           thumbnail: "images/portfolio/magellan/thumbnails/30.png",
           type: "image",
           description: `
-Hello, World!
+
 `,
         },
         {
@@ -590,7 +590,7 @@ Hello, World!
           thumbnail: "images/portfolio/magellan/thumbnails/31.png",
           type: "image",
           description: `
-Hello, World!
+
 `,
         },
         {
@@ -598,7 +598,7 @@ Hello, World!
           thumbnail: "images/portfolio/magellan/thumbnails/32.png",
           type: "image",
           description: `
-Hello, World!
+
 `,
         },
         {
@@ -606,7 +606,7 @@ Hello, World!
           thumbnail: "images/portfolio/magellan/thumbnails/33.png",
           type: "image",
           description: `
-Hello, World!
+
 `,
         },
         {
@@ -614,7 +614,7 @@ Hello, World!
           thumbnail: "images/portfolio/magellan/thumbnails/34.png",
           type: "image",
           description: `
-Hello, World!
+
 `,
         },
         {
@@ -622,7 +622,7 @@ Hello, World!
           thumbnail: "images/portfolio/magellan/thumbnails/35.png",
           type: "image",
           description: `
-Hello, World!
+
 `,
         },
         {
@@ -630,7 +630,7 @@ Hello, World!
           thumbnail: "images/portfolio/magellan/thumbnails/36.png",
           type: "image",
           description: `
-Hello, World!
+
 `,
         },
         {
@@ -638,7 +638,7 @@ Hello, World!
           thumbnail: "images/portfolio/magellan/thumbnails/37.png",
           type: "image",
           description: `
-Hello, World!
+
 `,
         },
         {
@@ -646,7 +646,7 @@ Hello, World!
           thumbnail: "images/portfolio/magellan/thumbnails/38.png",
           type: "image",
           description: `
-Hello, World!
+
 `,
         },
         {
@@ -654,7 +654,7 @@ Hello, World!
           thumbnail: "images/portfolio/magellan/thumbnails/39.png",
           type: "image",
           description: `
-Hello, World!
+
 `,
         },
         {
@@ -662,7 +662,7 @@ Hello, World!
           thumbnail: "images/portfolio/magellan/thumbnails/40.png",
           type: "image",
           description: `
-Hello, World!
+
 `,
         },
         {
@@ -670,7 +670,7 @@ Hello, World!
           thumbnail: "images/portfolio/magellan/thumbnails/41.png",
           type: "image",
           description: `
-Hello, World!
+
 `,
         },
         {
@@ -678,7 +678,7 @@ Hello, World!
           thumbnail: "images/portfolio/magellan/thumbnails/42.png",
           type: "image",
           description: `
-Hello, World!
+
 `,
         },
         {
@@ -686,7 +686,7 @@ Hello, World!
           thumbnail: "images/portfolio/magellan/thumbnails/43.png",
           type: "image",
           description: `
-Hello, World!
+
 `,
         },
       ],
@@ -721,28 +721,28 @@ The game allows you to drive an RC car in augmented reality. The car is able to 
           path: "images/portfolio/tinydrive/1.jpg",
           type: "image",
           description: `
-  Hello, World!
+  
   `,
         },
         {
           path: "images/portfolio/tinydrive/2.jpg",
           type: "image",
           description: `
-Hello, World!
+
 `,
         },
         {
           path: "images/portfolio/tinydrive/3.jpg",
           type: "image",
           description: `
-Hello, World!
+
 `,
         },
         {
           path: "images/portfolio/tinydrive/4.jpg",
           type: "image",
           description: `
-Hello, World!
+
 `,
         },
       ],
@@ -1023,7 +1023,7 @@ We took some inspiration from work done at my past job at Walmart to see how a u
           path: "inner-creativity.png",
           type: "image",
           description: `
-Hello, World!
+
 `,
         },
         {
@@ -1067,49 +1067,49 @@ The game is currently in development and is being built in Unreal Engine 5.
           path: "images/portfolio/rso/2.png",
           type: "image",
           description: `
-Hello, World!
+
 `,
         },
         {
           path: "images/portfolio/rso/3.png",
           type: "image",
           description: `
-Hello, World!
+
 `,
         },
         {
           path: "images/portfolio/rso/4.png",
           type: "image",
           description: `
-Hello, World!
+
 `,
         },
         {
           path: "images/portfolio/rso/5.png",
           type: "image",
           description: `
-Hello, World!
+
 `,
         },
         {
           path: "images/portfolio/rso/6.png",
           type: "image",
           description: `
-Hello, World!
+
 `,
         },
         {
           path: "images/portfolio/rso/7.png",
           type: "image",
           description: `
-Hello, World!
+
 `,
         },
         {
           path: "images/portfolio/rso/8.png",
           type: "image",
           description: `
-Hello, World!
+
 `,
         },
       ],
@@ -1186,21 +1186,21 @@ Check-ins can be postponed by a day by spending vacation days. Every 10 check-in
           path: "images/portfolio/pace/2.png",
           type: "image",
           description: `
-Hello, World!
+
 `,
         },
         {
           path: "images/portfolio/pace/3.png",
           type: "image",
           description: `
-Hello, World!
+
 `,
         },
         {
           path: "images/portfolio/pace/4.png",
           type: "image",
           description: `
-Hello, World!
+
 `,
         },
       ],
