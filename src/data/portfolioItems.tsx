@@ -114,7 +114,7 @@ Cave Crusade was one of my earliest freelance mobile game projects. It was a fun
       date: "2016",
       client: "Process, Research, & Optimization, LLC",
       tags: ["Unity", "Engineering", "Design", "Enterprise"],
-      description: "A collection of toggle switch designs for web interfaces.",
+      description: "Enterprise process analysis and optimization tool.",
       media: [
         {
           path: "https://www.youtube.com/embed/Jz4BOTSk03Q?si=KbSCC5t7Buo8ZA4l",
@@ -185,7 +185,7 @@ I created a tool in Unity which allowed our consultants to model a business proc
       date: "2016",
       client: "Self-initiated",
       tags: ["Video Game", "Unity", "Engineering", "Multiplayer"],
-      description: "A study of light rays through different atmospheres.",
+      description: "Multiplayer firefighter simulator on Steam.",
       media: [
         {
           path: "images/portfolio/emergenyc/1.jpg",
@@ -989,7 +989,7 @@ For 3rd person view, we do the same thing, but with a 2nd camera inside the XR a
       date: "2024",
       client: "self",
       tags: ["Unity", "XR", "Design"],
-      description: "An abstract representation of the creative process.",
+      description: "An XR design tool for Meta Quest 3.",
       media: [
         {
           path: "https://www.youtube.com/embed/SwWQUCWYN94?si=IAcGPIp-phUfvE8Y",
@@ -1017,7 +1017,7 @@ We took some inspiration from work done at my past job at Walmart to see how a u
       date: "2024",
       client: "self",
       tags: ["Crypto", "Design", "Engineering", "React"],
-      description: "An abstract representation of the creative process.",
+      description: "Crypto",
       media: [
         {
           path: "inner-creativity.png",
