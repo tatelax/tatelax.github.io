@@ -246,7 +246,7 @@ I joined the team to assist with adding new gameplay features as well as optimiz
       date: "2018",
       client: "Creative Mind Inc.",
       tags: ["Design", "Engineering", "Video Game"],
-      description: "An abstract representation of the creative process.",
+      description: "Multiplayer sandbox game.",
       media: [
         {
           path: "images/portfolio/volygon/1.png",
@@ -320,7 +320,8 @@ Volygon is a side project of mine that I have been working on and off for many y
       date: "2020",
       client: "Comcast, Charter & Rainbow Design Services",
       tags: ["Enterprise", "Engineering", "Unity"],
-      description: "An abstract representation of the creative process.",
+      description:
+        "CAD tool for engineering fiber optic and coaxial cable networks.",
       media: [
         {
           path: "images/portfolio/magellan/full/1.png",
@@ -703,7 +704,7 @@ I started working on this project in 2019 as a Senior Developer and was promoted
       date: "2021",
       client: "self",
       tags: ["Abstract", "Conceptual", "Mind"],
-      description: "An abstract representation of the creative process.",
+      description: "Augmented reality RC cars.",
       media: [
         {
           path: "https://www.youtube.com/embed/Qz_MBIVbuKE?si=ANNJDjcdXEsbJ3QE",
@@ -760,7 +761,8 @@ The game allows you to drive an RC car in augmented reality. The car is able to 
       date: "2022",
       client: "Walmart, Inc.",
       tags: ["Unity", "Enterprise", "XR", "Design"],
-      description: "An abstract representation of the creative process.",
+      description:
+        "A mixed reality app for Hololens 2 that improves associate efficiency when fulfilling orders.",
       media: [
         {
           path: "https://www.youtube.com/embed/FxhluGA9mWg?si=ONdWlwUD4Hl7hG1n",
@@ -800,7 +802,8 @@ Here we demonstrate our custom 3D UI library that allows the user to look up an 
       date: "2023",
       client: "Walmart, Inc.",
       tags: ["Unity", "Enterprise", "XR", "Design"],
-      description: "An abstract representation of the creative process.",
+      description:
+        "An internal tool for Walmart to record XR apps in realtime @ 4k60fps",
       media: [
         {
           path: "images/portfolio/walmartxrcapture/1.jpg",
@@ -877,7 +880,8 @@ Unfortunately, Walmart shut down their research division and everyone got laid o
       date: "2023",
       client: "Walmart, Inc.",
       tags: ["Unity", "Enterprise", "XR", "AI", "Design"],
-      description: "An abstract representation of the creative process.",
+      description:
+        "An app for Magic Leap 2 for a personalized in-store shopping experience using Mixed Reality and an LLM.",
       media: [
         {
           path: "https://www.youtube.com/embed/slJjxv2FG_g?si=2Uzia49nybeZPkBI",
@@ -913,7 +917,8 @@ Object-tracked AR UI
       date: "2024",
       client: "Walmart, Inc.",
       tags: ["Unity", "Enterprise", "XR", "Design"],
-      description: "An abstract representation of the creative process.",
+      description:
+        "A tool for seeing what an XR headset wearer is seeing from a 1st or 3rd person perspective using an iPad.",
       media: [
         {
           path: "https://www.youtube.com/embed/mNKAoGwfXGs?si=AK0VgLMKgigzaWCU",
@@ -1047,8 +1052,8 @@ We took some inspiration from work done at my past job at Walmart to see how a u
       name: "Rescue Simulator: Online",
       date: "2024",
       client: "self",
-      tags: ["Unity", "Design", "Video Game"],
-      description: "An abstract representation of the creative process.",
+      tags: ["Unreal Engine 5", "Design", "Video Game"],
+      description: "A multiplayer firefighter simulator game.",
       media: [
         {
           path: "images/portfolio/rso/1.png",
@@ -1126,7 +1131,8 @@ The game is currently in development and is being built in Unreal Engine 5.
       date: "2025",
       client: "self",
       tags: ["Design", "Experiment", "Figma"],
-      description: "An abstract representation of the creative process.",
+      description:
+        "A design experiment to see what an XR AI tool could look like.",
       media: [
         {
           path: "images/portfolio/aimarketresearch/1.png",
