@@ -27,7 +27,7 @@ export const folderData = {
         "walmartaixr",
         "walmartspectatorview",
         "rso",
-        "aimarketresearch",
+        //"aimarketresearch",
         "melo",
         "pace",
       ],
