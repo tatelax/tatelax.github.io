@@ -769,15 +769,27 @@ The game allows you to drive an RC car in augmented reality. The car is able to 
           thumbnail: "https://img.youtube.com/vi/0Pq_eaod7gA/default.jpg",
           type: "video",
           description: `
-## 💡 About
+# 💡 What
+Associate Use Case (AUC) was an application built for Hololens 2 that enabled Walmart associates to perform the *online pickup & delivery* (OPD) process completely while wearing an XR headset.
 
-When I first joined Walmart as a Senior Software Engineer, I joined the team working on a product called "Associate Use Case" (AUC).
+# ❓ Why
+Walmart associates currently use an Android based phone to perform the OPD process. They constantly needed to pick up and set down the phone in order to scan products. This reduction in efficiecy
+cost Walmart millions of dollars per year.
 
-This is a tool we developed and tested in-store that helped associates fulfill pick-up orders. We built custom software that allowed us to author a digital twin of the entire store. This enabled us to perform navigation to help the associate find products in the store as if they had a GPS guiding them. We also used custom product recognition software to ensure that the product the associate was picking off the shelf was correct.
+With XR, we were able to give associates the ability to perform their duty completely hands-free. We conducted user studies to show that our tool improved their efficiency by 30%.
 
-This tool helped improve efficiency by 20% but due to hardware costs and limitations at the time, it was not feasible for a large scale roll out.
+# 👥 Who
+AUC was built for the average Walmart associate. Which meant that we would be building an app for people who have never worn an XR headset.
 
-This is our first rough prototype where we demonstrated the ability to navigate a user through the store over several aisle distances. Note that AR tracking in recordings is not as smooth as what the headset wearer sees.
+# 📍 Where
+AUC was built to be used inside of a Walmart store. This presents a variety of challenges such as curious customers and slow wi-fi speeds.
+
+# ❗ How
+We built AUC using Unity for the Magic Leap 2.
+
+Our biggest challenge was localization in a large indoor setting. For this, we used Azure Spatial Anchors. We also built our own tool called Store Builder that allowed us to author a digital twin of any
+store.
+
 `,
         },
         {
