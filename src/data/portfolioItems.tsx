@@ -950,31 +950,80 @@ Object-tracked AR UI
           thumbnail: "https://img.youtube.com/vi/mNKAoGwfXGs/default.jpg",
           type: "video",
           description: `
-## 💡 About
+# 💡 What
 
-Spectator View is a tool I created for Walmart to make is fast and easy to see what a user wearing an XR headset is seeing from a 3rd and 1st person perspective. This tool also make it possible to interact with the app the user was running to help guide them press buttons, change settings, or use a virtual laser pointer to direct their attention.
+Spectator View is a tool I created for Walmart to make is fast and easy to see what a user wearing an XR
+headset is seeing from a 3rd and 1st person perspective.
+
+# ❓ Why
+
+When rapidly prototyping XR apps at Walmart, we had a constant need to understand what the headset user was seeing. Here's some of the most communication
+scenarios where spectating an XR user is valuable:
+
+* Debugging issues
+* Conducting user research studies to understand how users are using the app
+* Product demos to stakeholders
+* Helping users navigate through an XR app they are unfamiliar with
+* Recording videos
+
+# 👥 Who
+
+Spectator view is used primarily by QA testers, designers, engineers, and product managers.
+
+* QA uses it to record footage of bugs
+* Designers use it to find problematic UX issues
+* Engineers use it to help diagnose issues
+* Product managers use it in meetings to demonstrate to stakeholders what is being built in real-time or in pre-recorded videos
+
+
+# 📍 Where
+
+Spectator view was primarily used in our mock Walmart in-office as well as in-store at a real Walmart location. Spectator view is very simple and fast to use,
+which is particularly important when on-site in a Walmart store.
+
+# ❗ How
+
+1. I developed a Unity package that enabled software and QA engineers to drag and drop a prefab into the game scene. That is all that was required by engineering to
+make an existing app support spectator view.
+
+2. I developed a Spectator View iOS app that could be installed on any iOS device. An iPad was preferred due to the large screen size.
+
+3. To begin a session, the headset wearer simply performed a specific gesture with their hands or pressed a particular button combination on a controller. This displayed a
+unique ID in front of the user briefly that they could then relay to the person who wishes to spectate them.
+
+4. The spectator then enters the ID and presses connect. The spectator can now see what the headset user sees from a first person perspective.
+
+5. If the spectator wishes to spectate from a 3rd person perspective, they simply press the 3rd Person button and then are instructed to scan the same ArUco code
+that the headset user is currently anchored to.
 `,
         },
         {
           path: "images/portfolio/spectatorview/spectator-view-disconnected.png",
           type: "image",
           description: `
-  ## ❗ Problem
-  
-  1. Situation: You want a stakeholder or product tester to try an XR app.
-  2. Confusion: They get stuck or don't know what to do.
-  3. Result: Negative product experience.
+# Connect
+
+Enter the ID of the headset user to connect to it.
   `,
         },
         {
           path: "images/portfolio/spectatorview/spectator-view-connected.png",
           type: "image",
           description: `
-  ## ❗ Problem
-  
-  1. Situation: You want a stakeholder or product tester to try an XR app.
-  2. Confusion: They get stuck or don't know what to do.
-  3. Result: Negative product experience.
+# Spectate
+
+View what the headset wearer is seeing from a first or third person perspective.
+
+
+## Laser Pointer
+
+The button in the bottom left is for the laser pointer, which can be used by pointing the iPad at the target you wish to point out to the user. This feature was particularly
+useful when helping a new user get familiar with wearing an XR headset.
+
+## Streaming & Recording
+
+Another very useful benefit of using an iOS device is how easy it is to record the screen or even stream the entire screen while connected to a Zoom call. This enabled us to perform 
+real-time demos to stakeholders with zero setup.
   `,
         },
         {
@@ -989,42 +1038,52 @@ Spectator View is a tool I created for Walmart to make is fast and easy to see w
 `,
         },
         {
-          path: "images/portfolio/spectatorview/2.png",
-          type: "image",
-          description: `
-## 📖 Context
-
-Many times, we wanted to show off prototypes or MVPs that were still in the process of undergoing UX refinement. Also, we often needed to demonstrate to a group of people in a room what a headset wearer was seeing. With this tool, we were able to show a room of people what a user was doing by letting them hold the iPad, or by using Screen Mirroring on the iPad to stream what the user was seeing via Zoom.
-`,
-        },
-        {
           path: "images/portfolio/spectatorview/3.png",
           type: "image",
           description: `
 ## 👀 Dual Perspectives
 
-Spectator View supports both 3rd and 1st person. This means we can see exactly what a user is seeing from their perspective, or we can switch to 3rd person and have a look around the scene. For example, some products required the user to interact with elements that were behind them. With 3rd person, we could look around the world and find elements that the user hadn't found yet. Also, with the laser pointer feature we can point exactly at a particular element we want the user to look at.
+Spectator View supports both 3rd and 1st person. This means we can see exactly what a user is seeing from their perspective, 
+or we can switch to 3rd person and have a look around the scene. For example, some products required the user to interact with 
+elements that were behind them. With 3rd person, we could look around the world and find elements that the user hadn't found yet.
 `,
         },
         {
           path: "images/portfolio/spectatorview/4.png",
           type: "image",
           description: `
-## How it Works
+# Benefits Over On-Device Recording
+
+Headset like the Hololens 2 or Magic Leap 2 often experienced issues with on-device recording. However, they are often plagued with issues.
+Recording video often came with it's own computational overhead which reduced framerate.
+
+Spectator view allowed us to implement our own method of streaming video and handle recording on another device like an iPad.
 `,
         },
         {
           path: "images/portfolio/spectatorview/5.png",
           type: "image",
           description: `
-For 1st person view, we stream the RGB camera on the headset and the virtual camera running in the XR app over to an iPad which combines the streams in real-time and outputs it to the iPad user.
+# First Person Streaming
+
+AR footage consists of 2 video streams. One stream of the optical RGB camera on the front of the headset, and another stream of the simulated
+XR content inside of Unity.
+
+For 1st person view, I stream the RGB camera on the headset as well as a virtual camera running in the XR app over to an iPad 
+which combines the streams in real-time and outputs it to the iPad user.
+
+This allowed me to off-load some computation to an iPad instead of doing all video processing on-headset.
 `,
         },
         {
           path: "images/portfolio/spectatorview/6.png",
           type: "image",
           description: `
-For 3rd person view, we do the same thing, but with a 2nd camera inside the XR app that is aligned with the position of the iPad via an ArUco.
+# Third Person Streaming
+
+For 3rd person view, we do the same thing, but with a 2nd video camera inside the XR app that is aligned with the position of the iPad via an ArUco. 
+
+We also calibrate the virtual camera to match the field of view of the camera on the spectator device.
 `,
         },
       ],
@@ -1119,49 +1178,49 @@ The game is currently in development and is being built in Unreal Engine 5.
           path: "images/portfolio/rso/2.png",
           type: "image",
           description: `
-
+# Main Menu
 `,
         },
         {
           path: "images/portfolio/rso/3.png",
           type: "image",
           description: `
-
+# Settings
 `,
         },
         {
           path: "images/portfolio/rso/4.png",
           type: "image",
           description: `
-
+# Profile
 `,
         },
         {
           path: "images/portfolio/rso/5.png",
           type: "image",
           description: `
-
+# Servers
 `,
         },
         {
           path: "images/portfolio/rso/6.png",
           type: "image",
           description: `
-
+# World Map
 `,
         },
         {
           path: "images/portfolio/rso/7.png",
           type: "image",
           description: `
-
+# Select Role
 `,
         },
         {
           path: "images/portfolio/rso/8.png",
           type: "image",
           description: `
-
+# Environment
 `,
         },
       ],
@@ -1239,28 +1298,38 @@ Check-ins can be postponed by a day by spending vacation days. Every 10 check-in
           path: "images/portfolio/pace/3.png",
           type: "image",
           description: `
+# Create Group
 
+Enter a group name, invite members, and choose how frequently you want your group members to check in.
 `,
         },
         {
           path: "images/portfolio/pace/5.png",
           type: "image",
           description: `
-  
+# Check In
+
+After taking a photo, select the groups you wish to check in to then slide to check-in.
   `,
         },
         {
           path: "images/portfolio/pace/4.png",
           type: "image",
           description: `
+# Success
 
+The success screen shows you stats related to the groups you've just checked in to.
 `,
         },
         {
           path: "images/portfolio/pace/2.png",
           type: "image",
           description: `
-  
+# Group Chat 
+
+New check-ins are displayed to group members where they can congratulate you as well as vote on whether your check-in is valid or not.
+
+If enough group members vote that your check-in photo does not count, it will be reverted.
   `,
         },
       ],
