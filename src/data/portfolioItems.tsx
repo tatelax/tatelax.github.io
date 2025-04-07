@@ -765,8 +765,8 @@ The game allows you to drive an RC car in augmented reality. The car is able to 
         "A mixed reality app for Hololens 2 that improves associate efficiency when fulfilling orders.",
       media: [
         {
-          path: "https://www.youtube.com/embed/FxhluGA9mWg?si=ONdWlwUD4Hl7hG1n",
-          thumbnail: "https://img.youtube.com/vi/FxhluGA9mWg/default.jpg",
+          path: "https://www.youtube.com/embed/0Pq_eaod7gA?si=JVwlNurrpH6wRa4k",
+          thumbnail: "https://img.youtube.com/vi/0Pq_eaod7gA/default.jpg",
           type: "video",
           description: `
 ## 💡 About
@@ -781,11 +781,36 @@ This is our first rough prototype where we demonstrated the ability to navigate 
 `,
         },
         {
+          path: "https://www.youtube.com/embed/FxhluGA9mWg?si=ONdWlwUD4Hl7hG1n",
+          thumbnail: "https://img.youtube.com/vi/FxhluGA9mWg/default.jpg",
+          type: "video",
+          description: `
+`,
+        },
+        {
           path: "https://www.youtube.com/embed/9lY1Q9y4Iyg?si=zmiti-Fp_ma0GJoY",
           thumbnail: "https://img.youtube.com/vi/9lY1Q9y4Iyg/default.jpg",
           type: "video",
           description: `
 Here we demonstrate our custom 3D UI library that allows the user to look up an order using hand tracking. We also demonstrate our ability to recognize products on the shelf.`,
+        },
+        {
+          path: "images/portfolio/auc/1.JPG",
+          type: "image",
+          description: `
+`,
+        },
+        {
+          path: "images/portfolio/auc/2.JPG",
+          type: "image",
+          description: `
+`,
+        },
+        {
+          path: "images/portfolio/auc/3.JPG",
+          type: "image",
+          description: `
+`,
         },
       ],
     },
@@ -929,6 +954,28 @@ Object-tracked AR UI
 
 Spectator View is a tool I created for Walmart to make is fast and easy to see what a user wearing an XR headset is seeing from a 3rd and 1st person perspective. This tool also make it possible to interact with the app the user was running to help guide them press buttons, change settings, or use a virtual laser pointer to direct their attention.
 `,
+        },
+        {
+          path: "images/portfolio/spectatorview/spectator-view-disconnected.png",
+          type: "image",
+          description: `
+  ## ❗ Problem
+  
+  1. Situation: You want a stakeholder or product tester to try an XR app.
+  2. Confusion: They get stuck or don't know what to do.
+  3. Result: Negative product experience.
+  `,
+        },
+        {
+          path: "images/portfolio/spectatorview/spectator-view-connected.png",
+          type: "image",
+          description: `
+  ## ❗ Problem
+  
+  1. Situation: You want a stakeholder or product tester to try an XR app.
+  2. Confusion: They get stuck or don't know what to do.
+  3. Result: Negative product experience.
+  `,
         },
         {
           path: "images/portfolio/spectatorview/1.png",
@@ -1189,13 +1236,6 @@ Check-ins can be postponed by a day by spending vacation days. Every 10 check-in
 `,
         },
         {
-          path: "images/portfolio/pace/2.png",
-          type: "image",
-          description: `
-
-`,
-        },
-        {
           path: "images/portfolio/pace/3.png",
           type: "image",
           description: `
@@ -1203,11 +1243,25 @@ Check-ins can be postponed by a day by spending vacation days. Every 10 check-in
 `,
         },
         {
+          path: "images/portfolio/pace/5.png",
+          type: "image",
+          description: `
+  
+  `,
+        },
+        {
           path: "images/portfolio/pace/4.png",
           type: "image",
           description: `
 
 `,
+        },
+        {
+          path: "images/portfolio/pace/2.png",
+          type: "image",
+          description: `
+  
+  `,
         },
       ],
     },

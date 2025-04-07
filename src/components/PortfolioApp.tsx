@@ -792,7 +792,8 @@ const PortfolioApp: React.FC = () => {
       style={{
         fontFamily:
           "system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif",
-        backgroundImage: "url('images/pexels-jplenio-1103970.jpg')",
+        backgroundImage:
+          "url('images/pexels-adrien-olichon-1257089-2387793(1).jpg')",
         backgroundSize: "cover",
         backgroundPosition: "center",
         backgroundRepeat: "no-repeat",
@@ -1019,21 +1020,15 @@ const PortfolioApp: React.FC = () => {
             <>
               {/* Left Sidebar - Hidden on mobile */}
               <div className="hidden md:w-1/4 lg:w-1/5 xl:w-1/5 2xl:w-1/6 md:flex md:flex-col bg-white/5 backdrop-blur-md overflow-y-auto border-r border-white/20 h-full max-w-sm mac-scrollbar">
-                <div className="p-7">
-                  <div className="mb-6">
-                    <h1
-                      className="font-bold mb-1 text-white flex flex-col"
-                      style={{
-                        fontSize: "clamp(0.75rem, 4vw, 2.25rem)",
-                        lineHeight: 1.2,
-                      }}
-                    >
-                      <span>Tate McCormick is a </span>
-                      <span>designer & engineer</span>
-                      <span>based in </span>
-                      <span>Redmond, WA.</span>
-                    </h1>
-                  </div>
+                <div
+                  className="p-7 mb-6 font-bold text-white text-4xl overflow-hidden whitespace-nowrap"
+                  style={{
+                    fontSize: "clamp(1rem, 1vw, 2rem)",
+                  }}
+                >
+                  Tate McCormick is a <br />
+                  designer & engineer <br />
+                  based in Redmond, WA.
                 </div>
 
                 {/* Folder list anchored to bottom */}
