@@ -829,13 +829,13 @@ Here we demonstrate our custom 3D UI library that allows the user to look up an 
   },
   walmartvideocapture: {
     id: "walmartvideocapture",
-    name: "Walmart XR Video",
+    name: "Walmart Cinematic AR",
     icon: "🧠",
     image: "images/icons/walmarticontiny.png",
     color: "#F39C74",
     year: "2023",
     details: {
-      name: "Walmart XR Video",
+      name: "Walmart Cinematic AR",
       date: "2023",
       client: "Walmart, Inc.",
       tags: ["Unity", "Enterprise", "XR", "Design"],
@@ -846,14 +846,21 @@ Here we demonstrate our custom 3D UI library that allows the user to look up an 
           path: "images/portfolio/walmartxrcapture/1.jpg",
           type: "image",
           description: `
-## 💡 About
+# 💡 What
+This is a tool I designed and built while working for Walmart to enable our in-house cinematographer to capture real-time footage of AR content in 4K at 60 fps.
 
+# ❓ Why
 At Walmart, we had a constant need to show-off our work to stakeholders.
 
-The problem is that showing Mixed Reality content to others is actually pretty difficult. There's nothing like wearing a headset but that requires traveling to a location, in our case, putting the headset on, and hoping for the best.
+The problem is that showing Mixed Reality content to others is actually pretty difficult. There's nothing like wearing a headset to see the content first-hand, but that requires traveling to a location (such as a Walmart store), putting the headset on, and hoping for the best.
 
-To solve this, I created a way for us to professionally capture MR content in 4k @ 60fps.
+# 👥 Who
+This tool was built for our cinematographer to be able to capture high quality AR content on his own; with little to no work required from engineering.
 
+# 📍 Where
+We primarily filmed in real-world Walmart locations. This means the setup needs to be compact to avoid getting in the way of shoppers, something that was a strict requirement from Walmart.
+
+# ❗ How
 We created a 3D printed bracket that allowed a Magic Leap 2 to sit on top of a Sony FX3. The Magic Leap anchored to an ArUco marker located near the shooting location and began transmitting telemetry to a laptop that was running the app we wanted to shoot.
 
 The app was running inside the Unity editor which had a custom package installed that would emulate the user. This worked in all of our existing apps without needing any retrofitting. We were able to just drag and drop a prefab into the scene.
@@ -867,27 +874,35 @@ The ability for the cinematographer to see in real-time 4k what he was shooting 
           path: "images/portfolio/walmartxrcapture/2.jpg",
           type: "image",
           description: `
-Magic Leap 2 mounted on top of the Sony FX3 with a custom 3D printed bracket.
+### *Magic Leap 2 mounted on top of the Sony FX3 with a custom 3D printed bracket.*
             `,
         },
         {
           path: "images/portfolio/walmartxrcapture/3.jpg",
           type: "image",
           description: `
-Prepping for our in-store shoot.
+### *Prepping for our in-store shoot.*
           `,
         },
         {
           path: "images/portfolio/walmartxrcapture/4.jpg",
           type: "image",
           description: `
-I'm recording and monitoring the footage from a laptop nearby.`,
+### *I'm recording and monitoring the footage from a laptop nearby.*
+`,
         },
         {
           path: "images/portfolio/walmartxrcapture/5.jpg",
           type: "image",
           description: `
-The completed setup.
+### *The completed setup*.
+`,
+        },
+        {
+          path: "images/portfolio/walmartxrcapture/6.jpg",
+          type: "image",
+          description: `
+### *We used signage at store entrances to notify shoppers that filming was taking place.*
 `,
         },
         {
@@ -895,11 +910,9 @@ The completed setup.
           thumbnail: "https://img.youtube.com/vi/IoptQFnqbAM/default.jpg",
           type: "video",
           description: `
-I want to note that this video has some AR tracking issues! This is because the Magic Leap 2 was having thermal issues and we did not have time to reshoot, sadly.
+### *Here's a sample video we created using this technology.*
 
-However, I wanted to provide it because it does give an idea of what we built is capable of.
-
-Unfortunately, Walmart shut down their research division and everyone got laid off before I could polish this useful tech.
+Unfortunately, due to thermal issues with the Magic Leap 2 we experienced tracking issues which can be seen in this video and Walmart dissolved our team before I a chance to resolve this issue.
   `,
         },
       ],
