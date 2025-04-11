@@ -311,8 +311,9 @@ Volygon is a side project of mine that I have been working on and off for many y
   },
   magellan: {
     id: "magellan",
-    name: "Magellan",
+    name: "Comcast: Magellan",
     icon: "⚡",
+    image: "images/icons/comcasttiny.jpg",
     color: "#00000",
     year: "2020",
     details: {
@@ -751,7 +752,7 @@ The game allows you to drive an RC car in augmented reality. The car is able to 
   },
   walmartauc: {
     id: "walmartauc",
-    name: "Walmart AUC",
+    name: "Walmart: Associate Use-Case",
     icon: "🧠",
     image: "images/icons/walmarticontiny.png",
     color: "#F39C74",
@@ -829,13 +830,13 @@ Here we demonstrate our custom 3D UI library that allows the user to look up an 
   },
   walmartvideocapture: {
     id: "walmartvideocapture",
-    name: "Walmart Cinematic AR",
+    name: "Walmart: Cinematic AR",
     icon: "🧠",
     image: "images/icons/walmarticontiny.png",
     color: "#F39C74",
     year: "2023",
     details: {
-      name: "Walmart Cinematic AR",
+      name: "Cinematic AR",
       date: "2023",
       client: "Walmart, Inc.",
       tags: ["Unity", "Enterprise", "XR", "Design"],
@@ -920,7 +921,7 @@ Unfortunately, due to thermal issues with the Magic Leap 2 we experienced tracki
   },
   walmartaixr: {
     id: "walmartaixr",
-    name: "Walmart AI + XR",
+    name: "Walmart: AI + XR",
     icon: "🧠",
     image: "images/icons/walmarticontiny.png",
     color: "#F39C74",
@@ -957,13 +958,13 @@ Object-tracked AR UI
   },
   walmartspectatorview: {
     id: "walmartspectatorview",
-    name: "Walmart Spectator View",
+    name: "Walmart: Spectator View",
     icon: "🧠",
     image: "images/icons/walmarticontiny.png",
     color: "#F39C74",
     year: "2024",
     details: {
-      name: "Walmart Spectator View",
+      name: "Spectator View",
       date: "2024",
       client: "Walmart, Inc.",
       tags: ["Unity", "Enterprise", "XR", "Design"],
