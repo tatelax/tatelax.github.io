@@ -1267,7 +1267,7 @@ The game is currently in development and is being built in Unreal Engine 5.
         "A design experiment to see what an XR AI tool could look like.",
       media: [
         {
-          path: "images/portfolio/aimarketresearch/1.png",
+          path: "images/portfolio/aimarketresearch/dashboard.png",
           type: "image",
           description: `
 ## 💡 About
@@ -1284,6 +1284,23 @@ Companies spend millions of dollars every year trying to get answers to these qu
 I wanted to see if AI could give companies some of these answers much sooner. And the answer is, yes...
 
 I created a rough mockup in an hour for what the UI could look like.
+`,
+        },
+        {
+          path: "images/portfolio/aimarketresearch/issues.png",
+          type: "image",
+          description: `
+# Automated UX Testing
+
+Here we can see issues with accessibility that the AI has identified.
+
+The AI is capable of idenfiying issues with poor contrast, small font sizes, and poor UX.
+`,
+        },
+        {
+          path: "images/portfolio/aimarketresearch/newsimulation.png",
+          type: "image",
+          description: `
 `,
         },
       ],
